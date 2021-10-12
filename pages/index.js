@@ -129,15 +129,6 @@ export async function getStaticProps() {
     fetchAPI("/sponsors"),
   ]);
 
-  console.log({
-    articles,
-    categories,
-    homepage,
-    games,
-    players,
-    coaches,
-    sponsors,
-  });
   return {
     props: {
       articles,
