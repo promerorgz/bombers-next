@@ -27,7 +27,9 @@ const ArticleHeader = styled.div`
 `;
 
 const defaultArticle = {
-  image: {},
+  image: {
+    url: "",
+  },
   title: "",
   description: "",
   author: {},
