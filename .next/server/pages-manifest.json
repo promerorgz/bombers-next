@@ -1,0 +1,21 @@
+{
+  "/_app": "pages/_app.js",
+  "/_document": "pages/_document.js",
+  "/category/[slug]": "pages/category/[slug].js",
+  "/contact": "pages/contact.js",
+  "/game/[slug]": "pages/game/[slug].js",
+  "/": "pages/index.js",
+  "/news/article/[slug]": "pages/news/article/[slug].js",
+  "/news": "pages/news.js",
+  "/photos": "pages/photos.js",
+  "/schedule/[slug]": "pages/schedule/[slug].js",
+  "/schedule/components/Results": "pages/schedule/components/Results.js",
+  "/schedule/components/Schedule": "pages/schedule/components/Schedule.js",
+  "/schedule/components/ScheduleTabs": "pages/schedule/components/ScheduleTabs.js",
+  "/schedule/components/Tables": "pages/schedule/components/Tables.js",
+  "/schedule": "pages/schedule.js",
+  "/shop": "pages/shop.js",
+  "/team/[slug]": "pages/team/[slug].js",
+  "/team": "pages/team.js",
+  "/_error": "pages/_error.js"
+}
