@@ -1,1 +1,0 @@
-{"ast":null,"code":"var __jsx = React.createElement;\nimport React from \"react\";\n\nvar ScheduleGame = function ScheduleGame() {\n  return __jsx(\"div\", null);\n};\n\nexport default ScheduleGame;","map":null,"metadata":{},"sourceType":"module"}
