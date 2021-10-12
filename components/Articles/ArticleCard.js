@@ -25,7 +25,6 @@ const ArticleCard = ({ article, styles, highlight }) => {
         <Flex
           minH="500px"
           direction={direction}
-          maxW="8xl"
           borderWidth="1px"
           overflow="hidden"
           borderRadius="8px"

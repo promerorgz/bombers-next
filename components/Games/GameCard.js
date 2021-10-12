@@ -13,7 +13,7 @@ const GameCard = ({ title = "", link = "", linkDisplay = "", games = [] }) => {
   };
 
   return (
-    <Box position="relative" top="-100px" m="auto">
+    <Box position="relative" top="-100px" m="auto" minH="200px">
       <Card styles={styles}>
         <SkeletonText
           w="80%"
