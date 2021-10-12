@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -349,6 +349,9 @@ MyApp.getInitialProps = async ctx => {
   // Pass the data to our page via props
 
   const [global, articles, categories, homepage, games, players, coaches] = await Promise.all([Object(api["a" /* fetchAPI */])("/global"), Object(api["a" /* fetchAPI */])("/articles?status=published"), Object(api["a" /* fetchAPI */])("/categories"), Object(api["a" /* fetchAPI */])("/homepage"), Object(api["a" /* fetchAPI */])("/games"), Object(api["a" /* fetchAPI */])("/players"), Object(api["a" /* fetchAPI */])("/coaches")]);
+  console.log({
+    games
+  });
   return _objectSpread(_objectSpread({}, appProps), {}, {
     pageProps: {
       global,
@@ -483,7 +486,7 @@ function assign(target, ...searchParamsList) {
 
 /***/ }),
 
-/***/ 5:
+/***/ 4:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("RNiq");
@@ -627,174 +630,6 @@ function formatUrl(urlObj) {
 
 module.exports = __webpack_require__("B5Ud")
 
-
-/***/ }),
-
-/***/ "8XxB":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-// EXTERNAL MODULE: external "@chakra-ui/layout"
-var layout_ = __webpack_require__("k7wm");
-
-// EXTERNAL MODULE: external "@chakra-ui/react"
-var react_ = __webpack_require__("LZ34");
-
-// EXTERNAL MODULE: external "lodash"
-var external_lodash_ = __webpack_require__("YLtl");
-
-// EXTERNAL MODULE: external "react"
-var external_react_ = __webpack_require__("cDcd");
-var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_);
-
-// EXTERNAL MODULE: ./node_modules/next/link.js
-var next_link = __webpack_require__("YFqc");
-var link_default = /*#__PURE__*/__webpack_require__.n(next_link);
-
-// EXTERNAL MODULE: ./common/Pic.jsx
-var Pic = __webpack_require__("XStG");
-
-// EXTERNAL MODULE: external "styled-components"
-var external_styled_components_ = __webpack_require__("Dtiu");
-
-// EXTERNAL MODULE: external "@chakra-ui/styled-system"
-var styled_system_ = __webpack_require__("DQ9F");
-
-// EXTERNAL MODULE: external "react-markdown"
-var external_react_markdown_ = __webpack_require__("id0+");
-var external_react_markdown_default = /*#__PURE__*/__webpack_require__.n(external_react_markdown_);
-
-// CONCATENATED MODULE: ./components/Articles/ArticleCard.js
-var __jsx = external_react_default.a.createElement;
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-
-
-
-
-
-
-
-const ArticleCard = ({
-  article,
-  styles,
-  highlight
-}) => {
-  return __jsx(link_default.a, {
-    as: `/article/${article.slug || "hello"}`,
-    href: "/article/[id]",
-    m: "16"
-  }, __jsx(layout_["LinkBox"], null, __jsx(layout_["Flex"], {
-    minH: "500px",
-    direction: highlight ? "row" : "column",
-    maxW: "8xl",
-    borderWidth: "1px",
-    overflow: "hidden",
-    borderRadius: "8px",
-    borderColor: "brand.400",
-    cursor: "pointer",
-    bg: "brand.black",
-    sx: _objectSpread(_objectSpread({}, styles), {}, {
-      transition: "all .2s ease-in-out",
-      _hover: {
-        transform: "scale(1.05)",
-        boxShadow: "0px 5px 10px #21212150"
-      }
-    }),
-    bgGradient: "gradient.main"
-  }, __jsx(layout_["Box"], {
-    backgroundImage: `http://localhost:1339${article.image.url}`,
-    flexGrow: "1",
-    minH: "300px",
-    backgroundPosition: "center",
-    backgroundSize: "cover"
-  }), __jsx(layout_["Flex"], {
-    direction: "column",
-    p: "4"
-  }, __jsx(layout_["Box"], {
-    d: "flex",
-    alignItems: "baseline",
-    m: 4
-  }, __jsx(layout_["Badge"], {
-    borderRadius: "full",
-    px: "2",
-    bg: "brand.light",
-    color: "brand.black",
-    mr: "4"
-  }, article.category.name), __jsx(layout_["Box"], {
-    color: "brand.medium",
-    fontWeight: "semibold",
-    letterSpacing: "wide",
-    fontSize: "xs",
-    textTransform: "uppercase"
-  }, new Date(article.publishedAt).toLocaleDateString())), __jsx(layout_["Flex"], {
-    alignItems: "start",
-    direction: "column",
-    justifyContent: "flex-start",
-    m: 4
-  }, __jsx(layout_["Box"], {
-    fontWeight: "semibold",
-    lineHeight: "tight",
-    overflowY: "scroll",
-    whiteSpace: "nowrap"
-  }, __jsx(layout_["Text"], {
-    fontSize: highlight ? "2xl" : "xl",
-    as: "h1",
-    fontWeight: "bolder",
-    textTransform: highlight ? "uppercase" : "none",
-    color: "brand.light",
-    textOverflow: "ellipsis",
-    overflowY: "scroll",
-    whiteSpace: "nowrap"
-  }, article.title)), __jsx(layout_["Box"], {
-    overflowY: "scroll",
-    color: "brand.light"
-  }, __jsx(external_react_markdown_default.a, null, article.description)))))));
-};
-
-/* harmony default export */ var Articles_ArticleCard = (ArticleCard);
-// CONCATENATED MODULE: ./components/Articles/articles.js
-var articles_jsx = external_react_default.a.createElement;
-
-
-
-
-
-
-const Articles = ({
-  articles
-}) => {
-  const latestArticle = articles[articles.length - 1];
-  const rightArticles = articles.slice(0, articles.length - 1).filter(article => article.slug !== latestArticle.slug).slice(0, 4);
-  return articles_jsx(layout_["SimpleGrid"], {
-    columns: 1,
-    spacing: "8"
-  }, articles_jsx(Articles_ArticleCard, {
-    highlight: true,
-    article: latestArticle,
-    key: `article__left__${latestArticle.slug}`
-  }), articles_jsx(layout_["SimpleGrid"], {
-    columns: [2, 1, 1, 2, 2, 2],
-    spacing: 8
-  }, rightArticles.map((article, i) => {
-    return articles_jsx(Articles_ArticleCard, {
-      styles: {
-        maxHeight: 500
-      },
-      article: article,
-      key: `article__left__${article.slug}`
-    });
-  })));
-};
-
-/* harmony default export */ var Articles_articles = __webpack_exports__["a"] = (Articles);
 
 /***/ }),
 
@@ -1165,9 +1000,161 @@ var Layout = __webpack_require__("fEL8");
 // EXTERNAL MODULE: ./common/Seo.jsx
 var Seo = __webpack_require__("qX0I");
 
-// EXTERNAL MODULE: ./components/Articles/articles.js + 1 modules
-var Articles_articles = __webpack_require__("8XxB");
+// EXTERNAL MODULE: ./node_modules/next/link.js
+var next_link = __webpack_require__("YFqc");
+var link_default = /*#__PURE__*/__webpack_require__.n(next_link);
 
+// EXTERNAL MODULE: ./common/Pic.jsx
+var Pic = __webpack_require__("XStG");
+
+// EXTERNAL MODULE: external "styled-components"
+var external_styled_components_ = __webpack_require__("Dtiu");
+
+// EXTERNAL MODULE: external "@chakra-ui/styled-system"
+var styled_system_ = __webpack_require__("DQ9F");
+
+// EXTERNAL MODULE: external "react-markdown"
+var external_react_markdown_ = __webpack_require__("id0+");
+var external_react_markdown_default = /*#__PURE__*/__webpack_require__.n(external_react_markdown_);
+
+// CONCATENATED MODULE: ./components/Articles/ArticleCard.js
+var __jsx = external_react_default.a.createElement;
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+
+
+
+
+const ArticleCard = ({
+  article,
+  styles,
+  highlight
+}) => {
+  const direction = Object(media_query_["useBreakpointValue"])({
+    base: highlight ? "row" : "column",
+    xs: "column",
+    sm: "column",
+    md: highlight ? "row" : "column",
+    lg: highlight ? "row" : "column"
+  });
+  return __jsx(link_default.a, {
+    as: `/article/${article.slug || "hello"}`,
+    href: "/article/[id]",
+    m: "16"
+  }, __jsx(layout_["LinkBox"], null, __jsx(layout_["Flex"], {
+    minH: "500px",
+    direction: direction,
+    maxW: "8xl",
+    borderWidth: "1px",
+    overflow: "hidden",
+    borderRadius: "8px",
+    borderColor: "brand.400",
+    cursor: "pointer",
+    bg: "brand.black",
+    sx: _objectSpread(_objectSpread({}, styles), {}, {
+      transition: "all .2s ease-in-out",
+      _hover: {
+        transform: "scale(1.05)",
+        boxShadow: "0px 5px 10px #21212150"
+      }
+    }),
+    bgGradient: "gradient.main"
+  }, __jsx(layout_["Box"], {
+    backgroundImage: `${"https://bombers-backend.herokuapp.com"}${article.image.url}`,
+    flexGrow: "1",
+    minH: "300px",
+    backgroundPosition: "center",
+    backgroundSize: "cover"
+  }), __jsx(layout_["Flex"], {
+    direction: "column",
+    p: "4"
+  }, __jsx(layout_["Box"], {
+    d: "flex",
+    alignItems: "baseline",
+    m: 4
+  }, __jsx(layout_["Badge"], {
+    borderRadius: "full",
+    px: "2",
+    bg: "brand.light",
+    color: "brand.black",
+    mr: "4"
+  }, article.category.name), __jsx(layout_["Box"], {
+    color: "brand.medium",
+    fontWeight: "semibold",
+    letterSpacing: "wide",
+    fontSize: "xs",
+    textTransform: "uppercase"
+  }, new Date(article.publishedAt).toLocaleDateString())), __jsx(layout_["Flex"], {
+    alignItems: "start",
+    direction: "column",
+    justifyContent: "flex-start",
+    m: 4
+  }, __jsx(layout_["Box"], {
+    fontWeight: "semibold",
+    lineHeight: "tight",
+    overflowY: "scroll",
+    whiteSpace: "nowrap"
+  }, __jsx(layout_["Text"], {
+    fontSize: highlight ? "2xl" : "xl",
+    as: "h1",
+    fontWeight: "bolder",
+    textTransform: highlight ? "uppercase" : "none",
+    color: "brand.light",
+    textOverflow: "ellipsis",
+    overflowY: "scroll",
+    whiteSpace: "nowrap"
+  }, article.title)), __jsx(layout_["Box"], {
+    overflowY: "scroll",
+    color: "brand.light"
+  }, __jsx(external_react_markdown_default.a, null, article.description)))))));
+};
+
+/* harmony default export */ var Articles_ArticleCard = (ArticleCard);
+// CONCATENATED MODULE: ./components/Articles/articles.js
+var articles_jsx = external_react_default.a.createElement;
+
+
+
+
+
+
+const Articles = ({
+  articles
+}) => {
+  const latestArticle = articles[articles.length - 1];
+  const rightArticles = articles.slice(0, articles.length - 1).filter(article => article.slug !== latestArticle.slug).slice(0, 4);
+  return articles_jsx(layout_["SimpleGrid"], {
+    columns: 1,
+    spacing: "8"
+  }, articles_jsx(Articles_ArticleCard, {
+    highlight: true,
+    article: latestArticle,
+    key: `article__left__${latestArticle.slug}`
+  }), articles_jsx(layout_["SimpleGrid"], {
+    columns: [2, 1, 1, 2, 2, 2],
+    spacing: 8
+  }, rightArticles.map((article, i) => {
+    return articles_jsx(Articles_ArticleCard, {
+      styles: {
+        maxHeight: 500
+      },
+      article: article,
+      key: `article__left__${article.slug}`
+    });
+  })));
+};
+
+/* harmony default export */ var Articles_articles = (Articles);
 // EXTERNAL MODULE: ./common/Card.jsx
 var Card = __webpack_require__("tmMu");
 
@@ -1175,15 +1162,15 @@ var Card = __webpack_require__("tmMu");
 var GameInfo = __webpack_require__("h/tH");
 
 // CONCATENATED MODULE: ./components/Games/GameCard.js
-var __jsx = external_react_default.a.createElement;
+var GameCard_jsx = external_react_default.a.createElement;
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+function GameCard_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function GameCard_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { GameCard_ownKeys(Object(source), true).forEach(function (key) { GameCard_defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { GameCard_ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function GameCard_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
@@ -1203,13 +1190,13 @@ const GameCard = ({
     //   "linear-gradient(to right bottom, #212121 50%, #7f8c8d 50.3%)",
     boxShadow: "0 1px 4px #151515"
   };
-  return __jsx(layout_["Box"], {
+  return GameCard_jsx(layout_["Box"], {
     position: "relative",
     top: "-100px",
     m: "auto"
-  }, __jsx(Card["a" /* default */], {
+  }, GameCard_jsx(Card["a" /* default */], {
     styles: styles
-  }, __jsx(react_["SkeletonText"], {
+  }, GameCard_jsx(react_["SkeletonText"], {
     w: "80%",
     m: "auto",
     startColor: "brand.medium",
@@ -1217,7 +1204,7 @@ const GameCard = ({
     isLoaded: games.length,
     fadeDuration: 0.6,
     speed: 1
-  }, __jsx(layout_["Stack"], {
+  }, GameCard_jsx(layout_["Stack"], {
     direction: "row" // m="auto"
     ,
     p: "8",
@@ -1234,27 +1221,27 @@ const GameCard = ({
     slug
   }, i) => {
     const gameInfo = {
-      homeTeam: _objectSpread(_objectSpread({}, home), {}, {
+      homeTeam: GameCard_objectSpread(GameCard_objectSpread({}, home), {}, {
         score: home_score
       }),
-      awayTeam: _objectSpread(_objectSpread({}, away), {}, {
+      awayTeam: GameCard_objectSpread(GameCard_objectSpread({}, away), {}, {
         score: away_score
       }),
       location: location,
       date: date
     };
-    return __jsx(external_react_default.a.Fragment, null, __jsx(GameInfo["a" /* default */], _extends({
+    return GameCard_jsx(external_react_["Fragment"], {
       key: slug || `${home.name}-vs-${away.name}`
-    }, gameInfo, {
+    }, GameCard_jsx(GameInfo["a" /* default */], _extends({}, gameInfo, {
       division: division,
       preview: true
-    })), i === 0 && __jsx(layout_["Center"], {
+    })), i === 0 && GameCard_jsx(layout_["Center"], {
       height: "100px",
       margin: "8px",
       alignItems: "center",
       justifyContent: "center",
       h: "180px"
-    }, __jsx(layout_["Divider"], {
+    }, GameCard_jsx(layout_["Divider"], {
       orientation: "vertical"
     })));
   })))));
@@ -1275,10 +1262,10 @@ function Games_defineProperty(obj, key, value) { if (key in obj) { Object.define
 
 
 const Games = ({
-  games
+  games = []
 }) => {
-  const upcoming = games.filter(game => !game.finished) || [];
-  const played = games.filter(game => game.finished) || [];
+  const upcoming = (games === null || games === void 0 ? void 0 : games.filter(game => !game.finished)) || [];
+  const played = (games === null || games === void 0 ? void 0 : games.filter(game => game.finished)) || [];
 
   const byDivision = gameArray => {
     return gameArray.reduce((acc, upcomingGame) => {
@@ -1321,9 +1308,6 @@ var paypal_button = __webpack_require__("BHfH");
 
 // EXTERNAL MODULE: external "@chakra-ui/avatar"
 var avatar_ = __webpack_require__("m7mU");
-
-// EXTERNAL MODULE: ./common/Pic.jsx
-var Pic = __webpack_require__("XStG");
 
 // CONCATENATED MODULE: ./components/Sponsors/index.js
 var Sponsors_jsx = external_react_default.a.createElement;
@@ -1411,21 +1395,6 @@ const Home = props => {
     display: "Contact",
     link: "/contact"
   }];
-  const dynamicRows = Object(media_query_["useBreakpointValue"])({
-    base: 2,
-    sm: 3,
-    md: 3,
-    lg: 2,
-    xl: 1
-  });
-  const dynamicStack = Object(media_query_["useBreakpointValue"])({
-    base: "horizontal",
-    xs: "vertical",
-    sm: "vertical",
-    md: "vertical",
-    lg: "horizontal",
-    xl: "horizontal"
-  });
   return pages_jsx(Layout["a" /* default */], {
     categories: categories,
     seo: homepage.seo,
@@ -1456,6 +1425,10 @@ const Home = props => {
     rowSpan: [1, null, 2],
     colSpan: [5, 5, 5, 5, 5] // colSpan={[10, 10, 10, 10, 10]}
 
+  }, pages_jsx(layout_["Flex"], {
+    justifyContent: "space-between",
+    alignContent: "baseline",
+    direction: "row"
   }, pages_jsx(react_["Heading"], {
     as: "h3",
     size: "2xl",
@@ -1465,7 +1438,18 @@ const Home = props => {
     mb: "8",
     textDecoration: "underline",
     textUnderlineOffset: "10px"
-  }, "News"), pages_jsx(Articles_articles["a" /* default */], {
+  }, "News"), pages_jsx(react_["Heading"], {
+    as: "a",
+    size: "l",
+    fontFamily: "Big Shoulders Display",
+    fontWeight: "700",
+    textTransform: "uppercase" // mb="8"
+    ,
+    textDecoration: "underline",
+    textUnderlineOffset: "10px"
+  }, pages_jsx(layout_["Link"], {
+    href: "/news"
+  }, "see more"))), pages_jsx(Articles_articles, {
     articles: articles
   }))), pages_jsx(layout_["Box"], {
     mx: -8,
@@ -1480,6 +1464,15 @@ const Home = props => {
 async function getStaticProps() {
   // Run API calls in parallel
   const [articles, categories, homepage, games, players, coaches, sponsors] = await Promise.all([Object(api["a" /* fetchAPI */])("/articles?status=published"), Object(api["a" /* fetchAPI */])("/categories"), Object(api["a" /* fetchAPI */])("/homepage"), Object(api["a" /* fetchAPI */])("/games"), Object(api["a" /* fetchAPI */])("/players"), Object(api["a" /* fetchAPI */])("/coaches"), Object(api["a" /* fetchAPI */])("/sponsors")]);
+  console.log({
+    articles,
+    categories,
+    homepage,
+    games,
+    players,
+    coaches,
+    sponsors
+  });
   return {
     props: {
       articles,
@@ -2985,7 +2978,7 @@ const Venmo = ({
   }, __jsx("path", {
     d: "M89.551 19.201c-5.029 28.863-33.127 53.301-41.577 58.883-8.454 5.582-16.163-2.236-18.96-8.148-3.201-6.738-12.793-43.285-15.307-46.311-2.512-3.029-10.051 3.025-10.051 3.025L0 21.768S15.307 3.145 26.957.817c12.35-2.469 12.332 19.318 15.301 31.416 2.873 11.701 4.807 18.398 7.312 18.398 2.514 0 7.311-6.525 12.562-16.531 5.264-10.016-.225-18.857-10.505-12.568C55.738-3.605 94.578-9.65 89.551 19.201z",
     fill: color || "#fff",
-    class: "fill-000000"
+    className: "fill-000000"
   }));
 };
 
@@ -3065,7 +3058,8 @@ const Nav = ({
     return Nav_jsx(react_["Link"], {
       m: "2",
       href: page.url,
-      target: "_blank"
+      target: "_blank",
+      key: page.url
     }, page.name === "venmo" ? Nav_jsx(icons_Venmo, {
       size: "lg"
     }) : Nav_jsx(react_fontawesome_["FontAwesomeIcon"], {
@@ -3091,6 +3085,7 @@ const Nav = ({
     size: "150px",
     justifyContent: "space-evenly"
   }, navs.map(nav => Nav_jsx(react_["Link"], {
+    key: nav.name,
     color: "brand.black",
     href: `/${nav.name}`,
     fontFamily: "Big Shoulders Display",
@@ -3366,7 +3361,7 @@ const Team = ({
   away,
   preview
 }) => {
-  const uploadsUrl = url => `http://localhost:1339${url}`;
+  const uploadsUrl = url => `${"https://bombers-backend.herokuapp.com"}${url}`;
 
   const direction = away ? "row-reverse" : "row";
   return __jsx(external_react_default.a.Fragment, null, __jsx(layout_["Flex"], {
@@ -3843,7 +3838,7 @@ const Seo = ({
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return getStrapiURL; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return fetchAPI; });
 function getStrapiURL(path = "") {
-  return `${process.env.NEXT_PUBLIC_STRAPI_API_URL || "http://localhost:1339"}${path}`;
+  return `${process.env.NEXT_PUBLIC_STRAPI_API_URL || "https://bombers-backend.herokuapp.com"}${path}`;
 } // Helper to make GET requests to Strapi
 
 async function fetchAPI(path) {

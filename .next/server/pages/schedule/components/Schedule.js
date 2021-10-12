@@ -88,12 +88,12 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 11);
+/******/ 	return __webpack_require__(__webpack_require__.s = 10);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 11:
+/***/ 10:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("IB+j");
@@ -249,7 +249,7 @@ const Team = ({
   away,
   preview
 }) => {
-  const uploadsUrl = url => `http://localhost:1339${url}`;
+  const uploadsUrl = url => `${"https://bombers-backend.herokuapp.com"}${url}`;
 
   const direction = away ? "row-reverse" : "row";
   return __jsx(external_react_default.a.Fragment, null, __jsx(layout_["Flex"], {

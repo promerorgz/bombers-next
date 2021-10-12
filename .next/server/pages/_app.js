@@ -307,6 +307,9 @@ MyApp.getInitialProps = async ctx => {
   // Pass the data to our page via props
 
   const [global, articles, categories, homepage, games, players, coaches] = await Promise.all([Object(api["a" /* fetchAPI */])("/global"), Object(api["a" /* fetchAPI */])("/articles?status=published"), Object(api["a" /* fetchAPI */])("/categories"), Object(api["a" /* fetchAPI */])("/homepage"), Object(api["a" /* fetchAPI */])("/games"), Object(api["a" /* fetchAPI */])("/players"), Object(api["a" /* fetchAPI */])("/coaches")]);
+  console.log({
+    games
+  });
   return _objectSpread(_objectSpread({}, appProps), {}, {
     pageProps: {
       global,
@@ -519,7 +522,7 @@ function getStrapiMedia(media) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return getStrapiURL; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return fetchAPI; });
 function getStrapiURL(path = "") {
-  return `${process.env.NEXT_PUBLIC_STRAPI_API_URL || "http://localhost:1339"}${path}`;
+  return `${process.env.NEXT_PUBLIC_STRAPI_API_URL || "https://bombers-backend.herokuapp.com"}${path}`;
 } // Helper to make GET requests to Strapi
 
 async function fetchAPI(path) {

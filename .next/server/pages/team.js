@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 17);
+/******/ 	return __webpack_require__(__webpack_require__.s = 16);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -143,7 +143,7 @@ function withRouter(ComposedComponent) {
 
 /***/ }),
 
-/***/ 17:
+/***/ 16:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("m7oY");
@@ -1999,7 +1999,7 @@ const Venmo = ({
   }, __jsx("path", {
     d: "M89.551 19.201c-5.029 28.863-33.127 53.301-41.577 58.883-8.454 5.582-16.163-2.236-18.96-8.148-3.201-6.738-12.793-43.285-15.307-46.311-2.512-3.029-10.051 3.025-10.051 3.025L0 21.768S15.307 3.145 26.957.817c12.35-2.469 12.332 19.318 15.301 31.416 2.873 11.701 4.807 18.398 7.312 18.398 2.514 0 7.311-6.525 12.562-16.531 5.264-10.016-.225-18.857-10.505-12.568C55.738-3.605 94.578-9.65 89.551 19.201z",
     fill: color || "#fff",
-    class: "fill-000000"
+    className: "fill-000000"
   }));
 };
 
@@ -2079,7 +2079,8 @@ const Nav = ({
     return Nav_jsx(react_["Link"], {
       m: "2",
       href: page.url,
-      target: "_blank"
+      target: "_blank",
+      key: page.url
     }, page.name === "venmo" ? Nav_jsx(icons_Venmo, {
       size: "lg"
     }) : Nav_jsx(react_fontawesome_["FontAwesomeIcon"], {
@@ -2105,6 +2106,7 @@ const Nav = ({
     size: "150px",
     justifyContent: "space-evenly"
   }, navs.map(nav => Nav_jsx(react_["Link"], {
+    key: nav.name,
     color: "brand.black",
     href: `/${nav.name}`,
     fontFamily: "Big Shoulders Display",
@@ -2487,7 +2489,7 @@ const PlayerList = ({
         url: player.picture.url || ""
       };
       const style = {
-        backgroundImage: `url(http://localhost:1339${player.picture.url})`
+        backgroundImage: `url(${"https://bombers-backend.herokuapp.com"}${player.picture.url})`
       };
       return __jsx(Card["a" /* default */], {
         key: `${player.first_name}-card`,
@@ -2791,7 +2793,7 @@ function getStrapiMedia(media) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return getStrapiURL; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return fetchAPI; });
 function getStrapiURL(path = "") {
-  return `${process.env.NEXT_PUBLIC_STRAPI_API_URL || "http://localhost:1339"}${path}`;
+  return `${process.env.NEXT_PUBLIC_STRAPI_API_URL || "https://bombers-backend.herokuapp.com"}${path}`;
 } // Helper to make GET requests to Strapi
 
 async function fetchAPI(path) {

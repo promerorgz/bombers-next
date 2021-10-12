@@ -88,12 +88,12 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 12);
+/******/ 	return __webpack_require__(__webpack_require__.s = 11);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 12:
+/***/ 11:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("xYII");
@@ -356,7 +356,7 @@ const Team = ({
   away,
   preview
 }) => {
-  const uploadsUrl = url => `http://localhost:1339${url}`;
+  const uploadsUrl = url => `${"https://bombers-backend.herokuapp.com"}${url}`;
 
   const direction = away ? "row-reverse" : "row";
   return __jsx(external_react_default.a.Fragment, null, __jsx(layout_["Flex"], {
@@ -558,11 +558,11 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 const ScheduleTabs = ({
-  games
+  games = []
 }) => {
   const tabs = ["Schedule", "Results", "Tables"];
-  const upcoming = games.filter(game => !game.finished);
-  const results = games.filter(game => game.finished);
+  const upcoming = games === null || games === void 0 ? void 0 : games.filter(game => !game.finished);
+  const results = games === null || games === void 0 ? void 0 : games.filter(game => game.finished);
   const division = "d3";
   return __jsx(_chakra_ui_tabs__WEBPACK_IMPORTED_MODULE_1__["Tabs"], {
     align: "center",

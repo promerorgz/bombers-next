@@ -74,6 +74,8 @@ MyApp.getInitialProps = async (ctx) => {
     fetchAPI("/coaches"),
   ]);
 
+  console.log({ games });
+
   return {
     ...appProps,
     pageProps: {

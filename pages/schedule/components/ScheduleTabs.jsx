@@ -4,10 +4,10 @@ import Results from "./Results";
 import Schedule from "./Schedule";
 import Tables from "./Tables";
 
-const ScheduleTabs = ({ games }) => {
+const ScheduleTabs = ({ games = [] }) => {
   const tabs = ["Schedule", "Results", "Tables"];
-  const upcoming = games.filter((game) => !game.finished);
-  const results = games.filter((game) => game.finished);
+  const upcoming = games?.filter((game) => !game.finished);
+  const results = games?.filter((game) => game.finished);
   const division = "d3";
 
   return (

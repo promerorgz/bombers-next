@@ -93,7 +93,7 @@ const Nav = ({ categories }) => {
         >
           {socials.map((page) => {
             return (
-              <ChakraLink m="2" href={page.url} target="_blank">
+              <ChakraLink m="2" href={page.url} target="_blank" key={page.url}>
                 {page.name === "venmo" ? (
                   <VenmoIcon size="lg" />
                 ) : (
@@ -119,6 +119,7 @@ const Nav = ({ categories }) => {
           <Center flex="2" size="150px" justifyContent="space-evenly">
             {navs.map((nav) => (
               <ChakraLink
+                key={nav.name}
                 color="brand.black"
                 href={`/${nav.name}`}
                 fontFamily="Big Shoulders Display"

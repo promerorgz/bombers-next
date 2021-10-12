@@ -141,11 +141,8 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  console.log({ params });
   const [article] =
     (await fetchAPI(`/articles?slug=${params.slug}&status=published`)) || {};
-
-  console.log({ article });
 
   return {
     props: { article },

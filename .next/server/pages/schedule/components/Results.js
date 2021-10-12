@@ -88,18 +88,10 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 10);
+/******/ 	return __webpack_require__(__webpack_require__.s = 9);
 /******/ })
 /************************************************************************/
 /******/ ({
-
-/***/ 10:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__("7AxU");
-
-
-/***/ }),
 
 /***/ "7AxU":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -208,6 +200,14 @@ const Results = ({
 
 /***/ }),
 
+/***/ 9:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("7AxU");
+
+
+/***/ }),
+
 /***/ "cDcd":
 /***/ (function(module, exports) {
 
@@ -245,7 +245,7 @@ const Team = ({
   away,
   preview
 }) => {
-  const uploadsUrl = url => `http://localhost:1339${url}`;
+  const uploadsUrl = url => `${"https://bombers-backend.herokuapp.com"}${url}`;
 
   const direction = away ? "row-reverse" : "row";
   return __jsx(external_react_default.a.Fragment, null, __jsx(layout_["Flex"], {

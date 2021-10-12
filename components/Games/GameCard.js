@@ -1,18 +1,6 @@
-import React from "react";
-import {
-  Badge,
-  Box,
-  Text,
-  SimpleGrid,
-  Flex,
-  Grid,
-  Heading,
-  Stack,
-  Divider,
-  Center,
-} from "@chakra-ui/layout";
-import { Button, Link, LinkBox, SkeletonText } from "@chakra-ui/react";
-
+import { Box, Center, Divider, Stack } from "@chakra-ui/layout";
+import { SkeletonText } from "@chakra-ui/react";
+import React, { Fragment } from "react";
 import Card from "../../common/Card";
 import GameInfo from "./GameInfo";
 
@@ -65,9 +53,8 @@ const GameCard = ({ title = "", link = "", linkDisplay = "", games = [] }) => {
                 };
 
                 return (
-                  <>
+                  <Fragment key={slug || `${home.name}-vs-${away.name}`}>
                     <GameInfo
-                      key={slug || `${home.name}-vs-${away.name}`}
                       {...gameInfo}
                       division={division}
                       preview
@@ -83,7 +70,7 @@ const GameCard = ({ title = "", link = "", linkDisplay = "", games = [] }) => {
                         <Divider orientation="vertical" />
                       </Center>
                     )}
-                  </>
+                  </Fragment>
                 );
               }
             )}

@@ -47,7 +47,7 @@ const PlayerList = ({ list = [], staff }) => {
           };
 
           const style = {
-            backgroundImage: `url(http://localhost:1339${player.picture.url})`,
+            backgroundImage: `url(${process.env.strapi}${player.picture.url})`,
           };
 
           return (

@@ -2,9 +2,9 @@ import { Grid, GridItem } from "@chakra-ui/layout";
 import React from "react";
 import GameCard from "./GameCard";
 
-const Games = ({ games }) => {
-  const upcoming = games.filter((game) => !game.finished) || [];
-  const played = games.filter((game) => game.finished) || [];
+const Games = ({ games = [] }) => {
+  const upcoming = games?.filter((game) => !game.finished) || [];
+  const played = games?.filter((game) => game.finished) || [];
 
   const byDivision = (gameArray) => {
     return gameArray.reduce(

@@ -5,8 +5,16 @@ import { Box, LinkBox, Badge, Text, Flex } from "@chakra-ui/layout";
 import styled from "styled-components";
 import { background } from "@chakra-ui/styled-system";
 import ReactMarkdown from "react-markdown";
+import { useBreakpointValue } from "@chakra-ui/media-query";
 
 const ArticleCard = ({ article, styles, highlight }) => {
+  const direction = useBreakpointValue({
+    base: highlight ? "row" : "column",
+    xs: "column",
+    sm: "column",
+    md: highlight ? "row" : "column",
+    lg: highlight ? "row" : "column",
+  });
   return (
     <Link
       as={`/article/${article.slug || "hello"}`}
@@ -16,7 +24,7 @@ const ArticleCard = ({ article, styles, highlight }) => {
       <LinkBox>
         <Flex
           minH="500px"
-          direction={highlight ? "row" : "column"}
+          direction={direction}
           maxW="8xl"
           borderWidth="1px"
           overflow="hidden"
@@ -35,7 +43,7 @@ const ArticleCard = ({ article, styles, highlight }) => {
           bgGradient="gradient.main"
         >
           <Box
-            backgroundImage={`http://localhost:1339${article.image.url}`}
+            backgroundImage={`${process.env.strapi}${article.image.url}`}
             flexGrow="1"
             minH="300px"
             backgroundPosition="center"

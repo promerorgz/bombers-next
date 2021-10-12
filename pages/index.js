@@ -5,6 +5,8 @@ import {
   HStack,
   Box,
   Stack,
+  Flex,
+  Link,
 } from "@chakra-ui/layout";
 import {
   Heading,
@@ -40,23 +42,6 @@ const Home = (props) => {
     },
   ];
 
-  const dynamicRows = useBreakpointValue({
-    base: 2,
-    sm: 3,
-    md: 3,
-    lg: 2,
-    xl: 1,
-  });
-
-  const dynamicStack = useBreakpointValue({
-    base: "horizontal",
-    xs: "vertical",
-    sm: "vertical",
-    md: "vertical",
-    lg: "horizontal",
-    xl: "horizontal",
-  });
-
   return (
     <Layout categories={categories} seo={homepage.seo} bg="brand.light">
       <Seo seo={homepage.seo} />
@@ -83,18 +68,36 @@ const Home = (props) => {
             colSpan={[5, 5, 5, 5, 5]}
             // colSpan={[10, 10, 10, 10, 10]}
           >
-            <Heading
-              as="h3"
-              size="2xl"
-              fontFamily="Big Shoulders Display"
-              fontWeight="700"
-              textTransform="uppercase"
-              mb="8"
-              textDecoration="underline"
-              textUnderlineOffset="10px"
+            <Flex
+              justifyContent="space-between"
+              alignContent="baseline"
+              direction="row"
             >
-              News
-            </Heading>
+              <Heading
+                as="h3"
+                size="2xl"
+                fontFamily="Big Shoulders Display"
+                fontWeight="700"
+                textTransform="uppercase"
+                mb="8"
+                textDecoration="underline"
+                textUnderlineOffset="10px"
+              >
+                News
+              </Heading>
+              <Heading
+                as="a"
+                size="l"
+                fontFamily="Big Shoulders Display"
+                fontWeight="700"
+                textTransform="uppercase"
+                // mb="8"
+                textDecoration="underline"
+                textUnderlineOffset="10px"
+              >
+                <Link href="/news">see more</Link>
+              </Heading>
+            </Flex>
             <Articles articles={articles}></Articles>
           </GridItem>
         </Grid>
@@ -126,6 +129,15 @@ export async function getStaticProps() {
     fetchAPI("/sponsors"),
   ]);
 
+  console.log({
+    articles,
+    categories,
+    homepage,
+    games,
+    players,
+    coaches,
+    sponsors,
+  });
   return {
     props: {
       articles,

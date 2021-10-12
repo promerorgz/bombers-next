@@ -3,7 +3,7 @@ import { Box, Flex, Text } from "@chakra-ui/layout";
 import React from "react";
 
 const Team = ({ team: { name, score, logo }, away, preview }) => {
-  const uploadsUrl = (url) => `http://localhost:1339${url}`;
+  const uploadsUrl = (url) => `${process.env.strapi}${url}`;
 
   const direction = away ? "row-reverse" : "row";
   return (
