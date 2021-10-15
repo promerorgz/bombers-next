@@ -4,10 +4,12 @@ import React from "react";
 import Card from "../../common/Card";
 
 const PlayerList = ({ list = [], staff }) => {
-  const forwards = list?.filter(
-    (player) => player.position > 0 && player.position <= 8
-  );
-  const backs = list?.filter((player) => player.position >= 9);
+  const forwards = list.length
+    ? list?.filter((player) => player.position > 0 && player.position <= 8)
+    : [];
+  const backs = list.length
+    ? list?.filter((player) => player.position >= 9)
+    : [];
 
   const getPosition = (position) => {
     return {
