@@ -3,23 +3,11 @@ import React from "react";
 import GameCard from "./GameCard";
 
 const Games = ({ games = [] }) => {
-  const upcoming = games?.filter((game) => !game.finished) || [];
-  const played = games?.filter((game) => game.finished) || [];
-
-  const byDivision = (gameArray) => {
-    return gameArray.reduce(
-      (acc, upcomingGame) => {
-        return {
-          ...acc,
-          [upcomingGame.division]: [
-            ...acc[upcomingGame.division],
-            upcomingGame,
-          ],
-        };
-      },
-      { d1: [], d3: [] }
-    );
-  };
+  const allGames = games || [];
+  const upcoming = games.length
+    ? allGames?.filter((game) => !game.finished)
+    : [];
+  const played = games.length ? allGames?.filter((game) => game.finished) : [];
 
   const gameCards = [
     {

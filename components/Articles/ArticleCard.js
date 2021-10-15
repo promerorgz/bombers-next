@@ -57,7 +57,7 @@ const ArticleCard = ({ article, styles, highlight }) => {
           ></Box>
           <Flex direction="column" p="4">
             <Box d="flex" alignItems="baseline" m={4}>
-              {article.category.name && (
+              {article?.category?.name && (
                 <Badge
                   borderRadius="full"
                   px="2"
@@ -65,7 +65,7 @@ const ArticleCard = ({ article, styles, highlight }) => {
                   color="brand.black"
                   mr="4"
                 >
-                  {article?.category.name}
+                  {article?.category?.name}
                 </Badge>
               )}
               <Box

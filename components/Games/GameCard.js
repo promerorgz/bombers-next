@@ -26,7 +26,6 @@ const GameCard = ({ title = "", link = "", linkDisplay = "", games = [] }) => {
           </Button>
         </Flex>
         <Stack direction="row" h="100%" w="100%">
-          {console.log({ games })}
           {games
             .sort(
               (a, b) =>
@@ -47,7 +46,6 @@ const GameCard = ({ title = "", link = "", linkDisplay = "", games = [] }) => {
                 },
                 i
               ) => {
-                console.log({ home, away, slug });
                 const gameInfo = {
                   homeTeam: { ...home, score: home_score },
                   awayTeam: { ...away, score: away_score },
@@ -55,7 +53,6 @@ const GameCard = ({ title = "", link = "", linkDisplay = "", games = [] }) => {
                   date: date,
                 };
 
-                console.log({ gameInfo });
                 return (
                   <Fragment key={slug || `${home.name}-vs-${away.name}`}>
                     <GameInfo

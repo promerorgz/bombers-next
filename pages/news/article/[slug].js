@@ -38,7 +38,7 @@ const defaultArticle = {
 };
 
 const Article = ({ article = defaultArticle }) => {
-  const imageUrl = getStrapiMedia(article.image);
+  const imageUrl = getStrapiMedia(article?.image);
 
   const seo = {
     metaTitle: article.title,

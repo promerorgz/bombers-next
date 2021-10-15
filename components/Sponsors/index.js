@@ -4,6 +4,7 @@ import React from "react";
 import Pic from "../../common/Pic";
 
 const Sponsors = ({ sponsors }) => {
+  const currentSponsors = sponsors.length ? sponsors : [];
   return (
     <>
       <Heading
@@ -19,12 +20,12 @@ const Sponsors = ({ sponsors }) => {
         Sponsors
       </Heading>
       <Wrap spacing={8} align="center" justifyContent="space-evenly">
-        {sponsors.map((sponsor) => {
-          const image = { ...sponsor.image, alternativeText: sponsor.name };
+        {currentSponsors.map((sponsor) => {
+          const image = { ...sponsor?.image, alternativeText: sponsor?.name };
 
           return (
-            sponsor.level === "gold" && (
-              <WrapItem key={sponsor.name}>
+            sponsor?.level === "gold" && (
+              <WrapItem key={sponsor?.name || ""}>
                 <Pic image={image} size="3xs"></Pic>
               </WrapItem>
             )

@@ -44,13 +44,16 @@ const PlayerList = ({ list = [], staff }) => {
           const image = {
             name: player.picture.name || "",
             alternativeText: `${player.first_name}-pro-pic`,
-            url: player.picture.url || "",
+            url: player.picture?.url || "",
           };
 
-          const background = `url(${process.env.strapi}${player.picture.url})`;
-          const hoverBg = `url(${process.env.strapi}${
-            player.hoverPic ? player.hoverPic.url : player.picture.url
-          })`;
+          const background =
+            `url(${process.env.strapi}${player?.picture?.url})` ||
+            "/images/defaultpic.png";
+          const hoverBg =
+            `url(${process.env.strapi}${
+              player?.hoverPic ? player?.hoverPic?.url : player.picture?.url
+            })` || "/images/defaultpic.png";
 
           return (
             <Card

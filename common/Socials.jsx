@@ -41,7 +41,7 @@ const Socials = ({ color, size }) => {
     <>
       {socials.map((page) => {
         return (
-          <ChakraLink m="2" href={page.url} target="_blank" key={page.url}>
+          <ChakraLink m="2" href={page?.url} target="_blank" key={page?.url}>
             {page.name === "venmo" ? (
               <VenmoIcon size={size || "lg"} color={iconColor || "white"} />
             ) : (

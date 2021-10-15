@@ -5,7 +5,7 @@ const Image = ({
   image = {
     alternativeText: "",
     name: "",
-    url: "",
+    url: "/images/defaultpic.png",
   },
   style,
   fit,

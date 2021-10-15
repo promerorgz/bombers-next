@@ -30,7 +30,10 @@ const MyApp = ({ Component, pageProps, appProps, ...rest }) => {
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link rel="shortcut icon" href={getStrapiMedia(global.favicon)} />
+        <link
+          rel="shortcut icon"
+          href={getStrapiMedia(global.favicon || "/images/logo.png")}
+        />
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Staatliches"

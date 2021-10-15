@@ -59,7 +59,6 @@ const News = ({ articles, categories }) => {
             </SimpleGrid>
           </TabPanel>
           {categories.map((category) => {
-            console.log({ category });
             return (
               <TabPanel textTransform="capitalize">
                 <SimpleGrid m="8" spacing="8" minChildWidth="300px">

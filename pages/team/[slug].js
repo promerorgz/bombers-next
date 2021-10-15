@@ -25,7 +25,7 @@ const Player = ({ players }) => {
     player.last_name
   }`;
   const startPic =
-    `${process.env.strapi}${player.picture.url}` || "images/defaultpic.png";
+    `${process.env.strapi}${player?.picture?.url}` || "images/defaultpic.png";
 
   return (
     <Layout>

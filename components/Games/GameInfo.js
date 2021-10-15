@@ -41,7 +41,6 @@ const GameInfo = ({
     DI: "brand.black",
   };
 
-  console.log({ homeTeam, awayTeam });
   return preview ? (
     <Box
       id="game-info-container"
