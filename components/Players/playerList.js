@@ -42,76 +42,80 @@ const PlayerList = ({ list = [], staff }) => {
         spacing="8"
         /* added width so it would work in the snippet */
       >
-        {players.map((player) => {
-          const image = {
-            name: player.picture.name || "",
-            alternativeText: `${player.first_name}-pro-pic`,
-            url: player.picture?.url || "",
-          };
+        {players.length ? (
+          players?.map((player) => {
+            const image = {
+              name: player.picture.name || "",
+              alternativeText: `${player.first_name}-pro-pic`,
+              url: player.picture?.url || "",
+            };
 
-          const background =
-            `url(${process.env.strapi}${player?.picture?.url})` ||
-            "/images/defaultpic.png";
-          const hoverBg =
-            `url(${process.env.strapi}${
-              player?.hoverPic ? player?.hoverPic?.url : player.picture?.url
-            })` || "/images/defaultpic.png";
+            const background =
+              `url(${process.env.strapi}${player?.picture?.url})` ||
+              "/images/defaultpic.png";
+            const hoverBg =
+              `url(${process.env.strapi}${
+                player?.hoverPic ? player?.hoverPic?.url : player.picture?.url
+              })` || "/images/defaultpic.png";
 
-          return (
-            <Card
-              key={`${player.first_name}-card`}
-              radius="md"
-              id="player-card"
-              link={`/team/${player.id}`}
-              styles={{
-                minHeight: "370px",
-                height: "auto",
-                width: "270px",
-                display: "flex",
-                justifyContent: "space-around",
-              }}
-              bg={background}
-              hoverBg={hoverBg}
-            >
-              <Flex
-                id="text-content"
-                display="flex"
-                bg="brand.black"
-                color="brand.light"
-                p="4"
-                borderRadius="xl"
-                alignContent="end"
-                direction="column"
-                justifyContent="center"
-                w="100%"
-                h="fit-content"
-                alignSelf="flex-end"
+            return (
+              <Card
+                key={`${player.first_name}-card`}
+                radius="md"
+                id="player-card"
+                link={`/team/${player.id}`}
+                styles={{
+                  minHeight: "370px",
+                  height: "auto",
+                  width: "270px",
+                  display: "flex",
+                  justifyContent: "space-around",
+                }}
+                bg={background}
+                hoverBg={hoverBg}
               >
-                <Text
-                  m={0}
-                  color="brand.white"
-                  textAlign="center"
-                  fontWeight="bold"
-                  textTransform="capitalize"
-                  wordSpacing="6px"
-                  fontSize="lg"
-                >
-                  {player.first_name} {player.last_name}
-                </Text>
-
-                <Text
-                  m={0}
+                <Flex
+                  id="text-content"
+                  display="flex"
+                  bg="brand.black"
                   color="brand.light"
-                  textAlign="center"
-                  fontWeight="medium"
-                  textTransform="capitalize"
+                  p="4"
+                  borderRadius="xl"
+                  alignContent="end"
+                  direction="column"
+                  justifyContent="center"
+                  w="100%"
+                  h="fit-content"
+                  alignSelf="flex-end"
                 >
-                  {staff ? player.position : getPosition(player.position)}
-                </Text>
-              </Flex>
-            </Card>
-          );
-        })}
+                  <Text
+                    m={0}
+                    color="brand.white"
+                    textAlign="center"
+                    fontWeight="bold"
+                    textTransform="capitalize"
+                    wordSpacing="6px"
+                    fontSize="lg"
+                  >
+                    {player.first_name} {player.last_name}
+                  </Text>
+
+                  <Text
+                    m={0}
+                    color="brand.light"
+                    textAlign="center"
+                    fontWeight="medium"
+                    textTransform="capitalize"
+                  >
+                    {staff ? player.position : getPosition(player.position)}
+                  </Text>
+                </Flex>
+              </Card>
+            );
+          })
+        ) : (
+          <div>no players found</div>
+        )}
       </HStack>
     );
   };
