@@ -45,7 +45,7 @@ const PlayerList = ({ list = [], staff }) => {
         {players.length ? (
           players?.map((player) => {
             const image = {
-              name: player.picture.name || "",
+              name: player?.picture?.name || "",
               alternativeText: `${player.first_name}-pro-pic`,
               url: player.picture?.url || "",
             };
