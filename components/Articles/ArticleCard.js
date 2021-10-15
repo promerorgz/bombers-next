@@ -15,15 +15,21 @@ const ArticleCard = ({ article, styles, highlight }) => {
     md: highlight ? "row" : "column",
     lg: highlight ? "row" : "column",
   });
+
+  const imageHeight = {
+    [`${highlight ? "min" : "max"}H`]: "250px",
+  };
   return (
     <Link
-      as={`/article/${article.slug || "hello"}`}
+      as={`/article/${article?.slug || "hello"}`}
       href="/article/[id]"
       m="16"
     >
       <LinkBox>
         <Flex
           minH="500px"
+          maxH="500"
+          // maxH="500px"
           direction={direction}
           borderWidth="1px"
           overflow="hidden"
@@ -42,23 +48,26 @@ const ArticleCard = ({ article, styles, highlight }) => {
           bgGradient="gradient.main"
         >
           <Box
-            backgroundImage={`${process.env.strapi}${article.image.url}`}
+            backgroundImage={`${process.env.strapi}${article?.image?.url}`}
             flexGrow="1"
-            minH="300px"
+            {...imageHeight}
             backgroundPosition="center"
             backgroundSize="cover"
+            minW="40%"
           ></Box>
           <Flex direction="column" p="4">
             <Box d="flex" alignItems="baseline" m={4}>
-              <Badge
-                borderRadius="full"
-                px="2"
-                bg="brand.light"
-                color="brand.black"
-                mr="4"
-              >
-                {article.category.name}
-              </Badge>
+              {article.category.name && (
+                <Badge
+                  borderRadius="full"
+                  px="2"
+                  bg="brand.light"
+                  color="brand.black"
+                  mr="4"
+                >
+                  {article?.category.name}
+                </Badge>
+              )}
               <Box
                 color="brand.medium"
                 fontWeight="semibold"
@@ -66,7 +75,7 @@ const ArticleCard = ({ article, styles, highlight }) => {
                 fontSize="xs"
                 textTransform="uppercase"
               >
-                {new Date(article.publishedAt).toLocaleDateString()}
+                {new Date(article?.publishedAt).toLocaleDateString()}
               </Box>
             </Box>
 
@@ -76,27 +85,27 @@ const ArticleCard = ({ article, styles, highlight }) => {
               justifyContent="flex-start"
               m={4}
             >
-              <Box
-                fontWeight="semibold"
-                lineHeight="tight"
-                overflowY="scroll"
-                whiteSpace="nowrap"
-              >
+              <Box fontWeight="semibold" lineHeight="tight" maxW="100%">
                 <Text
                   fontSize={highlight ? "2xl" : "xl"}
-                  as="h1"
+                  as="p"
                   fontWeight="bolder"
                   textTransform={highlight ? "uppercase" : "none"}
                   color="brand.light"
-                  textOverflow="ellipsis"
-                  overflowY="scroll"
-                  whiteSpace="nowrap"
+                  mb="4"
                 >
-                  {article.title}
+                  {article?.title}
                 </Text>
               </Box>
-              <Box overflowY="scroll" color="brand.light">
-                <ReactMarkdown>{article.description}</ReactMarkdown>
+              <Box
+                overflowY="scroll"
+                maxH="350px"
+                wordBreak="break-word"
+                color="brand.light"
+              >
+                <ReactMarkdown>
+                  {!highlight ? article?.description : article.content}
+                </ReactMarkdown>
               </Box>
             </Flex>
           </Flex>

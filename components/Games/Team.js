@@ -1,8 +1,8 @@
 import { Avatar } from "@chakra-ui/avatar";
-import { Box, Flex, Text } from "@chakra-ui/layout";
+import { Box, Flex, Heading, Text } from "@chakra-ui/layout";
 import React from "react";
 
-const Team = ({ team: { name, score, logo }, away, preview }) => {
+const Team = ({ team: { name, score, logo, ...teamData }, away, preview }) => {
   const uploadsUrl = (url) => `${process.env.strapi}${url}`;
 
   const direction = away ? "row-reverse" : "row";
@@ -17,30 +17,28 @@ const Team = ({ team: { name, score, logo }, away, preview }) => {
         <Flex
           justifyContent="space-between"
           alignItems="center"
-          direction={preview ? "row-reverse" : direction}
+          direction={preview ? "row" : direction}
         >
-          <Flex flexGrow="1">
-            <Text
-              fontWeight={name === "Bombers" ? "extrabold" : "normal"}
-              my={0}
-              mx={2}
-              fontSize="2xl"
-              fontFamily="Big Shoulders Display"
-              textTransform={preview ? "uppercase" : "capitalize"}
-              color={preview ? "white" : "inherit"}
-            >
-              {name}
-            </Text>
-          </Flex>
-          <Box m={4}>
+          <Box m={2}>
             <Avatar
               bg="brand.200"
-              // showBorder
-              size="sm"
+              size={preview ? "sm" : "xl"}
               name={name}
               src={uploadsUrl(logo?.url || "")}
             />
           </Box>
+          <Flex flexGrow="1">
+            <Heading
+              fontWeight={name === "Bombers" ? "extrabold" : "normal"}
+              my={0}
+              mx={2}
+              size={preview ? "lg" : "xl"}
+              fontFamily="Big Shoulders Display"
+              color={preview ? "white" : "inherit"}
+            >
+              {name}
+            </Heading>
+          </Flex>
         </Flex>
         {score && (
           <Box>

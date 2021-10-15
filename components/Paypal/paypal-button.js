@@ -1,9 +1,11 @@
+import { CheckIcon } from "@chakra-ui/icons";
 import { Skeleton } from "@chakra-ui/skeleton";
 import React, { useState, useEffect, memo } from "react";
 
 const PaypalButton = () => {
   const [sdkReady, setSdkReady] = useState(false);
   const [isEnabled, setIsEnabled] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const addPayPalScript = () => {
     const script = document.createElement("script");
@@ -38,16 +40,20 @@ const PaypalButton = () => {
           });
         },
         onApprove: function (data, actions) {
-          alert(data.subscriptionID); // You can add optional success message for the subscriber here
+          alert(data.subscriptionID);
+          // You can add optional success message for the subscriber here
+          setSuccess(true);
         },
       })
       .render("#paypal-button-container-P-9NL41251R87142636MDWJ6MI");
   }, []);
 
-  return (
-    <Skeleton isLoaded={!isEnabled} minH="20px">
-      <div id="paypal-button-container-P-9NL41251R87142636MDWJ6MI"></div>
-    </Skeleton>
+  return success ? (
+    <>
+      <CheckIcon></CheckIcon>
+    </>
+  ) : (
+    <div id="paypal-button-container-P-9NL41251R87142636MDWJ6MI"></div>
   );
 };
 

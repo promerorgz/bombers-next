@@ -9,16 +9,18 @@ const Card = ({
   children,
   image,
   border,
-  bgColor,
+  radius,
+  bg,
   styles,
   _hover,
   imageProps,
+  hoverBg,
   ...props
 }) => {
   const makeClickable = (component) =>
     link ? (
       <Link as={as} href={link}>
-        <LinkBox m="4">{component}</LinkBox>
+        <LinkBox>{component}</LinkBox>
       </Link>
     ) : (
       <>{component}</>
@@ -26,36 +28,40 @@ const Card = ({
 
   const hoverStyles = link
     ? {
-        border: "1px solid #e2e2e2",
         transition: "all .2s ease-in-out",
         // boxShadow: "0px 5px 10px #212121",
         _hover: {
           transform: "scale(1.02)",
           boxShadow: "0px 5px 10px #21212150",
+          background: hoverBg,
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
         },
       }
     : {};
 
   const overrideStyles = {
     ...styles,
-    background: bgColor,
+    background: bg,
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
   };
 
   return makeClickable(
-    <Flex
+    <Box
       minW="100%"
       maxW="5xl"
       minH="200px"
       borderWidth={border ? "2px" : 0}
       overflow="hidden"
-      borderRadius="3px"
+      borderRadius={radius || " 3px"}
       borderColor="gray.dark"
       cursor="pointer"
       sx={{ ...hoverStyles, ...overrideStyles }}
       bgGradient="gradient.main"
       _hover={_hover}
-      flexDirection="column"
-      justifyContent="space-around"
       {...props}
     >
       {image && (
@@ -64,7 +70,7 @@ const Card = ({
         </Box>
       )}
       {children}
-    </Flex>
+    </Box>
   );
 };
 

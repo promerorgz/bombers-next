@@ -1,5 +1,5 @@
-import { Box, Center, Divider, Stack } from "@chakra-ui/layout";
-import { SkeletonText } from "@chakra-ui/react";
+import { Box, Flex, Heading, Stack } from "@chakra-ui/layout";
+import { Button } from "@chakra-ui/react";
 import React, { Fragment } from "react";
 import Card from "../../common/Card";
 import GameInfo from "./GameInfo";
@@ -10,28 +10,30 @@ const GameCard = ({ title = "", link = "", linkDisplay = "", games = [] }) => {
     // backgroundImage:
     //   "linear-gradient(to right bottom, #212121 50%, #7f8c8d 50.3%)",
     boxShadow: "0 1px 4px #151515",
+    display: "grid",
+    alignItems: "stretch",
   };
 
   return (
-    <Box position="relative" top="-100px" m="auto" minH="200px">
-      <Card styles={styles}>
-        <SkeletonText
-          w="80%"
-          m="auto"
-          startColor="brand.medium"
-          endColor="brand.dark"
-          isLoaded={games.length}
-          fadeDuration={0.6}
-          speed={1}
-        >
-          <Stack
-            direction="row"
-            // m="auto"
-            p="8"
-            justifyContent="space-around"
-            alignItems="center"
-          >
-            {games.map(
+    <Box position="relative" top="-100px">
+      <Card styles={styles} link={link}>
+        <Flex justifyContent="space-between" alignItems="center" p="8">
+          <Heading size="xl" color="brand.light" m="0">
+            {title}
+          </Heading>
+          <Button variant="outline: " size="xs" color="tomato" m="0">
+            see more
+          </Button>
+        </Flex>
+        <Stack direction="row" h="100%" w="100%">
+          {console.log({ games })}
+          {games
+            .sort(
+              (a, b) =>
+                Number(a.division.split("d")[1]) -
+                Number(b.division.split("d")[1])
+            )
+            .map(
               (
                 {
                   home,
@@ -45,6 +47,7 @@ const GameCard = ({ title = "", link = "", linkDisplay = "", games = [] }) => {
                 },
                 i
               ) => {
+                console.log({ home, away, slug });
                 const gameInfo = {
                   homeTeam: { ...home, score: home_score },
                   awayTeam: { ...away, score: away_score },
@@ -52,6 +55,7 @@ const GameCard = ({ title = "", link = "", linkDisplay = "", games = [] }) => {
                   date: date,
                 };
 
+                console.log({ gameInfo });
                 return (
                   <Fragment key={slug || `${home.name}-vs-${away.name}`}>
                     <GameInfo
@@ -59,23 +63,11 @@ const GameCard = ({ title = "", link = "", linkDisplay = "", games = [] }) => {
                       division={division}
                       preview
                     ></GameInfo>
-                    {i === 0 && (
-                      <Center
-                        height="100px"
-                        margin="8px"
-                        alignItems="center"
-                        justifyContent="center"
-                        h="180px"
-                      >
-                        <Divider orientation="vertical" />
-                      </Center>
-                    )}
                   </Fragment>
                 );
               }
             )}
-          </Stack>
-        </SkeletonText>
+        </Stack>
       </Card>
     </Box>
   );

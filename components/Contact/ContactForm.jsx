@@ -10,6 +10,7 @@ import {
   useRadio,
   useRadioGroup,
   Button,
+  Heading,
 } from "@chakra-ui/react";
 import { ChatIcon, EmailIcon, PhoneIcon } from "@chakra-ui/icons";
 import React, { useState } from "react";
@@ -80,24 +81,12 @@ const ContactForm = () => {
   const group = getRootProps();
 
   return (
-    <Box
-      maxW="5xl"
-      borderWidth="2px"
-      overflow="hidden"
-      borderRadius="2xl"
-      borderColor="gray.light"
-      cursor="pointer"
-      p="8"
-      bg="gradient.main"
-    >
+    <Box overflow="hidden" cursor="pointer" p="8">
       <SimpleGrid direction="column" columns={1} spacing={8}>
-        <Text fontSize="2xl" color="gray.100">
-          Any questions or comments? Leave us a message!
-        </Text>
-        <Stack direction="row" spacing={3}>
+        <Stack spacing={8}>
           <Input
             sx={{
-              color: "gray",
+              color: "#242424",
               _focus: {
                 color: "black",
               },
@@ -108,21 +97,6 @@ const ContactForm = () => {
             value={contact.name}
             onChange={handleChange}
           />
-          <Input
-            sx={{
-              color: "gray",
-              _focus: {
-                color: "black",
-              },
-            }}
-            variant="filled"
-            placeholder="Last"
-            name="last"
-            value={contact.last}
-            onChange={handleChange}
-          />
-        </Stack>
-        <Stack spacing={8}>
           <InputGroup>
             <InputLeftElement
               pointerEvents="none"
@@ -164,7 +138,7 @@ const ContactForm = () => {
             />
           </InputGroup>
 
-          <Stack
+          {/* <Stack
             {...group}
             direction="row"
             spacing={2}
@@ -178,7 +152,7 @@ const ContactForm = () => {
                 </RadioCard>
               );
             })}
-          </Stack>
+          </Stack> */}
 
           <Textarea
             sx={{

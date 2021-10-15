@@ -85,8 +85,9 @@ const Home = (props) => {
               >
                 News
               </Heading>
-              <Heading
-                as="a"
+
+              <Link
+                href="/news"
                 size="l"
                 fontFamily="Big Shoulders Display"
                 fontWeight="700"
@@ -95,8 +96,8 @@ const Home = (props) => {
                 textDecoration="underline"
                 textUnderlineOffset="10px"
               >
-                <Link href="/news">see more</Link>
-              </Heading>
+                see more
+              </Link>
             </Flex>
             <Articles articles={articles}></Articles>
           </GridItem>

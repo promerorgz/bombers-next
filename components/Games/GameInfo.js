@@ -1,4 +1,4 @@
-import { Box, Flex, Stack, Text } from "@chakra-ui/layout";
+import { Box, Flex, Stack, Text, Heading, HStack } from "@chakra-ui/layout";
 import React from "react";
 import Team from "./Team";
 
@@ -34,34 +34,74 @@ const GameInfo = ({
     };
   };
 
+  const bgs = {
+    DIII: "brand.medium",
+    D3: "brand.medium",
+    D1: "brand.black",
+    DI: "brand.black",
+  };
+
+  console.log({ homeTeam, awayTeam });
   return preview ? (
-    <Stack direction="row">
-      <Stack
-        direction="column"
-        justifyContent="start"
-        alignItems="start"
-        // pt={8}
-      >
-        <Text
-          as="p"
-          color="brand.medium"
-          fontFamily="Big Shoulders Display"
-          textTransform="uppercase"
-          fontWeight="bold"
-          m="0"
-        >
-          {division} - {location} - {formatDateTime(date, "short").date}
-        </Text>
+    <Box
+      id="game-info-container"
+      direction="row"
+      bg={bgs[division.toUpperCase()]}
+      width="100%"
+      height="100%"
+      m="0"
+      // justifyContent="space-around"
+      alignItems="center"
+    >
+      <Flex direction="column" m="0" p="4">
+        <Flex alignItems="center" justifyContent="space-between">
+          <div>
+            <Heading size="lg" color="brand.light">
+              {division}
+            </Heading>
+          </div>
+        </Flex>
         <Team team={homeTeam} preview></Team>
         <Team team={awayTeam} preview></Team>
-      </Stack>
-    </Stack>
+      </Flex>
+      {/* <Stack>
+        <div>
+          <Heading
+            as="p"
+            fontSize="md"
+            color="brand.light"
+            textTransform="uppercase"
+          >
+            {formatDateTime(date, "short").date}
+          </Heading>
+        </div>
+        <div>
+          <Heading
+            as="p"
+            fontSize="md"
+            color="brand.light"
+            textTransform="uppercase"
+          >
+            {formatDateTime(date, "short").time}
+          </Heading>
+        </div>
+        <div>
+          <Heading
+            as="p"
+            fontSize="md"
+            color="brand.light"
+            textTransform="uppercase"
+          >
+            {location}
+          </Heading>
+        </div>
+      </Stack> */}
+    </Box>
   ) : (
     <Stack direction="row" justifyContent="center" alignItems="start" pt={8}>
-      <Team team={homeTeam} preview={preview}></Team>
+      <Team team={homeTeam}></Team>
       {!homeTeam.score && (
         <Stack
-          bg={!preview ? "#404040" : "#e2e2e2"}
           borderRadius="8px"
           p="2"
           fontSize="xs"
@@ -78,7 +118,7 @@ const GameInfo = ({
           </Flex>
         </Stack>
       )}
-      <Team team={awayTeam} away preview={preview}></Team>
+      <Team team={awayTeam} away></Team>
     </Stack>
   );
 };

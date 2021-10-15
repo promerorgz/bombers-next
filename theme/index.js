@@ -1,10 +1,12 @@
 // 1. Import the extendTheme function
 import { extendTheme } from "@chakra-ui/react";
 import Button from "./Button";
+import Heading from "./Heading";
 // 2. Extend the theme to include custom colors, fonts, etc
 export default extendTheme({
   components: {
     Button,
+    Heading,
   },
   styles: {
     html: {

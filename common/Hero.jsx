@@ -10,6 +10,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import styled from "styled-components";
+import Pic from "../common/Pic";
 
 const heightSizes = {
   sm: "20vh",
@@ -24,8 +25,10 @@ const Diagonal = styled.div`
   min-height: ${(props) => heightSizes[props.size] || "70vh"};
   background-repeat: no-repeat;
   background-position: right;
-  background-size: cover;
-  background-image: ${(props) => `linear-gradient(
+  background-size: ${(props) => (props.bg ? "contain" : "cover")};
+  background-image: ${(props) =>
+    props.bg ||
+    `linear-gradient(
       120deg,
       #000 40%,
       #00000060 40%,
@@ -35,16 +38,31 @@ const Diagonal = styled.div`
     ),
     url(${props.image});`};
 `;
-const Hero = ({ text, buttons = [], image, size }) => {
+const Hero = ({ text, buttons = [], image, size, startPic, bg }) => {
+  const picProps = startPic?.startsWith("/")
+    ? { src: startPic }
+    : {
+        image: {
+          url: startPic,
+          alternativeText: text,
+          name: text,
+        },
+        size: "xs",
+      };
   return (
-    <Diagonal image={image} size={size}>
+    <Diagonal image={image} size={size} bg={bg}>
       <Flex
         direction="row"
         align="center"
         justify="space-evenly"
-        width={["50%", "100%", "100%", "50%"]}
+        // width={["50%", "100%", "100%", "50%"]}
       >
-        <Box>
+        {startPic && (
+          <Box position="relative" top="55px">
+            <Pic {...picProps}></Pic>
+          </Box>
+        )}
+        <Box ml="2">
           <Text
             fontSize="5xl"
             casing="uppercase"
@@ -84,9 +102,6 @@ const Hero = ({ text, buttons = [], image, size }) => {
           </Stack>
         </Box>
       </Flex>
-      <Box flex="1" color="transparent">
-        o
-      </Box>
     </Diagonal>
   );
 };

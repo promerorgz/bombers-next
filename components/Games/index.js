@@ -24,13 +24,13 @@ const Games = ({ games = [] }) => {
   const gameCards = [
     {
       games: upcoming || [],
-      title: "Next Game",
+      title: "Upcoming",
       link: "/schedule",
       linkDisplay: "Schedule",
     },
     {
       games: played || [],
-      title: "Last Game",
+      title: "Results",
       link: "/schedule",
       linkDisplay: "Results",
     },

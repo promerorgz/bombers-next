@@ -7,6 +7,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import theme from "../theme";
 import "@fortawesome/fontawesome-svg-core/styles.css";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 
 // Store Strapi Global object in context
 export const GlobalContext = createContext({});
@@ -14,6 +15,15 @@ config.autoAddCss = false;
 
 const MyApp = ({ Component, pageProps, appProps, ...rest }) => {
   const { global } = pageProps;
+  const initialOptions = {
+    "client-id":
+      "Aa8a8BHzxUjISXFfxGInXx4ezL4lkg9BejzqRo7hHU--vRbG3Pq_qOLCm2aaHuoI6c9Z5Fx6Jv7nSawh",
+    currency: "USD",
+    intent: "subscription",
+    vault: "true",
+    // "data-client-token": "abc123xyz==",
+    "data-sdk-integration-source": "button-factory",
+  };
 
   return (
     <>
@@ -38,11 +48,13 @@ const MyApp = ({ Component, pageProps, appProps, ...rest }) => {
         <script src="https://cdn.jsdelivr.net/npm/uikit@3.2.3/dist/js/uikit-icons.min.js" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.2.0/js/uikit.js" />
       </Head>
-      <GlobalContext.Provider value={global}>
-        <ChakraProvider theme={theme}>
-          <Component {...pageProps} />
-        </ChakraProvider>
-      </GlobalContext.Provider>
+      <PayPalScriptProvider options={initialOptions}>
+        <GlobalContext.Provider value={global}>
+          <ChakraProvider theme={theme}>
+            <Component {...pageProps} />
+          </ChakraProvider>
+        </GlobalContext.Provider>
+      </PayPalScriptProvider>
     </>
   );
 };
@@ -73,8 +85,6 @@ MyApp.getInitialProps = async (ctx) => {
     fetchAPI("/players"),
     fetchAPI("/coaches"),
   ]);
-
-  console.log({ games });
 
   return {
     ...appProps,

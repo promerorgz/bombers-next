@@ -17,6 +17,7 @@ import {
 import VenmoIcon from "../icons/Venmo";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Socials from "./Socials";
 
 const DiagonalBg = styled(Flex)`
   background-color: #212121;
@@ -45,16 +46,16 @@ const Nav = ({ categories }) => {
       id: "contact",
       slug: "contact",
     },
-    {
-      name: "photos",
-      id: "photos",
-      slug: "photos",
-    },
-    {
-      name: "more",
-      id: "more",
-      slug: "more",
-    },
+    // {
+    //   name: "photos",
+    //   id: "photos",
+    //   slug: "photos",
+    // },
+    // {
+    //   name: "more",
+    //   id: "more",
+    //   slug: "more",
+    // },
     {
       name: "shop",
       id: "shop",
@@ -91,22 +92,7 @@ const Nav = ({ categories }) => {
           justifyContent="end"
           alignContent="center"
         >
-          {socials.map((page) => {
-            return (
-              <ChakraLink m="2" href={page.url} target="_blank" key={page.url}>
-                {page.name === "venmo" ? (
-                  <VenmoIcon size="lg" />
-                ) : (
-                  <FontAwesomeIcon
-                    color="white"
-                    size="2x"
-                    icon={page.icon}
-                    // style={{ color: "white" }}
-                  ></FontAwesomeIcon>
-                )}
-              </ChakraLink>
-            );
-          })}
+          <Socials />
         </Flex>
         <Flex bg="brand.light" style={{ minHeight: 100 }}>
           <Center w="100px">
@@ -116,7 +102,7 @@ const Nav = ({ categories }) => {
               </a>
             </Link>
           </Center>
-          <Center flex="2" size="150px" justifyContent="space-evenly">
+          <Center flex="1" size="150px" justifyContent="space-evenly">
             {navs.map((nav) => (
               <ChakraLink
                 key={nav.name}
@@ -148,19 +134,33 @@ const Nav = ({ categories }) => {
             ))}
           </Center>
           <Center p="4" flex="1" justifyContent="flex-end">
-            <Button
-              borderRadius="8px"
+            <ChakraLink
+              // key={nav.name}
               color="brand.light"
-              variant="solid"
+              href={`/pay`}
+              fontFamily="Big Shoulders Display"
+              textTransform="uppercase"
+              fontWeight="bold"
+              fontSize="xl"
               bg="tomato"
-              _hover={{
-                backgroundColor: "#e2e2e2",
-                color: "tomato",
-                border: "2px solid tomato",
-              }}
+              px="4"
+              py="2"
+              borderRadius="lg"
+              boxShadow="md"
             >
-              Donate / Dues
-            </Button>
+              <LinkBox
+                display="flex"
+                alignItems="center"
+                // key={nav.id}
+                color="brand.light"
+                _hover={{
+                  color: "#242424",
+                  textDecoration: "none",
+                }}
+              >
+                Donate / Dues
+              </LinkBox>
+            </ChakraLink>
           </Center>
         </Flex>
       </Stack>

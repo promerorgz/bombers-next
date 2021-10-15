@@ -42,17 +42,18 @@ const Schedule = ({ upcoming }) => {
       {upcoming.map((game) => {
         const gameInfoProps = {
           homeTeam: {
-            name: game.home.team_name,
+            name: game.home.name,
             logo: game.home.logo,
             score: game.home_score,
           },
           awayTeam: {
-            name: game.away.team_name,
+            name: game.away.name,
             logo: game.away.logo,
             score: game.away_score,
           },
           date: game.date,
           location: game.location,
+          preview: false,
         };
 
         return (
@@ -87,9 +88,9 @@ const Schedule = ({ upcoming }) => {
                     textTransform="uppercase"
                     fontFamily="body"
                   >
-                    {isHome(game?.home?.team_name)
-                      ? `${game?.home?.team_name} - ${game?.away?.team_name}`
-                      : `${game?.away?.team_name} @ ${game?.home?.team_name}`}
+                    {isHome(game?.home?.name)
+                      ? `${game?.home?.name} - ${game?.away?.name}`
+                      : `${game?.away?.name} @ ${game?.home?.name}`}
                   </Text>
                 </Box>
                 <AccordionIcon />
