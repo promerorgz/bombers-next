@@ -1,49 +1,59 @@
-import { Heading, SimpleGrid } from "@chakra-ui/layout";
+import { SimpleGrid } from "@chakra-ui/react";
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/tabs";
+import { sortBy } from "lodash";
 import React, { useCallback, useState } from "react";
 import Hero from "../../common/Hero";
 import Layout from "../../common/Layout";
 import ArticleCard from "../../components/Articles/ArticleCard";
-import { groupBy, uniq, sortBy } from "lodash";
+import useBp from "../../theme/useBp";
 
 const News = ({ articles, categories }) => {
   const [selectedTab, setSelectedTab] = useState("Latest");
-  const byCategory = articles.reduce((acc, article) => {
-    const category = article.category.name;
-    const newObj = { ...article, category: article.category.name };
-    return [...acc, newObj];
-  }, []);
-
-  const grouped = groupBy(byCategory, "category");
-
-  const g = Object.entries(grouped).reduce((acc, [k, v]) => {
-    return [...acc, v];
-  }, []);
 
   const onTabChange = useCallback((e, d) => {
     setSelectedTab(e);
   }, []);
 
+  const [isDesktop] = useBp();
+
   return (
-    <Layout margin>
+    <Layout>
+      <Hero
+        text="Articles"
+        image="/images/mcb-hero.jpeg"
+        size={isDesktop ? "md" : "xl"}
+      />
       <Tabs
         variant="line"
-        size="md"
+        size="lg"
         colorScheme="gray"
         value={selectedTab}
         onChange={onTabChange}
+        isFitted
       >
         <TabList>
-          <Tab>Latest</Tab>
+          <Tab
+            fontFamily="Big Shoulders Display"
+            fontSize="xl"
+            fontWeight="bold"
+          >
+            Latest
+          </Tab>
           {categories.map((category) => (
-            <Tab textTransform="capitalize" key={category.id}>
+            <Tab
+              fontSize="xl"
+              fontWeight="bold"
+              fontFamily="Big Shoulders Display"
+              textTransform="capitalize"
+              key={category.id}
+            >
               {category.name}
             </Tab>
           ))}
         </TabList>
         <TabPanels>
           <TabPanel>
-            <SimpleGrid m="8" spacing="8" minChildWidth="300px">
+            <SimpleGrid m={[0, 0, 2, 2, 4]} spacing="8" minChildWidth="300px">
               {sortBy(articles, (article) => article.id)
                 .reverse()
                 .map((item) => {
@@ -61,13 +71,17 @@ const News = ({ articles, categories }) => {
           {categories.map((category) => {
             return (
               <TabPanel textTransform="capitalize">
-                <SimpleGrid m="8" spacing="8" minChildWidth="300px">
+                <SimpleGrid
+                  m={[0, 0, 2, 2, 4]}
+                  spacing="8"
+                  minChildWidth="300px"
+                >
                   {category.articles.length
                     ? category.articles.map((article) => {
                         return (
                           <ArticleCard
                             article={article}
-                            highlight={category.articles.length === 1}
+                            // highlight={category.articles.length === 1}
                           ></ArticleCard>
                         );
                       })

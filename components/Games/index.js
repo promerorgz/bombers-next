@@ -1,8 +1,10 @@
-import { Grid, GridItem } from "@chakra-ui/layout";
-import React from "react";
+import { Grid, GridItem, Stack } from "@chakra-ui/layout";
+import React, { useState, useEffect } from "react";
+import useBp from "../../theme/useBp";
 import GameCard from "./GameCard";
 
 const Games = ({ games = [] }) => {
+  const [direction, setDirection] = useState("row");
   const allGames = games || [];
   const upcoming = games.length
     ? allGames?.filter((game) => !game.finished)
@@ -24,24 +26,32 @@ const Games = ({ games = [] }) => {
     },
   ];
 
+  const [isDesktop] = useBp();
+
+  useEffect(() => {
+    setDirection(isDesktop ? "row" : "column");
+  }, []);
+
   return (
-    <Grid
+    <Stack
       h="auto"
-      templateRows="repeat(2, 1fr)"
-      templateColumns="repeat(2, 1fr)"
-      gap={4}
-      m={8}
+      w="99%"
+      spacing={4}
+      m={4}
+      direction={isDesktop ? "row" : "column"}
+      justifyContent="space-evenly"
+      alignContent="space-around"
+      flexWrap="wrap"
     >
       {gameCards.map((game) => (
-        <GridItem
+        <GameCard
+          {...game}
           key={game.title}
-          colSpan={[1, 2, 2, 1, 1]}
-          rowSpan={[2, 1, 1, 2, 2]}
-        >
-          <GameCard {...game} />
-        </GridItem>
+          width={isDesktop ? "50%" : "100%"}
+          direction={isDesktop ? "row" : "column"}
+        />
       ))}
-    </Grid>
+    </Stack>
   );
 };
 

@@ -1,7 +1,9 @@
 import React from "react";
 import Layout from "../../common/Layout";
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
+import { Tabs, TabList, TabPanels, Tab, TabPanel, Box } from "@chakra-ui/react";
 import PlayerList from "../../components/Players/playerList";
+import Hero from "../../common/Hero";
+import useBp from "../../theme/useBp";
 
 const Team = ({ players, coaches }) => {
   const defaultObject = { d1: [], d3: [], staff: coaches || [] };
@@ -19,10 +21,23 @@ const Team = ({ players, coaches }) => {
       }, defaultObject)
     : defaultObject;
 
+  const [isDesktop] = useBp();
+
   return (
-    <Layout header="Players" margin>
-      <Tabs variant="solid-rounded" isFitted size="sm" colorScheme="gray">
-        <TabList>
+    <Layout>
+      <Hero
+        text="Players"
+        image="/images/nationals17.jpg"
+        size={isDesktop ? "md" : "xl"}
+      ></Hero>
+      <Tabs
+        variant="line"
+        isFitted={!isDesktop}
+        size="lg"
+        colorScheme="gray"
+        fontFamily="Big Shoulders Display"
+      >
+        <TabList fontWeight="bold">
           <Tab>Bombers DI</Tab>
           <Tab>Bombers DIII</Tab>
           <Tab>Coaches & Staff</Tab>
@@ -39,6 +54,7 @@ const Team = ({ players, coaches }) => {
           </TabPanel>
         </TabPanels>
       </Tabs>
+      <Box minH="20vh"></Box>
     </Layout>
   );
 };

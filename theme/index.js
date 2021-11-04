@@ -2,6 +2,7 @@
 import { extendTheme } from "@chakra-ui/react";
 import Button from "./Button";
 import Heading from "./Heading";
+import Tabs from "./Tabs";
 // 2. Extend the theme to include custom colors, fonts, etc
 export default extendTheme({
   components: {
@@ -11,17 +12,18 @@ export default extendTheme({
   styles: {
     html: {
       height: "100vh",
+      width: "100%",
     },
   },
   colors: {
     brand: {
+      highlight: "tomato",
       superblack: "#000",
       black: "#212121",
       medium: "#404040",
       light: "#E2E2E2",
       white: "#fff",
     },
-    black: {},
     gray: {
       light: "#303030",
       main: "#212121",

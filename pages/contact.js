@@ -32,14 +32,12 @@ const contact = () => {
           Any questions or comments? Leave us a message!
         </Heading>
         <ContactForm />
-        <Flex justifyContent="space-evenly" alignItems="center">
-          <Divider />
+        <Flex justifyContent="center" alignItems="center">
           <Box flexGrow="1" width="70%" m="8">
             <Heading size="lg" color="brand.black">
               Or try us on social media
             </Heading>
           </Box>
-          <Divider />
         </Flex>
         <HStack justifyContent="center" alignItems="center" spacing="8">
           <Socials color="dark" size="xl" />

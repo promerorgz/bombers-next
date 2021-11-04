@@ -1,170 +1,234 @@
+import { HamburgerIcon } from "@chakra-ui/icons";
 import {
+  Avatar,
   Box,
-  Center,
-  Flex,
-  LinkBox,
-  Link as ChakraLink,
-  Stack,
+  VStack,
   Button,
+  Heading,
+  Center,
+  Drawer,
+  DrawerBody,
+  DrawerContent,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerCloseButton,
+  Flex,
+  HStack,
+  IconButton,
+  Link as ChakraLink,
+  LinkBox,
+  Stack,
 } from "@chakra-ui/react";
-import Link from "next/link";
-import React from "react";
-import styled from "styled-components";
 import {
   faFacebookSquare,
   faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
-import VenmoIcon from "../icons/Venmo";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
+import React, { useState } from "react";
+import styled from "styled-components";
+import useBp from "../theme/useBp";
 import Socials from "./Socials";
+import Pic from "./Pic";
+import _concat from "lodash/concat";
 
 const DiagonalBg = styled(Flex)`
   background-color: #212121;
   background-image: linear-gradient(135deg, #212121 50% #e2e2e2 50%);
 `;
 
-const Nav = ({ categories }) => {
-  const navs = [
-    {
-      name: "news",
-      id: "news",
-      slug: "news",
-    },
-    {
-      name: "schedule",
-      id: "schedule",
-      slug: "schedule",
-    },
-    {
-      name: "team",
-      id: "team",
-      slug: "team",
-    },
-    {
-      name: "contact",
-      id: "contact",
-      slug: "contact",
-    },
-    // {
-    //   name: "photos",
-    //   id: "photos",
-    //   slug: "photos",
-    // },
-    // {
-    //   name: "more",
-    //   id: "more",
-    //   slug: "more",
-    // },
-    {
-      name: "shop",
-      id: "shop",
-      slug: "shop",
-    },
-  ];
+const Nav = ({ navs }) => {
+  const [isDesktop] = useBp();
+  console.log({ isDesktop });
 
-  const socials = [
-    {
-      name: "facebook",
-      url: "https://www.facebook.com/stlbombersrugby",
-      icon: faFacebookSquare,
-    },
-    {
-      name: "instagram",
-      url: "https://www.instagram.com/stl_bombersrfc/",
-      icon: faInstagram,
-    },
-    {
-      name: "venmo",
-      url: "https://account.venmo.com/u/STLBombersRFC",
-      icon: "",
-    },
-  ];
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleMenuOpen = () => {
+    setIsOpen(true);
+  };
+  const onClose = () => {};
 
   return (
-    <nav>
+    <Box as="nav" position="sticky">
       <Stack spacing={0}>
-        <Flex
-          minH="50px"
+        <HStack
+          minH={["50px", "75px", "50px", "50px"]}
           bg="brand.black"
+          p="2"
           id="socials"
-          flexGrow="1"
-          justifyContent="end"
-          alignContent="center"
+          justifyContent="flex-end"
         >
-          <Socials />
-        </Flex>
-        <Flex bg="brand.light" style={{ minHeight: 100 }}>
-          <Center w="100px">
-            <Link href={`/`}>
-              <a>
-                <img src="/images/logo.png" alt="Your Name" />
-              </a>
-            </Link>
-          </Center>
-          <Center flex="1" size="150px" justifyContent="space-evenly">
-            {navs.map((nav) => (
-              <ChakraLink
-                key={nav.name}
-                color="brand.black"
-                href={`/${nav.name}`}
-                fontFamily="Big Shoulders Display"
-                textTransform="uppercase"
-                fontWeight="bold"
-                fontSize="xl"
-                _hover={{
-                  color: "#212121",
-                  textDecoration: "none",
-                }}
-              >
-                <LinkBox
-                  display="flex"
+          {isDesktop && <Socials />}
+          {!isDesktop && (
+            <>
+              <Flex my="1" alignItems="center">
+                <IconButton
+                  size="lg"
+                  aria-label="menu-button"
+                  variant="link"
+                  fontSize="20px"
+                  icon={<HamburgerIcon />}
+                  onClick={handleMenuOpen}
+                />
+              </Flex>
+              <Link href="/">
+                <Flex
+                  my="1"
+                  flexGrow="2"
+                  justifyContent="center"
                   alignItems="center"
-                  key={nav.id}
-                  color="brand.black"
-                  _hover={{
-                    color: "#212121",
-
-                    borderBottom: "3px solid #212121",
-                  }}
                 >
-                  {nav.name.toUpperCase()}
-                </LinkBox>
-              </ChakraLink>
-            ))}
-          </Center>
-          <Center p="4" flex="1" justifyContent="flex-end">
-            <ChakraLink
-              // key={nav.name}
+                  <Pic
+                    fit="contain"
+                    style={{
+                      height: 50,
+                      width: 50,
+                    }}
+                    src="/images/white_logo.png"
+                  ></Pic>
+                </Flex>
+              </Link>
+              <Flex my="1" alignItems="center">
+                <IconButton
+                  size="lg"
+                  aria-label="menu-button"
+                  variant="link"
+                  color="transparent"
+                  fontSize="20px"
+                  icon={<HamburgerIcon />}
+                  onClick={handleMenuOpen}
+                />
+              </Flex>
+            </>
+          )}
+        </HStack>
+        <Drawer onClose={onClose} isOpen={isOpen} size={"lg"} bg="brand.black">
+          <DrawerOverlay />
+          <DrawerContent bg="brand.black">
+            <DrawerCloseButton
+              onClick={() => setIsOpen(false)}
               color="brand.light"
-              href={`/pay`}
-              fontFamily="Big Shoulders Display"
-              textTransform="uppercase"
-              fontWeight="bold"
-              fontSize="xl"
-              bg="tomato"
-              px="4"
-              py="2"
-              borderRadius="lg"
-              boxShadow="md"
-            >
-              <LinkBox
-                display="flex"
-                alignItems="center"
-                // key={nav.id}
-                color="brand.light"
-                _hover={{
-                  color: "#242424",
-                  textDecoration: "none",
-                }}
+            />
+            <DrawerHeader color="brand.light" mb="8">
+              St Louis Bombers Rugby
+            </DrawerHeader>
+            <DrawerBody pt="8">
+              <VStack direction="column" spacing="8">
+                {_concat([{ name: "home", id: "", slug: "" }], navs).map(
+                  (nav) => (
+                    <LinkBox
+                      display="flex"
+                      justifyContent="center"
+                      alignItems="center"
+                      key={nav.id}
+                      color="brand.black"
+                      _hover={{
+                        color: "#212121",
+
+                        borderBottom: "3px solid #212121",
+                      }}
+                    >
+                      <Link key={nav.name} href={`/${nav.slug}`}>
+                        <ChakraLink
+                          color="brand.white"
+                          fontFamily="Big Shoulders Display"
+                          textTransform="uppercase"
+                          fontWeight="bold"
+                          fontSize="2xl"
+                          _hover={{
+                            color: "#e3e3e3",
+                            textDecoration: "none",
+                          }}
+                        >
+                          {nav.name.toUpperCase()}
+                        </ChakraLink>
+                      </Link>
+                    </LinkBox>
+                  )
+                )}
+              </VStack>
+            </DrawerBody>
+          </DrawerContent>
+        </Drawer>
+        {isDesktop && (
+          <Flex
+            bg="brand.light"
+            style={{ minHeight: 100 }}
+            justifyContent={[
+              "space-evenly",
+              "center",
+              "center",
+              "space-evenly",
+            ]}
+          >
+            <>
+              <Center w="100px">
+                <Link href={`/`}>
+                  <a>
+                    <img src="/images/logo.png" alt="Home" />
+                  </a>
+                </Link>
+              </Center>
+              <HStack
+                flex="1"
+                spacing={10}
+                size="150px"
+                justifyContent="center"
               >
-                Donate / Dues
-              </LinkBox>
-            </ChakraLink>
-          </Center>
-        </Flex>
+                {navs.map((nav) => (
+                  <LinkBox
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                    key={nav.id}
+                    color="brand.black"
+                    _hover={{
+                      color: "#212121",
+
+                      borderBottom: "3px solid #212121",
+                    }}
+                  >
+                    <Link key={nav.name} href={`/${nav.name}`}>
+                      <ChakraLink
+                        color="brand.black"
+                        fontFamily="Big Shoulders Display"
+                        textTransform="uppercase"
+                        fontWeight="bold"
+                        fontSize="xl"
+                        _hover={{
+                          color: "#212121",
+                          textDecoration: "none",
+                        }}
+                      >
+                        {nav.name.toUpperCase()}
+                      </ChakraLink>
+                    </Link>
+                  </LinkBox>
+                ))}
+              </HStack>
+
+              <Center p="4" justifyContent="flex-end">
+                <Link href="/pay">
+                  <Button
+                    as="a"
+                    bg="brand.highlight"
+                    color="brand.light"
+                    variant="solid"
+                    _hover={{
+                      color: "brand.highlight",
+                      background: "brand.light",
+                      textDecoration: "none",
+                      border: "2px solid tomato",
+                    }}
+                  >
+                    Donate
+                  </Button>
+                </Link>
+              </Center>
+            </>
+          </Flex>
+        )}
       </Stack>
-    </nav>
+    </Box>
   );
 };
 

@@ -1,10 +1,10 @@
-import { Box, Flex, Heading, Stack } from "@chakra-ui/layout";
+import { Box, Center, Flex, Heading, Stack } from "@chakra-ui/layout";
 import { Button } from "@chakra-ui/react";
 import React, { Fragment } from "react";
 import Card from "../../common/Card";
 import GameInfo from "./GameInfo";
 
-const GameCard = ({ title = "", link = "", linkDisplay = "", games = [] }) => {
+const GameCard = ({ title = "", link = "", direction = "row", games = [] }) => {
   const styles = {
     backgroundColor: "#121212",
     // backgroundImage:
@@ -15,17 +15,19 @@ const GameCard = ({ title = "", link = "", linkDisplay = "", games = [] }) => {
   };
 
   return (
-    <Box position="relative" top="-100px">
+    <Box position="relative" top="-100px" width="100%" maxW="xl" p="4">
       <Card styles={styles} link={link}>
-        <Flex justifyContent="space-between" alignItems="center" p="8">
-          <Heading size="xl" color="brand.light" m="0">
-            {title}
-          </Heading>
-          <Button variant="outline: " size="xs" color="tomato" m="0">
-            see more
+        <Center justifyContent="space-between" p="4">
+          <Flex flexGrow="1">
+            <Heading size="xl" color="brand.light" m="0">
+              {title}
+            </Heading>
+          </Flex>
+          <Button variant="link" size="xs" color="tomato" ml="4">
+            see all {title}
           </Button>
-        </Flex>
-        <Stack direction="row" h="100%" w="100%">
+        </Center>
+        <Stack direction={direction} h="100%" w="100%">
           {games
             .sort(
               (a, b) =>

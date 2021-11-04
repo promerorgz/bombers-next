@@ -4,11 +4,13 @@ import { fetchAPI } from "../../../lib/api";
 import Layout from "../../../common/Layout";
 import Pic from "../../../common/Pic";
 import Seo from "../../../common/Seo";
+import Hero from "../../../common/Hero";
 import { getStrapiMedia } from "../../../lib/media";
 import gfm from "remark-gfm";
 import styled from "styled-components";
 import { Box, Divider, Flex, Text } from "@chakra-ui/layout";
 import { useBreakpointValue } from "@chakra-ui/media-query";
+import useBp from "../../../theme/useBp";
 
 const ArticleHeader = styled.div`
   font-size: 44px;
@@ -56,37 +58,17 @@ const Article = ({ article = defaultArticle }) => {
     xl: "6xl",
   });
 
+  const [isDesktop] = useBp();
+
   return (
     <Layout>
       <Seo seo={seo} />
 
-      <Flex
-        justifyContent="center"
-        alignItems="flex-end"
-        id="banner"
-        h="md"
-        className="uk-background-cover"
-        data-src={imageUrl}
-        data-srcset={imageUrl}
-        data-uk-img
-      >
-        <Box w="75%">
-          <Text
-            color="brand.400"
-            as="h1"
-            fontSize={textVariants}
-            fontWeight="bolder"
-            textTransform="uppercase"
-            textAlign="start"
-            m="8"
-            sx={{
-              "-webkit-backface-visibility": "hidden",
-            }}
-          >
-            {article.title}
-          </Text>
-        </Box>
-      </Flex>
+      <Hero
+        size={isDesktop ? "lg" : "xl"}
+        image={imageUrl}
+        text={article?.title}
+      ></Hero>
       <Flex py="70px">
         <Box w="75%" m="auto" p="4">
           <Flex className="uk-grid-small uk-flex-left" data-uk-grid="true">
@@ -113,11 +95,12 @@ const Article = ({ article = defaultArticle }) => {
           </Flex>
           <Divider size="2px" variant="solid" m="8"></Divider>
 
-          <Box>
+          <Box textAlign="justify">
             <ReactMarkdown
               source={article.content}
               escapeHtml={false}
               remarkPlugins={[gfm]}
+              linkTarget="_blank"
             />
           </Box>
           <hr className="uk-divider-small" />

@@ -1,38 +1,62 @@
-import { Avatar } from "@chakra-ui/avatar";
-import { Stack, Box, Wrap, WrapItem, Heading } from "@chakra-ui/layout";
+import { Center, Wrap, Grid, GridItem, WrapItem } from "@chakra-ui/react";
+import { groupBy } from "lodash";
 import React from "react";
 import Pic from "../../common/Pic";
 
-const Sponsors = ({ sponsors }) => {
-  const currentSponsors = sponsors.length ? sponsors : [];
-  return (
-    <>
-      <Heading
-        as="h3"
-        size="2xl"
-        fontFamily="Big Shoulders Display"
-        fontWeight="700"
-        textTransform="uppercase"
-        mb="8"
-        textDecoration="underline"
-        textUnderlineOffset="10px"
-      >
-        Sponsors
-      </Heading>
-      <Wrap spacing={8} align="center" justifyContent="space-evenly">
-        {currentSponsors.map((sponsor) => {
-          const image = { ...sponsor?.image, alternativeText: sponsor?.name };
+const Sponsors = ({ sponsors, forFooter, isDesktop = true }) => {
+  console.log({ sponsors, forFooter, isDesktop });
+  const { gold, silver, bronze } = sponsors ? groupBy(sponsors, "level") : [];
+  console.log({ gold, silver, bronze });
 
+  return forFooter ? (
+    <Wrap direction="row" spacing="6" w="100%">
+      {sponsors?.map((sponsor) => {
+        const logo =
+          `${process.env.strapi}${sponsor?.image?.url}` || sponsor.logo;
+        return (
+          <WrapItem>
+            <Pic
+              style={{
+                width: 40,
+                height: 40,
+                filter: `contrast(0)`,
+                opacity: 0.4,
+                zoom: 1,
+              }}
+              src={logo}
+              fit="contain"
+            ></Pic>
+          </WrapItem>
+        );
+      })}
+    </Wrap>
+  ) : (
+    <Center minH="2xs" bg="brand.white" p="8" w="100%">
+      <Grid
+        gap="12"
+        templateColumns={`repeat(${!isDesktop ? 2 : sponsors?.length}, 1fr)`}
+        justifyContent="space-evenly"
+        w="100%"
+        // direction={["column", "column", "column", "row"]}
+      >
+        {sponsors?.map((sponsor) => {
+          const logo =
+            `${process.env.strapi}${sponsor?.image?.url}` || sponsor.logo;
           return (
-            sponsor?.level === "gold" && (
-              <WrapItem key={sponsor?.name || ""}>
-                <Pic image={image} size="3xs"></Pic>
-              </WrapItem>
-            )
+            <GridItem display="flex" justifyContent="center">
+              <Pic
+                style={{
+                  width: 100,
+                  height: 100,
+                }}
+                src={logo}
+                fit="contain"
+              ></Pic>
+            </GridItem>
           );
         })}
-      </Wrap>
-    </>
+      </Grid>
+    </Center>
   );
 };
 

@@ -35,53 +35,8 @@ const ContactForm = () => {
 
   const handleSubmit = () => {};
 
-  const RadioCard = (props) => {
-    const { getInputProps, getCheckboxProps } = useRadio(props);
-    const input = getInputProps();
-    const checkbox = getCheckboxProps();
-    return (
-      <Box as="label">
-        <input {...input} />
-        <Box
-          {...checkbox}
-          cursor="pointer"
-          borderWidth="1px"
-          borderRadius="md"
-          boxShadow="md"
-          minWidth="150px"
-          textAlign="center"
-          transition="all .2s ease-in-out"
-          color="gray.100"
-          _checked={{
-            bg: "gray.900",
-            color: "gray.100",
-            borderColor: "black.900",
-            transform: "scale(1.05)",
-          }}
-          _focus={{
-            boxShadow: "outline",
-          }}
-          px={5}
-          py={3}
-        >
-          {props.children}
-        </Box>
-      </Box>
-    );
-  };
-
-  const options = ["business_inquiry", "new_player", "other"];
-
-  const { getRootProps, getRadioProps } = useRadioGroup({
-    name: "reason",
-    defaultValue: "business_inquiry",
-    onChange: (reason) => setContact({ ...contact, reason }),
-  });
-
-  const group = getRootProps();
-
   return (
-    <Box overflow="hidden" cursor="pointer" p="8">
+    <Box overflow="hidden" cursor="pointer" p={[2, 2, 4, 6, 8]}>
       <SimpleGrid direction="column" columns={1} spacing={8}>
         <Stack spacing={8}>
           <Input

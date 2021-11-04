@@ -1,35 +1,16 @@
-import {
-  SimpleGrid,
-  Grid,
-  GridItem,
-  HStack,
-  Box,
-  Stack,
-  Flex,
-  Link,
-} from "@chakra-ui/layout";
-import {
-  Heading,
-  Tab,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Tabs,
-} from "@chakra-ui/react";
-import { useBreakpointValue } from "@chakra-ui/media-query";
-import { groupBy } from "lodash";
+import { VStack } from "@chakra-ui/react";
 import React from "react";
 import Hero from "../common/Hero";
 import Layout from "../common/Layout";
-import Seo from "../common/Seo";
-import Articles from "../components/Articles/articles";
-import Games from "../components/Games";
-import PaypalButton from "../components/Paypal/paypal-button";
 import Sponsors from "../components/Sponsors";
+import Articles from "../components/Articles";
 import { fetchAPI } from "../lib/api";
+import useBp from "../theme/useBp";
+import Games from "../components/Games";
 
 const Home = (props) => {
   const { articles, categories, homepage, games, sponsors, ...rest } = props;
+  console.log({ articles });
 
   const buttons = [
     {
@@ -42,70 +23,21 @@ const Home = (props) => {
     },
   ];
 
+  const [isDesktop, isTablet, isMobile, isDisplayingInBrowser] = useBp();
+  const bpProps = { isDesktop, isTablet, isMobile, isDisplayingInBrowser };
+
   return (
-    <Layout categories={categories} seo={homepage.seo} bg="brand.light">
-      <Seo seo={homepage.seo} />
+    <Layout sponsors={sponsors} seo={homepage.seo} bg="brand.light">
       <Hero
         text="St. Louis Bombers Rugby Club"
-        image="images/nationals17.jpg"
+        image="/images/nationals17.jpg"
         buttons={buttons}
       />
-      <SimpleGrid m="0" p="2" bg="brand.light">
-        <Games games={games || []} />
-        <Grid
-          py="8"
-          h="auto"
-          templateRows="repeat(1, 1fr)"
-          templateColumns="repeat(5, 1fr)"
-          gap={16}
-          mt="-50px"
-        >
-          <GridItem
-            // colStart={[2, 2, 2, 3, 2]}
-            // colEnd={[4, 4, 4, 4, 4]}
-            mx={8}
-            rowSpan={[1, null, 2]}
-            colSpan={[5, 5, 5, 5, 5]}
-            // colSpan={[10, 10, 10, 10, 10]}
-          >
-            <Flex
-              justifyContent="space-between"
-              alignContent="baseline"
-              direction="row"
-            >
-              <Heading
-                as="h3"
-                size="2xl"
-                fontFamily="Big Shoulders Display"
-                fontWeight="700"
-                textTransform="uppercase"
-                mb="8"
-                textDecoration="underline"
-                textUnderlineOffset="10px"
-              >
-                News
-              </Heading>
-
-              <Link
-                href="/news"
-                size="l"
-                fontFamily="Big Shoulders Display"
-                fontWeight="700"
-                textTransform="uppercase"
-                // mb="8"
-                textDecoration="underline"
-                textUnderlineOffset="10px"
-              >
-                see more
-              </Link>
-            </Flex>
-            <Articles articles={articles}></Articles>
-          </GridItem>
-        </Grid>
-        <Box mx={-8} my={8} p={50} bg="brand.white">
-          <Sponsors sponsors={sponsors} />
-        </Box>
-      </SimpleGrid>
+      <VStack direction="column" justifyContent="center">
+        <Games games={games || []} {...bpProps} />
+        <Sponsors sponsors={sponsors || []} {...bpProps} />
+        <Articles articles={articles} {...bpProps} />
+      </VStack>
     </Layout>
   );
 };
@@ -121,12 +53,12 @@ export async function getStaticProps() {
     coaches,
     sponsors,
   ] = await Promise.all([
-    fetchAPI("/articles?status=published"),
+    fetchAPI("/articles?status=published&_sort=publishedAt:asc"),
     fetchAPI("/categories"),
     fetchAPI("/homepage"),
     fetchAPI("/games"),
-    fetchAPI("/players"),
-    fetchAPI("/coaches"),
+    fetchAPI("/players?_sort=position:asc"),
+    fetchAPI("/coaches?_sort=id:asc"),
     fetchAPI("/sponsors"),
   ]);
 

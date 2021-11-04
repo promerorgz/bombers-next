@@ -4,8 +4,8 @@ import React from "react";
 const Venmo = ({ color, size }) => {
   const sizes = {
     sm: 3,
-    md: 5,
-    lg: 7,
+    md: 4,
+    lg: 6,
     xl: 9,
     "2xl": 11,
     "3xl": 15,

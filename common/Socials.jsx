@@ -1,4 +1,4 @@
-import { Flex, Link as ChakraLink } from "@chakra-ui/react";
+import { Flex, Box, Link as ChakraLink } from "@chakra-ui/react";
 import {
   faFacebookSquare,
   faInstagram,
@@ -33,29 +33,30 @@ const Socials = ({ color, size }) => {
 
   const iconSize = {
     sm: "lg",
-    md: "xl",
+    md: "1x",
     lg: "2x",
     xl: "3x",
   }[size];
   return (
-    <>
+    <Flex direction="row" justifyContent="flex-end" alignItems="center">
       {socials.map((page) => {
         return (
           <ChakraLink m="2" href={page?.url} target="_blank" key={page?.url}>
             {page.name === "venmo" ? (
-              <VenmoIcon size={size || "lg"} color={iconColor || "white"} />
+              <div pb="3">
+                <VenmoIcon size={size || "md"} color={iconColor || "white"} />
+              </div>
             ) : (
               <FontAwesomeIcon
                 color={iconColor || "white"}
-                size={iconSize || "2x"}
+                size={iconSize || "1x"}
                 icon={page.icon}
-                // style={{ color: "white" }}
               ></FontAwesomeIcon>
             )}
           </ChakraLink>
         );
       })}
-    </>
+    </Flex>
   );
 };
 

@@ -2,6 +2,7 @@ import { Box, Flex, HStack, Link, SimpleGrid } from "@chakra-ui/layout";
 import { Text, Heading } from "@chakra-ui/react";
 import React from "react";
 import Card from "../../common/Card";
+import getPosition from "../../utils/getPosition";
 
 const PlayerList = ({ list = [], staff }) => {
   const forwards = list.length
@@ -10,26 +11,6 @@ const PlayerList = ({ list = [], staff }) => {
   const backs = list.length
     ? list?.filter((player) => player.position >= 9)
     : [];
-
-  const getPosition = (position) => {
-    return {
-      1: "Loose Head Prop",
-      2: "Hooker",
-      3: "Tight Head Prop",
-      4: "Lock",
-      5: "Lock",
-      6: "Flanker",
-      7: "Flanker",
-      8: "8",
-      9: "Scrum-half",
-      10: "Fly-half",
-      11: "Wing",
-      12: "Inside Center",
-      13: "Outside Center",
-      14: "Wing",
-      15: "Fullback",
-    }[position];
-  };
 
   const List = ({ players }) => {
     return (
@@ -63,7 +44,7 @@ const PlayerList = ({ list = [], staff }) => {
                 key={`${player.first_name}-card`}
                 radius="md"
                 id="player-card"
-                link={`/team/${player.id}`}
+                link={`/team/${player.slug}`}
                 styles={{
                   minHeight: "370px",
                   height: "auto",

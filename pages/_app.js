@@ -1,13 +1,13 @@
+import { ChakraProvider } from "@chakra-ui/react";
+import { config } from "@fortawesome/fontawesome-svg-core";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import App from "next/app";
 import Head from "next/head";
 import { createContext } from "react";
-import { getStrapiMedia } from "../lib/media";
 import { fetchAPI } from "../lib/api";
-import { ChakraProvider } from "@chakra-ui/react";
-import { config } from "@fortawesome/fontawesome-svg-core";
+import { getStrapiMedia } from "../lib/media";
 import theme from "../theme";
-import "@fortawesome/fontawesome-svg-core/styles.css";
-import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 
 // Store Strapi Global object in context
 export const GlobalContext = createContext({});
@@ -50,6 +50,7 @@ const MyApp = ({ Component, pageProps, appProps, ...rest }) => {
         <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.2.0/js/uikit.min.js" />
         <script src="https://cdn.jsdelivr.net/npm/uikit@3.2.3/dist/js/uikit-icons.min.js" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.2.0/js/uikit.js" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       <PayPalScriptProvider options={initialOptions}>
         <GlobalContext.Provider value={global}>

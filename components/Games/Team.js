@@ -40,23 +40,22 @@ const Team = ({ team: { name, score, logo, ...teamData }, away, preview }) => {
             </Heading>
           </Flex>
         </Flex>
-        {score && (
-          <Box>
-            <Text
-              color="tomato"
-              fontWeight={"extrabold"}
-              my={0}
-              mx={2}
-              fontSize="2xl"
-              fontFamily="Big Shoulders Display"
-              textTransform="capitalize"
-              // bgColor={preview ? "#e2e2e2" : "none"}
-              p={2}
-            >
-              {score}
-            </Text>
-          </Box>
-        )}
+
+        <Box>
+          <Text
+            color={score ? "tomato" : "transparent"}
+            fontWeight={"extrabold"}
+            my={0}
+            mx={2}
+            fontSize="2xl"
+            fontFamily="Big Shoulders Display"
+            textTransform="capitalize"
+            // bgColor={preview ? "#e2e2e2" : "none"}
+            p={2}
+          >
+            {score || "00"}
+          </Text>
+        </Box>
       </Flex>
     </>
   );

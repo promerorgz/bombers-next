@@ -3,11 +3,14 @@ import { Container } from "next/app";
 import React from "react";
 import Layout from "../common/Layout";
 import Hero from "../common/Hero";
+import useBp from "../theme/useBp";
 
 const shop = () => {
+  const [isDesktop] = useBp();
+  const size = isDesktop ? "md" : "xl";
   return (
     <Layout>
-      <Hero text="Shop" buttons={[]} image="" size="md" />
+      <Hero text="Team Store" image="/images/mcb-hero.jpeg" size={size} />
       <SimpleGrid
         columns="1"
         spacing={8}

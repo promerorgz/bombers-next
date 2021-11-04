@@ -2,27 +2,33 @@ import {
   Box,
   Button,
   Flex,
-  Link,
   LinkBox,
   Stack,
   Text,
+  Center,
   useBreakpointValue,
 } from "@chakra-ui/react";
 import React from "react";
 import styled from "styled-components";
 import Pic from "../common/Pic";
+import Link from "next/link";
+import useBp from "../theme/useBp";
 
 const heightSizes = {
   sm: "20vh",
   md: "40vh",
   lg: "70vh",
+  xl: "100vh",
 };
 const Diagonal = styled.div`
+  font-family: "Big Shoulders Display";
+  font-weight: bold;
+  text-transform: uppercase;
   display: flex;
   flex-direction: row;
   align-items: center;
   padding: 5%;
-  min-height: ${(props) => heightSizes[props.size] || "70vh"};
+  min-height: ${(props) => heightSizes[props.size] || "90vh"};
   background-repeat: no-repeat;
   background-position: right;
   background-size: ${(props) => (props.bg ? "contain" : "cover")};
@@ -30,15 +36,25 @@ const Diagonal = styled.div`
     props.bg ||
     `linear-gradient(
       120deg,
-      #000 40%,
+      #00000060 40%,
       #00000060 40%,
       #00000060 50%,
-      transparent 50%,
-      transparent
+      #00000060 50%,
+      #00000060
     ),
     url(${props.image});`};
 `;
-const Hero = ({ text, buttons = [], image, size, startPic, bg }) => {
+
+const Hero = ({
+  text,
+  buttons = [],
+  image,
+  size = "xl",
+  startPic,
+  bg,
+  direction,
+  story,
+}) => {
   const picProps = startPic?.startsWith("/")
     ? { src: startPic }
     : {
@@ -49,44 +65,30 @@ const Hero = ({ text, buttons = [], image, size, startPic, bg }) => {
         },
         size: "xs",
       };
+
   return (
     <Diagonal image={image} size={size} bg={bg}>
-      <Flex
-        direction="row"
-        align="center"
-        justify="space-evenly"
-        // width={["50%", "100%", "100%", "50%"]}
-      >
-        {startPic && (
-          <Box position="relative" top="55px">
-            <Pic {...picProps}></Pic>
-          </Box>
-        )}
-        <Box ml="2">
-          <Text
-            fontSize="5xl"
-            casing="uppercase"
-            as="b"
-            color="white"
-            style={{ marginBottom: 12 }}
-          >
-            {text}
-          </Text>
-          <Stack spacing={4} direction="row" align="center" marginTop={8}>
-            {buttons &&
-              buttons?.map(({ link, display, color }) => {
-                return (
-                  <LinkBox key={`link_${link}`}>
-                    <Link
-                      _hover={{
-                        textDecoration: "none",
-                      }}
-                    >
+      <Flex direction="row" align="center" justify="space-evenly">
+        <Stack direction={direction} alignItems="center" spacing="16" p="8">
+          {startPic && (
+            <Box position="relative" top="55px">
+              <Pic {...picProps}></Pic>
+            </Box>
+          )}
+          <Box ml="2">
+            <Text fontSize="5xl" casing="uppercase" as="b" color="white">
+              {text}
+            </Text>
+            <Stack spacing={4} direction="row" align="center" marginTop={8}>
+              {buttons &&
+                buttons?.map(({ link, display, color }) => {
+                  return (
+                    <Link href={link || ""}>
                       <Button
+                        as="a"
                         colorScheme="gray"
                         size="md"
                         color={color || "brand.light"}
-                        href={link || ""}
                         textDecoration="none"
                         _hover={{
                           backgroundColor: "#e2e2e2",
@@ -96,11 +98,11 @@ const Hero = ({ text, buttons = [], image, size, startPic, bg }) => {
                         {display}
                       </Button>
                     </Link>
-                  </LinkBox>
-                );
-              })}
-          </Stack>
-        </Box>
+                  );
+                })}
+            </Stack>
+          </Box>
+        </Stack>
       </Flex>
     </Diagonal>
   );

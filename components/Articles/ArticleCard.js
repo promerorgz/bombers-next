@@ -6,8 +6,9 @@ import styled from "styled-components";
 import { background } from "@chakra-ui/styled-system";
 import ReactMarkdown from "react-markdown";
 import { useBreakpointValue } from "@chakra-ui/media-query";
+import { Button } from "@chakra-ui/button";
 
-const ArticleCard = ({ article, styles, highlight }) => {
+const ArticleCard = ({ article, styles, highlight = false, isDesktop }) => {
   const direction = useBreakpointValue({
     base: highlight ? "row" : "column",
     xs: "column",
@@ -97,16 +98,18 @@ const ArticleCard = ({ article, styles, highlight }) => {
                   {article?.title}
                 </Text>
               </Box>
-              <Box
-                overflowY="scroll"
-                maxH="350px"
-                wordBreak="break-word"
-                color="brand.light"
-              >
-                <ReactMarkdown>
-                  {!highlight ? article?.description : article.content}
-                </ReactMarkdown>
-              </Box>
+              {
+                <Box
+                  overflowY="scroll"
+                  maxH="350px"
+                  wordBreak="break-word"
+                  color="brand.light"
+                >
+                  <ReactMarkdown>
+                    {!highlight ? article?.description : article.content}
+                  </ReactMarkdown>
+                </Box>
+              }
             </Flex>
           </Flex>
         </Flex>
