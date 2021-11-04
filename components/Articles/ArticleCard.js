@@ -106,7 +106,7 @@ const ArticleCard = ({ article, styles, highlight = false, isDesktop }) => {
                   color="brand.light"
                 >
                   <ReactMarkdown>
-                    {!highlight ? article?.description : article.content}
+                    {!highlight ? article?.description : article?.content}
                   </ReactMarkdown>
                 </Box>
               }

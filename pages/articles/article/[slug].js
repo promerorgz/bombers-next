@@ -97,7 +97,7 @@ const Article = ({ article = defaultArticle }) => {
 
           <Box textAlign="justify">
             <ReactMarkdown
-              source={article.content}
+              source={article?.content}
               escapeHtml={false}
               remarkPlugins={[gfm]}
               linkTarget="_blank"
