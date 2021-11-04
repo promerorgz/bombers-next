@@ -1,21 +1,9 @@
-import React, { useEffect, useState } from "react";
-import ReactDOM from "react-dom";
-import Layout from "../common/Layout";
+import { Box, Flex, Heading, HStack, Stack } from "@chakra-ui/react";
+import React from "react";
 import Hero from "../common/Hero";
-import PaypalButton from "../components/Paypal/paypal-button";
-import {
-  SimpleGrid,
-  Center,
-  Text,
-  HStack,
-  Divider,
-  Heading,
-  Stack,
-  Flex,
-  Box,
-} from "@chakra-ui/react";
-import ContactForm from "../components/Contact/ContactForm";
+import Layout from "../common/Layout";
 import Socials from "../common/Socials";
+import ContactForm from "../components/Contact/ContactForm";
 
 const contact = () => {
   const props = {
