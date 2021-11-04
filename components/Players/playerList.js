@@ -12,7 +12,7 @@ const PlayerList = ({ list = [], staff }) => {
     ? list?.filter((player) => player.position >= 9)
     : [];
 
-  const List = ({ players }) => {
+  const List = ({ players, noClick }) => {
     return (
       <HStack
         overflowX="scroll"
@@ -44,7 +44,7 @@ const PlayerList = ({ list = [], staff }) => {
                 key={`${player.first_name}-card`}
                 radius="md"
                 id="player-card"
-                link={`/team/${player.slug}`}
+                link={noClick ? "" : `/team/${player.slug}`}
                 styles={{
                   minHeight: "370px",
                   height: "auto",
@@ -118,7 +118,7 @@ const PlayerList = ({ list = [], staff }) => {
           <Heading as="h2" size="xl" isTruncated my="8">
             Staff
           </Heading>
-          <List players={list} />
+          <List players={list} noClick />
         </>
       )}
     </Flex>
