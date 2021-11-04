@@ -66,6 +66,7 @@ const Player = ({ players }) => {
     <Layout>
       <Hero
         text={text}
+        secondaryText={getPosition(player.position)}
         size="sm"
         startPic={startPic}
         bg={playerBg}

@@ -47,6 +47,7 @@ const Diagonal = styled.div`
 
 const Hero = ({
   text,
+  secondaryText,
   buttons = [],
   image,
   size = "xl",
@@ -76,9 +77,21 @@ const Hero = ({
             </Box>
           )}
           <Box ml="2">
-            <Text fontSize="5xl" casing="uppercase" as="b" color="white">
-              {text}
-            </Text>
+            <Stack spacing="1" direction="column">
+              <Text fontSize="5xl" casing="uppercase" as="b" color="white">
+                {text}
+              </Text>
+              {secondaryText && (
+                <Text
+                  fontSize="3xl"
+                  casing="uppercase"
+                  as="b"
+                  color="brand.medium"
+                >
+                  {secondaryText}
+                </Text>
+              )}
+            </Stack>
             <Stack spacing={4} direction="row" align="center" marginTop={8}>
               {buttons &&
                 buttons?.map(({ link, display, color }) => {
