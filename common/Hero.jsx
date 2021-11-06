@@ -11,7 +11,8 @@ import Link from "next/link";
 import React from "react";
 import styled from "styled-components";
 import Pic from "../common/Pic";
-import { ChevronDownIcon } from "@chakra-ui/icons";
+import { ChevronDownIcon, ChevronLeftIcon } from "@chakra-ui/icons";
+import { useRouter } from "next/router";
 
 const heightSizes = {
   sm: "20vh",
@@ -24,9 +25,9 @@ const Diagonal = styled.div`
   font-weight: bold;
   text-transform: uppercase;
   display: flex;
-  flex-direction: row;
+  flex-direction: ${({ backButton }) => (backButton ? "column" : "row")};
   align-items: center;
-  padding: 5%;
+  padding: 1%;
   min-height: ${(props) => heightSizes[props.size] || "90vh"};
   background-repeat: no-repeat;
   background-position: right;
@@ -44,26 +45,6 @@ const Diagonal = styled.div`
     url(${props.image});`};
 `;
 
-const ScrollButton = styled(ChakraLink)`
-  .bounce {
-    -webkit-animation: bounce 1s infinite;
-    -moz-animation: bounce 1s infinite;
-    -o-animation: bounce 1s infinite;
-    animation: bounce 1s infinite;
-  }
-  @keyframes bounce {
-    0% {
-      bottom: 0px;
-    }
-    50% {
-      bottom: 15px;
-    }
-    100% {
-      bottom: 30;
-    }
-  }
-`;
-
 const Hero = ({
   text,
   secondaryText,
@@ -78,6 +59,7 @@ const Hero = ({
   contentLink,
   backButton,
 }) => {
+  const router = useRouter();
   const picProps = startPic?.startsWith("/")
     ? { src: startPic }
     : {
@@ -89,16 +71,21 @@ const Hero = ({
         size: "xs",
       };
 
+  const handleGoBack = () => {
+    return router.push("/team");
+  };
+
   return (
     <>
-      {backButton && (
-        <Center alignItems="flex-start" w="100%" position="relative" top="0px">
-          <ChakraLink href={contentLink}>
-            <ChevronDownIcon color="brand.white" w={8} h={8} />
-          </ChakraLink>
-        </Center>
-      )}
-      <Diagonal image={image} size={size} bg={bg}>
+      <Diagonal image={image} size={size} bg={bg} backButton={backButton}>
+        {backButton && (
+          <Center justifyContent="flex-start" w="100%">
+            <Button onClick={handleGoBack} variant="link">
+              <ChevronLeftIcon color="brand.white" w={8} h={8} />
+              <Text fontSize="xl">{"Back to players"}</Text>
+            </Button>
+          </Center>
+        )}
         <Flex direction="row" align="center" justify="space-evenly">
           <Stack direction={direction} alignItems="center" spacing="16" p="8">
             {startPic && (

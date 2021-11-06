@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import Layout from "../../common/Layout";
 import { Tabs, TabList, TabPanels, Tab, TabPanel, Box } from "@chakra-ui/react";
 import PlayerList from "../../components/Players/playerList";
@@ -6,6 +6,18 @@ import Hero from "../../common/Hero";
 import useBp from "../../theme/useBp";
 
 const Team = ({ players, coaches }) => {
+  const [selectedTab, setSelectedTab] = useState(0);
+  const [heroSize, setHeroSize] = useState("md");
+  const [isDesktop] = useBp();
+
+  useEffect(() => {
+    setHeroSize(isDesktop ? "lg" : "xl");
+  }, [isDesktop]);
+
+  const onTabChange = useCallback((e) => {
+    setSelectedTab(e);
+  }, []);
+
   const defaultObject = { d1: [], d3: [], staff: coaches || [] };
   const { d1, d3, staff } = players.length
     ? players?.reduce((acc, player) => {
@@ -21,28 +33,34 @@ const Team = ({ players, coaches }) => {
       }, defaultObject)
     : defaultObject;
 
-  console.log({ d1 });
-
-  const [isDesktop] = useBp();
+  const tabs = ["Bombers DI", "Bombers DIII", "Coaches & Staff"];
 
   return (
-    <Layout>
+    <Layout seo={{ metaTitle: "Team" }}>
       <Hero
         text="Players"
         image="/images/nationals17.jpg"
-        size={isDesktop ? "md" : "xl"}
+        size={heroSize}
       ></Hero>
       <Tabs
         variant="line"
-        isFitted={!isDesktop}
+        isFitted={true}
         size="lg"
-        colorScheme="gray"
-        fontFamily="Big Shoulders Display"
+        value={selectedTab}
+        onChange={onTabChange}
+        defaultIndex={selectedTab}
       >
-        <TabList fontWeight="bold">
-          <Tab>Bombers DI</Tab>
-          <Tab>Bombers DIII</Tab>
-          <Tab>Coaches & Staff</Tab>
+        <TabList>
+          {tabs.map((tab) => (
+            <Tab
+              fontFamily="Big Shoulders Display"
+              fontWeight="bold"
+              fontSize="xl"
+              _selected={{ bg: "brand.black", color: "brand.white" }}
+            >
+              {tab}
+            </Tab>
+          ))}
         </TabList>
         <TabPanels>
           <TabPanel>

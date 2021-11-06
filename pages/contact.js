@@ -13,7 +13,7 @@ const contact = () => {
     size: "md",
   };
   return (
-    <Layout>
+    <Layout seo={{ metaTitle: "Contact Us" }}>
       <Hero {...props}></Hero>
       <Stack m="8" spacing="8">
         <Heading size="2xl" color="brand.black">

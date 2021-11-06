@@ -22,7 +22,7 @@ const GameCard = ({ title = "", link = "", direction = "row", games = [] }) => {
       minH="360px"
       h="100%"
     >
-      <Card styles={styles} link={link} h="100%" id="game-card">
+      <Card styles={styles} h="100%" id="game-card">
         <Center justifyContent="space-between" p="4">
           <Flex flexGrow="1">
             <Heading size="xl" color="brand.light" m="0">

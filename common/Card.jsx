@@ -23,10 +23,9 @@ const Card = ({
         <LinkBox>{component}</LinkBox>
       </Link>
     ) : (
-      <>{component}</>
+      <LinkBox>{component}</LinkBox>
     );
 
-  console.log({ bg, hoverBg });
   const hoverStyles = link
     ? {
         transition: "all .2s ease-in-out",

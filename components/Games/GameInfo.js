@@ -69,7 +69,7 @@ const GameInfo = ({
             <Heading as="div" size="lg" color="brand.light">
               {division}
             </Heading>
-            <Link href={`/schedule/${slug}`}>
+            {/* <Link href={`/schedule/game/${slug}`}>
               <Button
                 as="a"
                 size="sm"
@@ -80,7 +80,7 @@ const GameInfo = ({
               >
                 {finished ? "recap" : "preview"}
               </Button>
-            </Link>
+            </Link> */}
             <Heading
               as="div"
               display="flex"

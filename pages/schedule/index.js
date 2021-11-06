@@ -13,11 +13,10 @@ const schedule = ({ games }) => {
   const { d1, d3 } = groupBy(games, "division");
   const [isDesktop] = useBp();
   const seo = {
-    metaTitle: "game",
+    metaTitle: "Schedule",
   };
   return (
-    <Layout>
-      <Seo seo={seo} />
+    <Layout seo={seo}>
       <Hero
         text="Schedule"
         image="/images/nationals17.jpg"

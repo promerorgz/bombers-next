@@ -8,10 +8,12 @@ const countryCodes = {
   australian: "AU",
   scottish: "GB",
   colombian: "CO",
+  "united states": "US",
 };
 
 const getCountryCodes = (nationality = "") => {
-  return countryCodes[nationality.toLowerCase()];
+  const nat = nationality || "United States";
+  return countryCodes[nat.toLowerCase()];
 };
 
 export default getCountryCodes;

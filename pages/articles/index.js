@@ -17,7 +17,7 @@ const News = ({ articles, categories }) => {
   const [isDesktop] = useBp();
 
   return (
-    <Layout>
+    <Layout seo={{ metaTitle: "Articles" }}>
       <Hero
         text="Articles"
         image="/images/mcb-hero.jpeg"
@@ -53,20 +53,24 @@ const News = ({ articles, categories }) => {
         </TabList>
         <TabPanels>
           <TabPanel>
-            <SimpleGrid m={[0, 0, 2, 2, 4]} spacing="8" minChildWidth="300px">
-              {sortBy(articles, (article) => article.id)
-                .reverse()
-                .map((item) => {
-                  return (
-                    <ArticleCard
-                      article={item}
-                      style={{
-                        maxHeight: "300px",
-                      }}
-                    ></ArticleCard>
-                  );
-                })}
-            </SimpleGrid>
+            {
+              <SimpleGrid m={[0, 0, 2, 2, 4]} spacing="8" minChildWidth="300px">
+                {articles.length
+                  ? sortBy(articles, (article) => article.id)
+                      .reverse()
+                      .map((item) => {
+                        return (
+                          <ArticleCard
+                            article={item}
+                            style={{
+                              maxHeight: "300px",
+                            }}
+                          ></ArticleCard>
+                        );
+                      })
+                  : "No Articles"}
+              </SimpleGrid>
+            }
           </TabPanel>
           {categories.map((category) => {
             return (

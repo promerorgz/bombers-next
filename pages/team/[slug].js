@@ -3,10 +3,10 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import Hero from "../../common/Hero";
 import Layout from "../../common/Layout";
+import Pic from "../../common/Pic";
 import useBp from "../../theme/useBp";
-import getCountryCodes from "../../utils/getCountryCode";
 import getPosition from "../../utils/getPosition";
-import ReactCountryFlag from "react-country-flag";
+import PlayerInfo from "./components/PlayerInfo";
 
 const defaultPlayer = {
   first_name: "",
@@ -47,7 +47,7 @@ const Player = ({ players }) => {
     },
     {
       label: "Nationality",
-      value: player?.nationality,
+      value: player?.nationality || "United States",
     },
     {
       label: "Hometown",
@@ -67,7 +67,7 @@ const Player = ({ players }) => {
     },
   ];
   return (
-    <Layout>
+    <Layout seo={{ metaTitle: `${player.first_name} ${player.last_name}` }}>
       <Hero
         backButton
         text={text}
@@ -88,37 +88,11 @@ const Player = ({ players }) => {
             {inQuotes(player.bio)}
           </Heading>
         </Center>
-
-        <Stack direction="column" p="8" spacing="4">
-          {data.map(({ label, value }) => {
-            return (
-              <HStack alignItems="center" display="flex" spacing="4">
-                <Heading color="brand.black" size="lg" as="div" minW="80px">
-                  {label}:
-                </Heading>
-                <Heading
-                  as="div"
-                  color="brand.medium"
-                  fontFamily="Staatliches"
-                  fontWeight="light"
-                  size="lg"
-                  minH="10%"
-                  maxH="25%"
-                >
-                  {value}
-                </Heading>
-
-                <Center>
-                  {label === "Nationality" && (
-                    <ReactCountryFlag
-                      svg
-                      countryCode={getCountryCodes(value)}
-                    />
-                  )}
-                </Center>
-              </HStack>
-            );
-          })}
+        <Stack direction={direction} spacing="4" mt={0} id="kkck">
+          <Center>
+            <Pic src={player?.hoverPic?.url} />
+          </Center>
+          <PlayerInfo data={data} />
         </Stack>
       </Stack>
     </Layout>

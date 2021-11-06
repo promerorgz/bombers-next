@@ -9,7 +9,7 @@ const shop = () => {
   const [isDesktop] = useBp();
   const size = isDesktop ? "md" : "xl";
   return (
-    <Layout>
+    <Layout seo={{ metaTitle: "Team Store" }}>
       <Hero text="Team Store" image="/images/mcb-hero.jpeg" size={size} />
       <SimpleGrid
         columns="1"

@@ -34,19 +34,13 @@ const PlayerList = ({ list = [], staff }) => {
       >
         {players.length ? (
           players?.map((player) => {
-            const image = {
-              name: player?.picture?.name || "",
-              alternativeText: `${player.first_name}-pro-pic`,
-              url: player.picture?.url || "/images/defaultpic.png",
-            };
+            const { picture, hoverPic } = player;
 
             const background = player.picture?.url
-              ? `url(${player?.picture?.url})`
+              ? `url(${picture?.url})`
               : "url(/images/defaultpic.png)";
-            const hoverBg = player.picture?.url
-              ? `url(${
-                  player?.hoverPic ? player?.hoverPic?.url : player.picture?.url
-                })`
+            const hoverBg = hoverPic?.url
+              ? `url(${hoverPic?.url || picture?.url})`
               : "url(/images/defaultpic.png)";
 
             return (
@@ -55,13 +49,14 @@ const PlayerList = ({ list = [], staff }) => {
                 radius="md"
                 id="player-card"
                 as={`/team/${player?.slug}`}
-                link="/team/[id]"
+                link={noClick ? "" : "/team/[id]"}
                 styles={{
                   minHeight: "370px",
                   height: "auto",
                   width: "270px",
                   display: "flex",
                   justifyContent: "space-around",
+                  cursor: noClick ? "inherit" : "pointer",
                 }}
                 bg={background}
                 hoverBg={hoverBg}

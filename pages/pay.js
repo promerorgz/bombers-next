@@ -38,7 +38,7 @@ const pay = () => {
   }, [isDesktop]);
 
   return (
-    <Layout>
+    <Layout seo={{ metaTitle: "Pay" }}>
       <Stack minH="100vh" direction={direction} spacing="0">
         <Stack minH="100%" w="100%" bg="brand.medium" p="8" spacing="8">
           <Heading color="brand.light" size="xl">
