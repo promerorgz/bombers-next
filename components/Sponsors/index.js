@@ -1,11 +1,18 @@
 import { Center, Wrap, Grid, GridItem, WrapItem } from "@chakra-ui/react";
 import { groupBy } from "lodash";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Pic from "../../common/Pic";
+import useBp from "../../theme/useBp";
 
-const Sponsors = ({ sponsors, forFooter, isDesktop = true }) => {
-  const { gold, silver, bronze } = sponsors ? groupBy(sponsors, "level") : [];
+const Sponsors = ({ sponsors, forFooter }) => {
+  const [columns, setColumns] = useState(sponsors.length);
+  const [isDesktop] = useBp();
 
+  useEffect(() => {
+    setColumns(isDesktop ? sponsors?.length : 2);
+  }, [isDesktop]);
+
+  console.log({ columns });
   return forFooter ? (
     <Wrap direction="row" spacing="6" w="100%">
       {sponsors?.map((sponsor) => {
@@ -31,7 +38,7 @@ const Sponsors = ({ sponsors, forFooter, isDesktop = true }) => {
     <Center minH="2xs" bg="brand.white" p="8" w="100%">
       <Grid
         gap="12"
-        templateColumns={`repeat(${!isDesktop ? 2 : sponsors?.length}, 1fr)`}
+        templateColumns={`repeat(${columns}, 1fr)`}
         justifyContent="space-evenly"
         w="100%"
         // direction={["column", "column", "column", "row"]}
