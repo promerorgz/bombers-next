@@ -8,6 +8,9 @@ import getCountryCodes from "../../utils/getCountryCode";
 import getPosition from "../../utils/getPosition";
 import ReactCountryFlag from "react-country-flag";
 
+const defaultPlayer = {
+  first_name: "",
+};
 const Player = ({ players }) => {
   const router = useRouter();
   const [direction, setDirection] = useState("row");
@@ -24,8 +27,9 @@ const Player = ({ players }) => {
   const text = `${player.first_name} ${inQuotes(player.nickname)} ${
     player.last_name
   }`;
-  const startPic =
-    `${process.env.strapi}${player?.picture?.url}` || "images/defaultpic.png";
+  const startPic = player?.picture?.url
+    ? player?.picture?.url
+    : "/images/defaultpic.png";
 
   const formatDate = (date, style) => {
     const dateObject = new Date(date);
@@ -65,6 +69,7 @@ const Player = ({ players }) => {
   return (
     <Layout>
       <Hero
+        backButton
         text={text}
         secondaryText={getPosition(player.position)}
         size="sm"
@@ -80,7 +85,7 @@ const Player = ({ players }) => {
       <Stack minH="100%" w="100%" bg="brand.light" spacing="4">
         <Center bg="brand.black" w="100%" p="8">
           <Heading as="quote" color="brand.light">
-            "{player.bio}"
+            {inQuotes(player.bio)}
           </Heading>
         </Center>
 

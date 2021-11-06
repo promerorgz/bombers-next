@@ -8,6 +8,7 @@ import { createContext } from "react";
 import { fetchAPI } from "../lib/api";
 import { getStrapiMedia } from "../lib/media";
 import theme from "../theme";
+import "../theme/globalStyles.css";
 
 // Store Strapi Global object in context
 export const GlobalContext = createContext({});

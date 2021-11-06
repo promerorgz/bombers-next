@@ -1,6 +1,7 @@
-import { Box, Flex, Stack, Text, Heading, HStack } from "@chakra-ui/layout";
+import { Box, Flex, Stack, Text, Heading, Button } from "@chakra-ui/react";
 import React from "react";
 import Team from "./Team";
+import Link from "next/link";
 
 const GameInfo = ({
   homeTeam,
@@ -9,6 +10,8 @@ const GameInfo = ({
   location,
   preview,
   division,
+  finished,
+  slug,
 }) => {
   const formatDateTime = (dateTime, format = "") => {
     const date = new Date(dateTime);
@@ -52,13 +55,44 @@ const GameInfo = ({
       // justifyContent="space-around"
       alignItems="center"
     >
-      <Flex direction="column" m="0" p="4">
+      <Flex direction="column" m="0" py="4">
         <Flex alignItems="center" justifyContent="space-between">
-          <div>
-            <Heading size="lg" color="brand.light">
+          <Stack
+            w="100%"
+            direction="horizontal"
+            spacing="5"
+            justifyContent="space-between"
+            mb="8"
+            p="4"
+            shadow="md"
+          >
+            <Heading as="div" size="lg" color="brand.light">
               {division}
             </Heading>
-          </div>
+            <Link href={`/schedule/${slug}`}>
+              <Button
+                as="a"
+                size="sm"
+                bg="none"
+                color="brand.highlight"
+                variant="outline"
+                border="2px solid brand.highlight"
+              >
+                {finished ? "recap" : "preview"}
+              </Button>
+            </Link>
+            <Heading
+              as="div"
+              display="flex"
+              flexDirection="column"
+              alignItems="flex-end"
+              size="sm"
+              color="brand.light"
+            >
+              <Box>{formatDateTime(date).date}</Box>
+              <Box>{formatDateTime(date).time}</Box>
+            </Heading>
+          </Stack>
         </Flex>
         <Team team={homeTeam} preview></Team>
         <Team team={awayTeam} preview></Team>

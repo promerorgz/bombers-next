@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "develop": "next dev",
+    "develop": "concurrently --kill-others \"next dev\" \"./scripts/mobiledev.sh\"",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -25,6 +25,7 @@
     "@mdx-js/react": "^1.6.22",
     "@next/mdx": "^11.0.1",
     "@paypal/react-paypal-js": "^7.4.1",
+    "date-fns": "^2.25.0",
     "framer-motion": "^4.1.17",
     "lodash": "^4.17.21",
     "moment": "^2.24.0",

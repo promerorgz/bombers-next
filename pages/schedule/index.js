@@ -3,6 +3,7 @@ import { groupBy } from "lodash";
 import React, { useState } from "react";
 import Hero from "../../common/Hero";
 import Layout from "../../common/Layout";
+import Seo from "../../common/Seo";
 import useBp from "../../theme/useBp";
 import Results from "./components/Results";
 import Schedule from "./components/Schedule";
@@ -11,10 +12,12 @@ import ScheduleTabs from "./components/ScheduleTabs";
 const schedule = ({ games }) => {
   const { d1, d3 } = groupBy(games, "division");
   const [isDesktop] = useBp();
-  console.log({ isDesktop });
-
+  const seo = {
+    metaTitle: "game",
+  };
   return (
     <Layout>
+      <Seo seo={seo} />
       <Hero
         text="Schedule"
         image="/images/nationals17.jpg"

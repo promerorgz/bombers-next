@@ -9,8 +9,15 @@ import useBp from "../theme/useBp";
 import Games from "../components/Games";
 
 const Home = (props) => {
-  const { articles, categories, homepage, games, sponsors, ...rest } = props;
-  console.log({ articles });
+  const {
+    articles,
+    categories,
+    homepage,
+    games,
+    sponsors,
+    players,
+    ...rest
+  } = props;
 
   const buttons = [
     {
@@ -34,9 +41,9 @@ const Home = (props) => {
         buttons={buttons}
       />
       <VStack direction="column" justifyContent="center">
-        <Games games={games || []} {...bpProps} />
-        <Sponsors sponsors={sponsors || []} {...bpProps} />
-        <Articles articles={articles} {...bpProps} />
+        {games.length && <Games games={games || []} {...bpProps} />}
+        {sponsors.length && <Sponsors sponsors={sponsors || []} {...bpProps} />}
+        {articles.length && <Articles articles={articles} {...bpProps} />}
       </VStack>
     </Layout>
   );
@@ -56,7 +63,7 @@ export async function getStaticProps() {
     fetchAPI("/articles?status=published&_sort=publishedAt:asc"),
     fetchAPI("/categories"),
     fetchAPI("/homepage"),
-    fetchAPI("/games"),
+    fetchAPI("/games?_sort=date:asc"),
     fetchAPI("/players?_sort=position:asc"),
     fetchAPI("/coaches?_sort=id:asc"),
     fetchAPI("/sponsors"),

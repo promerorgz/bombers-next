@@ -4,17 +4,14 @@ import React from "react";
 import Pic from "../../common/Pic";
 
 const Sponsors = ({ sponsors, forFooter, isDesktop = true }) => {
-  console.log({ sponsors, forFooter, isDesktop });
   const { gold, silver, bronze } = sponsors ? groupBy(sponsors, "level") : [];
-  console.log({ gold, silver, bronze });
 
   return forFooter ? (
     <Wrap direction="row" spacing="6" w="100%">
       {sponsors?.map((sponsor) => {
-        const logo =
-          `${process.env.strapi}${sponsor?.image?.url}` || sponsor.logo;
+        const logo = sponsor?.image?.url || sponsor.logo;
         return (
-          <WrapItem>
+          <WrapItem key={sponsor?.name}>
             <Pic
               style={{
                 width: 40,
@@ -40,10 +37,9 @@ const Sponsors = ({ sponsors, forFooter, isDesktop = true }) => {
         // direction={["column", "column", "column", "row"]}
       >
         {sponsors?.map((sponsor) => {
-          const logo =
-            `${process.env.strapi}${sponsor?.image?.url}` || sponsor.logo;
+          const logo = sponsor?.image?.url || sponsor.logo;
           return (
-            <GridItem display="flex" justifyContent="center">
+            <GridItem display="flex" justifyContent="center" key={sponsor.name}>
               <Pic
                 style={{
                   width: 100,

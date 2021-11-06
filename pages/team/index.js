@@ -21,6 +21,8 @@ const Team = ({ players, coaches }) => {
       }, defaultObject)
     : defaultObject;
 
+  console.log({ d1 });
+
   const [isDesktop] = useBp();
 
   return (

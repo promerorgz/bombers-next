@@ -1,12 +1,8 @@
-import React from "react";
-import Link from "next/link";
-import Image from "../../common/Pic";
-import { Box, LinkBox, Badge, Text, Flex } from "@chakra-ui/layout";
-import styled from "styled-components";
-import { background } from "@chakra-ui/styled-system";
-import ReactMarkdown from "react-markdown";
+import { Badge, Box, Flex, LinkBox, Text } from "@chakra-ui/layout";
 import { useBreakpointValue } from "@chakra-ui/media-query";
-import { Button } from "@chakra-ui/button";
+import Link from "next/link";
+import React from "react";
+import ReactMarkdown from "react-markdown";
 
 const ArticleCard = ({ article, styles, highlight = false, isDesktop }) => {
   const direction = useBreakpointValue({
@@ -22,8 +18,8 @@ const ArticleCard = ({ article, styles, highlight = false, isDesktop }) => {
   };
   return (
     <Link
-      as={`/article/${article?.slug || "hello"}`}
-      href="/article/[id]"
+      as={`/articles/article/${article?.slug || "hello"}`}
+      href="articles/article/[id]"
       m="16"
     >
       <LinkBox>
@@ -49,7 +45,7 @@ const ArticleCard = ({ article, styles, highlight = false, isDesktop }) => {
           bgGradient="gradient.main"
         >
           <Box
-            backgroundImage={`${process.env.strapi}${article?.image?.url}`}
+            backgroundImage={article?.image?.url}
             flexGrow="1"
             {...imageHeight}
             backgroundPosition="center"

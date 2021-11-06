@@ -3,8 +3,6 @@ import { Box, Flex, Heading, Text } from "@chakra-ui/layout";
 import React from "react";
 
 const Team = ({ team: { name, score, logo, ...teamData }, away, preview }) => {
-  const uploadsUrl = (url) => `${process.env.strapi}${url}`;
-
   const direction = away ? "row-reverse" : "row";
   return (
     <>
@@ -24,7 +22,7 @@ const Team = ({ team: { name, score, logo, ...teamData }, away, preview }) => {
               bg="brand.200"
               size={preview ? "sm" : "xl"}
               name={name}
-              src={uploadsUrl(logo?.url || "")}
+              src={logo?.url}
             />
           </Box>
           <Flex flexGrow="1">

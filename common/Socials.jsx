@@ -6,6 +6,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import VenmoIcon from "../icons/Venmo";
+import Link from "next/link";
 
 const Socials = ({ color, size }) => {
   const socials = [
@@ -41,19 +42,19 @@ const Socials = ({ color, size }) => {
     <Flex direction="row" justifyContent="flex-end" alignItems="center">
       {socials.map((page) => {
         return (
-          <ChakraLink m="2" href={page?.url} target="_blank" key={page?.url}>
-            {page.name === "venmo" ? (
-              <div pb="3">
+          <Link href={page?.url} target="_blank" key={page?.url}>
+            <ChakraLink pb="3" m="2">
+              {page.name === "venmo" ? (
                 <VenmoIcon size={size || "md"} color={iconColor || "white"} />
-              </div>
-            ) : (
-              <FontAwesomeIcon
-                color={iconColor || "white"}
-                size={iconSize || "1x"}
-                icon={page.icon}
-              ></FontAwesomeIcon>
-            )}
-          </ChakraLink>
+              ) : (
+                <FontAwesomeIcon
+                  color={iconColor || "white"}
+                  size={iconSize || "1x"}
+                  icon={page.icon}
+                />
+              )}
+            </ChakraLink>
+          </Link>
         );
       })}
     </Flex>

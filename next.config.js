@@ -9,9 +9,8 @@ const withMDX = require("@next/mdx")({
 module.exports = withMDX({
   pageExtensions: ["js", "jsx", "md", "mdx"],
   env: {
-    strapi:
-      process.env.NODE_ENV === "production"
-        ? "https://bombers-backend.herokuapp.com"
-        : "http://localhost:1339",
+    strapi: "https://bombers-backend.herokuapp.com",
+    // process.env.NODE_ENV === "production"
+    //  "http://localhost:1339",
   },
 });

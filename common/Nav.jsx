@@ -38,7 +38,6 @@ const DiagonalBg = styled(Flex)`
 
 const Nav = ({ navs }) => {
   const [isDesktop] = useBp();
-  console.log({ isDesktop });
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -113,38 +112,42 @@ const Nav = ({ navs }) => {
             </DrawerHeader>
             <DrawerBody pt="8">
               <VStack direction="column" spacing="8">
-                {_concat([{ name: "home", id: "", slug: "" }], navs).map(
-                  (nav) => (
-                    <LinkBox
-                      display="flex"
-                      justifyContent="center"
-                      alignItems="center"
-                      key={nav.id}
-                      color="brand.black"
-                      _hover={{
-                        color: "#212121",
+                {_concat(
+                  [
+                    { name: "home", id: "", slug: "" },
+                    { name: "Donate", id: "pay", slug: "pay" },
+                  ],
+                  navs
+                ).map((nav) => (
+                  <LinkBox
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                    key={nav.id}
+                    color="brand.black"
+                    _hover={{
+                      color: "#212121",
 
-                        borderBottom: "3px solid #212121",
-                      }}
-                    >
-                      <Link key={nav.name} href={`/${nav.slug}`}>
-                        <ChakraLink
-                          color="brand.white"
-                          fontFamily="Big Shoulders Display"
-                          textTransform="uppercase"
-                          fontWeight="bold"
-                          fontSize="2xl"
-                          _hover={{
-                            color: "#e3e3e3",
-                            textDecoration: "none",
-                          }}
-                        >
-                          {nav.name.toUpperCase()}
-                        </ChakraLink>
-                      </Link>
-                    </LinkBox>
-                  )
-                )}
+                      borderBottom: "3px solid #212121",
+                    }}
+                  >
+                    <Link key={nav.name} href={`/${nav.slug}`}>
+                      <ChakraLink
+                        color="brand.white"
+                        fontFamily="Big Shoulders Display"
+                        textTransform="uppercase"
+                        fontWeight="bold"
+                        fontSize="2xl"
+                        _hover={{
+                          color: "#e3e3e3",
+                          textDecoration: "none",
+                        }}
+                      >
+                        {nav.name.toUpperCase()}
+                      </ChakraLink>
+                    </Link>
+                  </LinkBox>
+                ))}
               </VStack>
             </DrawerBody>
           </DrawerContent>
@@ -220,7 +223,7 @@ const Nav = ({ navs }) => {
                       border: "2px solid tomato",
                     }}
                   >
-                    Donate
+                    Dues
                   </Button>
                 </Link>
               </Center>

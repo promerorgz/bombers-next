@@ -1,15 +1,24 @@
 import { Box, Flex, HStack, Link, SimpleGrid } from "@chakra-ui/layout";
 import { Text, Heading } from "@chakra-ui/react";
+import { sortBy } from "lodash";
 import React from "react";
 import Card from "../../common/Card";
 import getPosition from "../../utils/getPosition";
 
 const PlayerList = ({ list = [], staff }) => {
-  const forwards = list.length
-    ? list?.filter((player) => player.position > 0 && player.position <= 8)
+  const sortByPosition = (playerList) => {
+    return playerList.sort((a, b) => {
+      return staff ? a.id - b.id : a.position - b.position;
+    });
+  };
+
+  const players = sortByPosition(list);
+
+  const forwards = players.length
+    ? players?.filter((player) => player.position > 0 && player.position <= 8)
     : [];
-  const backs = list.length
-    ? list?.filter((player) => player.position >= 9)
+  const backs = players.length
+    ? players?.filter((player) => player.position >= 9)
     : [];
 
   const List = ({ players, noClick }) => {
@@ -28,23 +37,25 @@ const PlayerList = ({ list = [], staff }) => {
             const image = {
               name: player?.picture?.name || "",
               alternativeText: `${player.first_name}-pro-pic`,
-              url: player.picture?.url || "",
+              url: player.picture?.url || "/images/defaultpic.png",
             };
 
-            const background =
-              `url(${process.env.strapi}${player?.picture?.url})` ||
-              "/images/defaultpic.png";
-            const hoverBg =
-              `url(${process.env.strapi}${
-                player?.hoverPic ? player?.hoverPic?.url : player.picture?.url
-              })` || "/images/defaultpic.png";
+            const background = player.picture?.url
+              ? `url(${player?.picture?.url})`
+              : "url(/images/defaultpic.png)";
+            const hoverBg = player.picture?.url
+              ? `url(${
+                  player?.hoverPic ? player?.hoverPic?.url : player.picture?.url
+                })`
+              : "url(/images/defaultpic.png)";
 
             return (
               <Card
-                key={`${player.first_name}-card`}
+                key={`${player.first_name}-${player.last_name}-card`}
                 radius="md"
                 id="player-card"
-                link={noClick ? "" : `/team/${player.slug}`}
+                as={`/team/${player?.slug}`}
+                link="/team/[id]"
                 styles={{
                   minHeight: "370px",
                   height: "auto",

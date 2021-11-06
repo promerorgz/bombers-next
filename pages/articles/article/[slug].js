@@ -1,15 +1,16 @@
+import { Box, Divider, Flex, Heading, Link } from "@chakra-ui/react";
+import { useBreakpointValue } from "@chakra-ui/media-query";
+import { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import Moment from "react-moment";
-import { fetchAPI } from "../../../lib/api";
+import gfm from "remark-gfm";
+import styled from "styled-components";
+import Hero from "../../../common/Hero";
 import Layout from "../../../common/Layout";
 import Pic from "../../../common/Pic";
 import Seo from "../../../common/Seo";
-import Hero from "../../../common/Hero";
+import { fetchAPI } from "../../../lib/api";
 import { getStrapiMedia } from "../../../lib/media";
-import gfm from "remark-gfm";
-import styled from "styled-components";
-import { Box, Divider, Flex, Text } from "@chakra-ui/layout";
-import { useBreakpointValue } from "@chakra-ui/media-query";
 import useBp from "../../../theme/useBp";
 
 const ArticleHeader = styled.div`
@@ -39,8 +40,11 @@ const defaultArticle = {
   content: "",
 };
 
-const Article = ({ article = defaultArticle }) => {
+const Article = ({ article }) => {
+  const [isDesktop] = useBp();
+
   const imageUrl = getStrapiMedia(article?.image);
+  const [heroSize, setHeroSize] = useState("md");
 
   const seo = {
     metaTitle: article.title,
@@ -58,19 +62,21 @@ const Article = ({ article = defaultArticle }) => {
     xl: "6xl",
   });
 
-  const [isDesktop] = useBp();
+  useEffect(() => {
+    setHeroSize(isDesktop);
+  }, [isDesktop]);
 
   return (
-    <Layout>
-      <Seo seo={seo} />
-
+    <Layout seo={seo}>
       <Hero
         size={isDesktop ? "lg" : "xl"}
         image={imageUrl}
         text={article?.title}
+        downArrow={!isDesktop}
+        contentLink={`#${article?.tagline}` || "#start"}
       ></Hero>
-      <Flex py="70px">
-        <Box w="75%" m="auto" p="4">
+      <Flex py="70px" id={article?.tagline || "start"}>
+        <Box w="75%" m="auto" p="0">
           <Flex className="uk-grid-small uk-flex-left" data-uk-grid="true">
             <Box>
               {article.author.picture && (
@@ -94,13 +100,19 @@ const Article = ({ article = defaultArticle }) => {
             </Box>
           </Flex>
           <Divider size="2px" variant="solid" m="8"></Divider>
-
-          <Box textAlign="justify">
+          {article?.tagline && (
+            <Heading as="h2" size="lg">
+              {article.tagline}
+            </Heading>
+          )}
+          <Box textAlign="justify" mt="8">
             <ReactMarkdown
               source={article?.content}
               escapeHtml={false}
               remarkPlugins={[gfm]}
               linkTarget="_blank"
+              transformImageUri={(uri) => uri}
+              components={{ a: <Link color="brand.highlight"></Link> }}
             />
           </Box>
           <hr className="uk-divider-small" />
