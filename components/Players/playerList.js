@@ -1,9 +1,16 @@
-import { Box, Flex, HStack, Link, SimpleGrid } from "@chakra-ui/layout";
-import { Text, Heading } from "@chakra-ui/react";
+import { Box, Flex, HStack, Link, SimpleGrid, Stack } from "@chakra-ui/layout";
+import {
+  Text,
+  Heading,
+  InputLeftElement,
+  InputGroup,
+  Input,
+} from "@chakra-ui/react";
 import { sortBy } from "lodash";
-import React from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import Card from "../../common/Card";
 import getPosition from "../../utils/getPosition";
+import { SearchIcon } from "@chakra-ui/icons";
 
 const PlayerList = ({ list = [], staff }) => {
   const sortByPosition = (playerList) => {
@@ -11,8 +18,31 @@ const PlayerList = ({ list = [], staff }) => {
       return staff ? a.id - b.id : a.position - b.position;
     });
   };
+  const matches = (string, match) =>
+    string.toLowerCase().startsWith(match.toLowerCase());
+  const [search, setSearch] = useState("");
+  const [players, setPlayers] = useState(sortByPosition(list));
 
-  const players = sortByPosition(list);
+  const handleChange = (e) => {
+    setSearch(e.target.value);
+  };
+
+  useEffect(() => {
+    if (search === "") {
+      setPlayers(sortByPosition(list));
+    }
+
+    const foundPlayers = list.filter((player) => {
+      return player.nickname
+        ? matches(player.first_name, search) ||
+            matches(player.last_name, search) ||
+            matches(player?.nickname, search)
+        : matches(player.first_name, search) ||
+            matches(player.last_name, search);
+    });
+    setPlayers(foundPlayers);
+    return () => setPlayers(sortByPosition(list));
+  }, [search]);
 
   const forwards = players.length
     ? players?.filter((player) => player.position > 0 && player.position <= 8)
@@ -25,11 +55,13 @@ const PlayerList = ({ list = [], staff }) => {
     return (
       <HStack
         overflowX="scroll"
+        overflowY="hidden"
         flexDirection="row"
         justifyContent="flex-start"
         alignItems="center"
         whiteSpace="nowrap"
         spacing="8"
+        ml="5"
         /* added width so it would work in the snippet */
       >
         {players.length ? (
@@ -53,13 +85,14 @@ const PlayerList = ({ list = [], staff }) => {
                 styles={{
                   minHeight: "370px",
                   height: "auto",
-                  width: "270px",
+                  width: "300px",
                   display: "flex",
                   justifyContent: "space-around",
                   cursor: noClick ? "inherit" : "pointer",
                 }}
                 bg={background}
                 hoverBg={hoverBg}
+                border="1px solid #e2e2e2"
               >
                 <Flex
                   id="text-content"
@@ -107,18 +140,32 @@ const PlayerList = ({ list = [], staff }) => {
     );
   };
   return (
-    <Flex direction="column" spacing="8">
+    <Flex direction="column" spacing="8" bg="brand.white">
       {!staff ? (
-        <>
+        <Stack direction="column" spacing="16">
+          <InputGroup>
+            <InputLeftElement
+              pointerEvents="none"
+              children={<SearchIcon color="gray.300" />}
+            />
+            <Input
+              onChange={handleChange}
+              value={search}
+              type="text"
+              placeholder="Find Player"
+              size="lg"
+              variant="filled"
+            />
+          </InputGroup>
           <Heading as="h2" size="xl" isTruncated my="8">
-            Forwards
+            Forwards ({forwards.length})
           </Heading>
           <List players={forwards} />
           <Heading as="h2" size="xl" isTruncated my="8">
-            Backs
+            Backs ({backs.length})
           </Heading>
           <List players={backs} />
-        </>
+        </Stack>
       ) : (
         <>
           <Heading as="h2" size="xl" isTruncated my="8">

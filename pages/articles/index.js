@@ -1,7 +1,7 @@
 import { SimpleGrid } from "@chakra-ui/react";
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/tabs";
 import { sortBy } from "lodash";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 import Hero from "../../common/Hero";
 import Layout from "../../common/Layout";
 import ArticleCard from "../../components/Articles/ArticleCard";
@@ -9,6 +9,7 @@ import useBp from "../../theme/useBp";
 
 const News = ({ articles, categories }) => {
   const [selectedTab, setSelectedTab] = useState("Latest");
+  const [size, setSize] = useState("md");
 
   const onTabChange = useCallback((e, d) => {
     setSelectedTab(e);
@@ -16,12 +17,17 @@ const News = ({ articles, categories }) => {
 
   const [isDesktop] = useBp();
 
+  useEffect(() => {
+    setSize(isDesktop ? "md" : "xl");
+  }, [isDesktop]);
+
   return (
     <Layout seo={{ metaTitle: "Articles" }}>
       <Hero
         text="Articles"
         image="/images/mcb-hero.jpeg"
         size={isDesktop ? "md" : "xl"}
+        contentLink={size === "xl" ? "#articles" : false}
       />
       <Tabs
         variant="line"
@@ -30,6 +36,7 @@ const News = ({ articles, categories }) => {
         value={selectedTab}
         onChange={onTabChange}
         isFitted
+        id="articles"
       >
         <TabList>
           <Tab
@@ -54,7 +61,12 @@ const News = ({ articles, categories }) => {
         <TabPanels>
           <TabPanel>
             {
-              <SimpleGrid m={[0, 0, 2, 2, 4]} spacing="8" minChildWidth="300px">
+              <SimpleGrid
+                m={[0, 0, 2, 2, 4]}
+                spacing="8"
+                minChildWidth="300px"
+                maxChildWidth="500px"
+              >
                 {articles.length
                   ? sortBy(articles, (article) => article.id)
                       .reverse()

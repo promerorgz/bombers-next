@@ -10,12 +10,13 @@ const contact = () => {
     text: "Contact Us",
     buttons: [],
     image: "images/mcb-hero.jpeg",
-    size: "md",
+    size: "lg",
+    contentLink: "#form",
   };
   return (
     <Layout seo={{ metaTitle: "Contact Us" }}>
       <Hero {...props}></Hero>
-      <Stack m="8" spacing="8">
+      <Stack p="8" spacing="8" id="form">
         <Heading size="2xl" color="brand.black">
           Any questions or comments? Leave us a message!
         </Heading>

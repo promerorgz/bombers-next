@@ -64,7 +64,7 @@ export async function getStaticProps() {
     fetchAPI("/categories"),
     fetchAPI("/homepage"),
     fetchAPI("/games?_sort=date:asc"),
-    fetchAPI("/players?_sort=position:asc"),
+    fetchAPI("/players?_sort=last_name:asc"),
     fetchAPI("/coaches?_sort=id:asc"),
     fetchAPI("/sponsors"),
   ]);

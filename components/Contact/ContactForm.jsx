@@ -1,30 +1,28 @@
+import { EmailIcon, PhoneIcon } from "@chakra-ui/icons";
 import {
+  Box,
+  Button,
+  Input,
+  InputGroup,
+  InputLeftElement,
   SimpleGrid,
   Stack,
-  Input,
   Textarea,
-  InputLeftElement,
-  InputGroup,
-  Box,
-  Text,
-  useRadio,
-  useRadioGroup,
-  Button,
-  Heading,
+  useToast,
 } from "@chakra-ui/react";
-import { ChatIcon, EmailIcon, PhoneIcon } from "@chakra-ui/icons";
+import axios from "axios";
 import React, { useState } from "react";
-import _startCase from "lodash/startCase";
+import contactTemplate from "../../utils/contactTemplate";
 
 const ContactForm = () => {
-  const [contact, setContact] = useState({
+  const toast = useToast();
+  const initialState = {
     name: "",
-    last: "",
     email: "",
     message: "",
     phone: "",
-    reason: "",
-  });
+  };
+  const [contact, setContact] = useState(initialState);
 
   const handleChange = ({ currentTarget, target, ...e }) => {
     setContact({
@@ -33,7 +31,28 @@ const ContactForm = () => {
     });
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = async () => {
+    console.log({ contact });
+    toast({
+      title: "Email Sent!",
+      description: "We will get back to you ASAP",
+      status: "success",
+      duration: 3000,
+      isClosable: true,
+    });
+    try {
+      await axios.post(`${process.env.strapi}/email`, {
+        from: "",
+        to: "contact@stlouisbombers.com",
+        subject: "New Contact",
+        html: contactTemplate(contact),
+      });
+    } catch (error) {
+      console.error(error);
+    }
+
+    setContact(initialState);
+  };
 
   return (
     <Box overflow="hidden" cursor="pointer" p={[2, 2, 4, 6, 8]}>

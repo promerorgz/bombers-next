@@ -41,10 +41,13 @@ const Team = ({ players, coaches }) => {
         text="Players"
         image="/images/nationals17.jpg"
         size={heroSize}
+        contentLink={heroSize === "xl" ? "#players" : false}
       ></Hero>
       <Tabs
+        id="players"
         variant="line"
         isFitted={true}
+        isLazy
         size="lg"
         value={selectedTab}
         onChange={onTabChange}

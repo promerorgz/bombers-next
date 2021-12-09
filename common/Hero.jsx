@@ -55,7 +55,6 @@ const Hero = ({
   bg,
   direction,
   story,
-  downArrow,
   contentLink,
   backButton,
 }) => {
@@ -68,11 +67,11 @@ const Hero = ({
           alternativeText: text,
           name: text,
         },
-        size: "xs",
+        size: "sm",
       };
 
   const handleGoBack = () => {
-    return router.push("/team");
+    return router.back();
   };
 
   return (
@@ -95,7 +94,13 @@ const Hero = ({
             )}
             <Box ml="2">
               <Stack spacing="1" direction="column">
-                <Text fontSize="5xl" casing="uppercase" as="b" color="white">
+                <Text
+                  fontSize="5xl"
+                  casing="uppercase"
+                  as="b"
+                  color="white"
+                  textAlign={direction === "column" ? "center" : "flex-start"}
+                >
                   {text}
                 </Text>
                 {secondaryText && (
@@ -104,6 +109,7 @@ const Hero = ({
                     casing="uppercase"
                     as="b"
                     color="brand.medium"
+                    textAlign={direction === "column" ? "center" : "flex-start"}
                   >
                     {secondaryText}
                   </Text>
