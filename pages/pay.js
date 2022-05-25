@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Stack } from "@chakra-ui/layout";
+import { Box, Flex, Heading, Stack } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 import Layout from "../common/Layout";
 import { PayPalButtons } from "@paypal/react-paypal-js";

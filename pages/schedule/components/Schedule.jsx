@@ -1,12 +1,15 @@
 import {
+  Box,
+  Divider,
+  Flex,
+  Stack,
+  Text,
   Accordion,
   AccordionButton,
   AccordionIcon,
   AccordionItem,
   AccordionPanel,
-} from "@chakra-ui/accordion";
-import { Avatar } from "@chakra-ui/avatar";
-import { Box, Divider, Flex, Stack, Text } from "@chakra-ui/layout";
+} from "@chakra-ui/react";
 import React from "react";
 import GameInfo from "../../../components/Games/GameInfo";
 
@@ -29,13 +32,8 @@ const Schedule = ({ upcoming }) => {
     };
   };
 
-  const isBombers = (team) => {
-    return team === "Bombers";
-  };
-
-  const isHome = (homeTeam) => {
-    return isBombers(homeTeam);
-  };
+  const isBombers = (team) => team === "Bombers";
+  const isHome = (homeTeam) => isBombers(homeTeam);
 
   return (
     <Accordion allowMultiple defaultIndex={[0]}>

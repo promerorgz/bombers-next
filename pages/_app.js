@@ -8,13 +8,24 @@ import { createContext } from "react";
 import { fetchAPI } from "../lib/api";
 import { getStrapiMedia } from "../lib/media";
 import theme from "../theme";
+import { colors } from "../theme/themeVariables";
 import "../theme/globalStyles.css";
+import "../theme/nprogress.css";
+import dynamic from "next/dynamic";
 
 // Store Strapi Global object in context
 export const GlobalContext = createContext({});
+
+const TopProgressBar = dynamic(
+  () => {
+    return import("../components/TopProgressBar");
+  },
+  { ssr: false }
+);
+
 config.autoAddCss = false;
 
-const MyApp = ({ Component, pageProps, appProps, ...rest }) => {
+const MyApp = ({ Component, pageProps }) => {
   const { global } = pageProps;
   const initialOptions = {
     "client-id":
@@ -28,34 +39,10 @@ const MyApp = ({ Component, pageProps, appProps, ...rest }) => {
 
   return (
     <>
-      <Head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-          rel="shortcut icon"
-          href={getStrapiMedia(global.favicon || "/images/logo.png")}
-        />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Staatliches"
-        />
-        <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/uikit@3.2.3/dist/css/uikit.min.css"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@300;400;500;600;700;800;900&display=swap"
-          rel="stylesheet"
-        />
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.2.0/js/uikit.min.js" />
-        <script src="https://cdn.jsdelivr.net/npm/uikit@3.2.3/dist/js/uikit-icons.min.js" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.2.0/js/uikit.js" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      </Head>
       <PayPalScriptProvider options={initialOptions}>
         <GlobalContext.Provider value={global}>
           <ChakraProvider theme={theme}>
+            <TopProgressBar />
             <Component {...pageProps} />
           </ChakraProvider>
         </GlobalContext.Provider>

@@ -1,12 +1,17 @@
-import { Flex, Text, Heading, Container } from "@chakra-ui/react";
-import { Box } from "@chakra-ui/layout";
+import { Flex, Text, Heading, Container, Box } from "@chakra-ui/react";
 import Nav from "./Nav";
 import Hero from "./Hero";
 import Footer from "./Footer";
 import Seo from "./Seo";
+import { styleUtils } from "../utils";
 
-const Layout = ({ children, sponsors, seo, header, margin, bg }) => {
+const Layout = ({ children, sponsors, seo, header, margin, bg, id }) => {
   const navs = [
+    {
+      name: "about",
+      id: "about",
+      slug: "about",
+    },
     {
       name: "articles",
       id: "articles",
@@ -27,41 +32,47 @@ const Layout = ({ children, sponsors, seo, header, margin, bg }) => {
       id: "contact",
       slug: "contact",
     },
-    // {
-    //   name: "photos",
-    //   id: "photos",
-    //   slug: "photos",
-    // },
-    // {
-    //   name: "more",
-    //   id: "more",
-    //   slug: "more",
-    // },
+
+    {
+      name: "youth",
+      id: "youth",
+      slug: "youth",
+    },
     {
       name: "shop",
       id: "shop",
       slug: "shop",
     },
+    {
+      name: "more",
+      id: "more",
+      slug: "more",
+    },
+    { name: "Pay", id: "pay", slug: "pay" },
   ];
   return (
-    <>
-      <>
-        <Seo seo={seo} />
-        <Box display="flex" flexDirection="column" bg={bg}>
-          <Nav navs={navs} />
-          <Box m={margin ? 8 : 0}>
-            {header && (
-              <Heading mb="8" as="h1" size="4xl">
-                {header}
-              </Heading>
-            )}
+    <div id={id}>
+      <Seo seo={seo} />
+      <Box display="flex" flexDirection="column" bg={bg}>
+        <Nav navs={navs} />
+        <Box
+          style={{
+            [styleUtils.breakpoint("gt", "mobileS")]: {
+              marginTop: 150,
+            },
+          }}
+        >
+          {header && (
+            <Heading m="8" as="h1" size="4xl">
+              {header}
+            </Heading>
+          )}
 
-            {children}
-          </Box>
-          <Footer navs={navs} sponsors={sponsors} />
+          {children}
         </Box>
-      </>
-    </>
+        <Footer navs={navs} sponsors={sponsors} />
+      </Box>
+    </div>
   );
 };
 

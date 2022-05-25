@@ -4,15 +4,14 @@ import React, { useEffect, useState } from "react";
 import Pic from "../../common/Pic";
 import useBp from "../../theme/useBp";
 
-const Sponsors = ({ sponsors, forFooter }) => {
+const Sponsors = ({ sponsors = [], forFooter }) => {
   const [columns, setColumns] = useState(sponsors.length);
   const [isDesktop] = useBp();
 
   useEffect(() => {
     setColumns(isDesktop ? sponsors?.length : 2);
-  }, [isDesktop]);
+  }, [isDesktop, sponsors.length]);
 
-  console.log({ columns });
   return forFooter ? (
     <Wrap direction="row" spacing="6" w="100%">
       {sponsors?.map((sponsor) => {
@@ -23,7 +22,7 @@ const Sponsors = ({ sponsors, forFooter }) => {
               style={{
                 width: 40,
                 height: 40,
-                filter: `contrast(0)`,
+                // filter: `contrast(0)`,
                 opacity: 0.4,
                 zoom: 1,
               }}

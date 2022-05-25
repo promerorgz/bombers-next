@@ -23,6 +23,7 @@ const Image = ({
       alt={image.alternativeText || image.name}
       style={style}
       fallback={<Skeleton minH="200px" />}
+      loading="lazy"
     />
   );
 };

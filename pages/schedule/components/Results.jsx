@@ -1,13 +1,17 @@
 import React from "react";
 import GameInfo from "../../../components/Games/GameInfo";
+
 import {
+  Box,
+  Divider,
+  Stack,
+  Text,
   Accordion,
   AccordionButton,
   AccordionIcon,
   AccordionItem,
   AccordionPanel,
-} from "@chakra-ui/accordion";
-import { Box, Divider, Stack, Text } from "@chakra-ui/layout";
+} from "@chakra-ui/react";
 
 const Results = ({ results }) => {
   const formatDateTime = (dateTime) => {

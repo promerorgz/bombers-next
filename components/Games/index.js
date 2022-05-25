@@ -1,4 +1,4 @@
-import { Grid, GridItem, Stack } from "@chakra-ui/layout";
+import { Grid, GridItem, Stack } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 import useBp from "../../theme/useBp";
 import GameCard from "./GameCard";
@@ -16,6 +16,8 @@ const Games = ({ games = [] }) => {
     games.length && games.filter(({ date }) => isAfterToday(date));
   const played =
     games.length && games.filter(({ date }) => !isAfterToday(date));
+
+  console.log({ upcoming });
 
   const gameCards = [
     {

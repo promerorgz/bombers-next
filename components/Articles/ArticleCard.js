@@ -1,5 +1,4 @@
-import { Badge, Box, Flex, LinkBox, Text } from "@chakra-ui/layout";
-import { useBreakpointValue } from "@chakra-ui/media-query";
+import { Badge, Box, Flex, LinkBox, Text, useBreakpointValue } from "@chakra-ui/react";
 import Link from "next/link";
 import React from "react";
 import ReactMarkdown from "react-markdown";
@@ -24,10 +23,8 @@ const ArticleCard = ({ article, styles, highlight = false, isDesktop }) => {
     >
       <LinkBox>
         <Flex
-          minH="500px"
-          maxH="500"
-          // maxH="500px"
-          direction={direction}
+          direction={highlight ? "column" : "row"}
+          maxH={highlight ? "300px" : "150px"}
           borderWidth="1px"
           overflow="hidden"
           borderRadius="8px"
@@ -45,9 +42,9 @@ const ArticleCard = ({ article, styles, highlight = false, isDesktop }) => {
           bgGradient="gradient.main"
         >
           <Box
+            className="image-container"
             backgroundImage={article?.image?.url}
             flexGrow="1"
-            {...imageHeight}
             backgroundPosition="center"
             backgroundSize="cover"
             minW="40%"

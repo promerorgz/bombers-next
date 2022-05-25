@@ -1,5 +1,11 @@
-import { SimpleGrid } from "@chakra-ui/react";
-import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/tabs";
+import {
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+  SimpleGrid,
+} from "@chakra-ui/react";
 import { sortBy } from "lodash";
 import React, { useCallback, useState, useEffect } from "react";
 import Hero from "../../common/Hero";
@@ -62,24 +68,23 @@ const News = ({ articles, categories }) => {
           <TabPanel>
             {
               <SimpleGrid
-                m={[0, 0, 2, 2, 4]}
+                columns={1}
+                m={[0, 0, 2, 2, 2]}
                 spacing="8"
-                minChildWidth="300px"
-                maxChildWidth="500px"
+                minChildWidth="200px"
+                maxChildWidth="400px"
               >
                 {articles.length
-                  ? sortBy(articles, (article) => article.id)
-                      .reverse()
-                      .map((item) => {
-                        return (
-                          <ArticleCard
-                            article={item}
-                            style={{
-                              maxHeight: "300px",
-                            }}
-                          ></ArticleCard>
-                        );
-                      })
+                  ? sortBy(articles, (article) => article.id).map((item) => {
+                      return (
+                        <ArticleCard
+                          article={item}
+                          style={{
+                            maxHeight: "300px",
+                          }}
+                        ></ArticleCard>
+                      );
+                    })
                   : "No Articles"}
               </SimpleGrid>
             }
@@ -114,4 +119,4 @@ const News = ({ articles, categories }) => {
 
 export default News;
 
-[{ category: "news", articles: [] }];
+// [{ category: "news", articles: [] }];

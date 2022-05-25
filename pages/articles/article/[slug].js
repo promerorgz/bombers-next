@@ -1,6 +1,12 @@
-import { Box, Divider, Flex, Heading, Link } from "@chakra-ui/react";
-import { useBreakpointValue } from "@chakra-ui/media-query";
-import { useState, useEffect } from "react";
+import {
+  Box,
+  Divider,
+  Flex,
+  Heading,
+  Link,
+  useBreakpointValue,
+} from "@chakra-ui/react";
+import { useState, useEffect, Children } from "react";
 import ReactMarkdown from "react-markdown";
 import Moment from "react-moment";
 import gfm from "remark-gfm";
@@ -69,13 +75,13 @@ const Article = ({ article }) => {
   return (
     <Layout seo={seo}>
       <Hero
-        size={isDesktop ? "lg" : "xl"}
+        size={isDesktop ? "md" : "full"}
         image={imageUrl}
         text={article?.title}
         downArrow={!isDesktop}
-        contentLink={`#${article?.tagline}` || "#start"}
+        contentLink={`#${article?.uid}` || "#start"}
       ></Hero>
-      <Flex py="70px" id={article?.tagline || "start"}>
+      <Flex py="70px" id={article?.uid || "start"}>
         <Box w="75%" m="auto" p="0">
           <Flex className="uk-grid-small uk-flex-left" data-uk-grid="true">
             <Box>
@@ -105,14 +111,13 @@ const Article = ({ article }) => {
               {article.tagline}
             </Heading>
           )}
-          <Box textAlign="justify" mt="8">
+          {console.log({ content: article.content })}
+          <Box textAlign="justify" mt="8" color="brand-highlight">
             <ReactMarkdown
               source={article?.content}
-              escapeHtml={false}
-              remarkPlugins={[gfm]}
               linkTarget="_blank"
               transformImageUri={(uri) => uri}
-              components={{ a: <Link color="brand.highlight"></Link> }}
+              plugins={[gfm]}
             />
           </Box>
           <hr className="uk-divider-small" />
@@ -136,8 +141,9 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
+  console.log({ params });
   const [article] =
-    (await fetchAPI(`/articles?uid=${params.uid}&status=published`)) || {};
+    (await fetchAPI(`/articles?uid=${params.slug}&status=published`)) || {};
 
   return {
     props: { article },

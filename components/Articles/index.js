@@ -5,26 +5,17 @@ import {
   Box,
   Center,
   Heading,
-} from "@chakra-ui/layout";
-import { Link as ChakraLink, Button, Text } from "@chakra-ui/react";
+} from "@chakra-ui/react";
 import { indexOf } from "lodash";
 import React, { useState, useEffect } from "react";
 import ArticleCard from "./ArticleCard";
-import _slice from "lodash/slice";
+import _dropRight from "lodash/dropRight";
 import Link from "next/link";
 
 const Articles = ({ articles, isDesktop }) => {
-  const [latest, setLatest] = useState({});
-  const [allArticles, setAllArticles] = useState([]);
-
-  useEffect(() => {
-    setLatest(articles[articles.length - 1]);
-    setAllArticles(_slice(articles, 1, 6));
-  }, [articles]);
-
   return (
-    <Center flexDirection="column" p="8">
-      <Stack
+    <Center flexDirection="column">
+      {/* <Stack
         direction="row"
         justifyContent="space-between"
         alignItems="center"
@@ -32,10 +23,10 @@ const Articles = ({ articles, isDesktop }) => {
         p="4"
       >
         <Heading size="2xl">Articles</Heading>
-        <Link href="/news">
+        <Link href="/articles     ">
           <ChakraLink>See All</ChakraLink>
         </Link>
-      </Stack>
+      </Stack> */}
       <Stack
         spacing="8"
         w="99%"
@@ -44,16 +35,11 @@ const Articles = ({ articles, isDesktop }) => {
         alignContent="space-around"
         flexWrap="wrap"
       >
-        <ArticleCard
-          isDesktop={isDesktop}
-          highlight={isDesktop}
-          article={latest}
-          key={`article__left__${latest?.slug}`}
-        />
         <SimpleGrid minChildWidth="300px" spacing={4}>
-          {allArticles.map((article, i) => {
+          {articles.map((article, i) => {
             return (
               <ArticleCard
+                highlight={article?.highlight || false}
                 styles={{ maxHeight: 500 }}
                 article={article}
                 key={`article__left__${article?.slug}`}

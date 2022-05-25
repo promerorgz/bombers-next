@@ -13,12 +13,15 @@ import styled from "styled-components";
 import Pic from "../common/Pic";
 import { ChevronDownIcon, ChevronLeftIcon } from "@chakra-ui/icons";
 import { useRouter } from "next/router";
+import SliderHero from "./SliderHero";
+import ScrollIntoView from "react-scroll-into-view";
 
 const heightSizes = {
   sm: "20vh",
   md: "40vh",
   lg: "70vh",
   xl: "90vh",
+  full: "100vh",
 };
 const Diagonal = styled.div`
   font-family: "Big Shoulders Display";
@@ -54,9 +57,9 @@ const Hero = ({
   startPic,
   bg,
   direction,
-  story,
   contentLink,
   backButton,
+  slider,
 }) => {
   const router = useRouter();
   const picProps = startPic?.startsWith("/")
@@ -76,77 +79,102 @@ const Hero = ({
 
   return (
     <>
-      <Diagonal image={image} size={size} bg={bg} backButton={backButton}>
-        {backButton && (
-          <Center justifyContent="flex-start" w="100%">
-            <Button onClick={handleGoBack} variant="link">
-              <ChevronLeftIcon color="brand.white" w={8} h={8} />
-              <Text fontSize="xl">{"Back to players"}</Text>
-            </Button>
-          </Center>
-        )}
-        <Flex direction="row" align="center" justify="space-evenly">
-          <Stack direction={direction} alignItems="center" spacing="16" p="8">
-            {startPic && (
-              <Box position="relative" top="55px">
-                <Pic {...picProps}></Pic>
-              </Box>
+      {slider ? (
+        <SliderHero></SliderHero>
+      ) : (
+        <>
+          <Diagonal image={image} size={size} bg={bg} backButton={backButton}>
+            {backButton && (
+              <Center justifyContent="flex-start" w="100%">
+                <Button onClick={handleGoBack} variant="link">
+                  <ChevronLeftIcon color="brand.white" w={8} h={8} />
+                  <Text fontSize="xl">{"Back to players"}</Text>
+                </Button>
+              </Center>
             )}
-            <Box ml="2">
-              <Stack spacing="1" direction="column">
-                <Text
-                  fontSize="5xl"
-                  casing="uppercase"
-                  as="b"
-                  color="white"
-                  textAlign={direction === "column" ? "center" : "flex-start"}
-                >
-                  {text}
-                </Text>
-                {secondaryText && (
-                  <Text
-                    fontSize="3xl"
-                    casing="uppercase"
-                    as="b"
-                    color="brand.medium"
-                    textAlign={direction === "column" ? "center" : "flex-start"}
-                  >
-                    {secondaryText}
-                  </Text>
+            <Flex direction="row" align="center" justify="space-evenly">
+              <Stack
+                direction={direction}
+                alignItems="center"
+                spacing="16"
+                p="8"
+              >
+                {startPic && (
+                  <Box position="relative" top="55px">
+                    <Pic {...picProps}></Pic>
+                  </Box>
                 )}
+                <Box ml="2">
+                  <Stack spacing="1" direction="column">
+                    <Text
+                      fontSize="5xl"
+                      casing="uppercase"
+                      as="b"
+                      color="white"
+                      textAlign={
+                        direction === "column" ? "center" : "flex-start"
+                      }
+                    >
+                      {text}
+                    </Text>
+                    {secondaryText && (
+                      <Text
+                        fontSize="3xl"
+                        casing="uppercase"
+                        as="b"
+                        color="brand.medium"
+                        textAlign={
+                          direction === "column" ? "center" : "flex-start"
+                        }
+                      >
+                        {secondaryText}
+                      </Text>
+                    )}
+                  </Stack>
+                  <Stack
+                    spacing={4}
+                    direction="row"
+                    align="center"
+                    marginTop={8}
+                  >
+                    {buttons &&
+                      buttons?.map(({ link, display, color }) => {
+                        return (
+                          <Link href={link || ""} key={link}>
+                            <Button
+                              as="a"
+                              colorScheme="gray"
+                              size="md"
+                              color={color || "brand.light"}
+                              textDecoration="none"
+                              _hover={{
+                                backgroundColor: "#e2e2e2",
+                                color: "#212121",
+                              }}
+                            >
+                              {display}
+                            </Button>
+                          </Link>
+                        );
+                      })}
+                  </Stack>
+                </Box>
               </Stack>
-              <Stack spacing={4} direction="row" align="center" marginTop={8}>
-                {buttons &&
-                  buttons?.map(({ link, display, color }) => {
-                    return (
-                      <Link href={link || ""} key={link}>
-                        <Button
-                          as="a"
-                          colorScheme="gray"
-                          size="md"
-                          color={color || "brand.light"}
-                          textDecoration="none"
-                          _hover={{
-                            backgroundColor: "#e2e2e2",
-                            color: "#212121",
-                          }}
-                        >
-                          {display}
-                        </Button>
-                      </Link>
-                    );
-                  })}
-              </Stack>
-            </Box>
-          </Stack>
-        </Flex>
-      </Diagonal>
-      {contentLink && (
-        <Center alignItems="center" w="100%" position="relative" top="-50px">
-          <ChakraLink href={contentLink}>
-            <ChevronDownIcon color="brand.white" w={8} h={8} />
-          </ChakraLink>
-        </Center>
+            </Flex>
+          </Diagonal>
+          {contentLink && (
+            <Center
+              alignItems="center"
+              w="100%"
+              position="relative"
+              top="-50px"
+            >
+              <ScrollIntoView selector={contentLink}>
+                <ChevronDownIcon color="brand.white" w={8} h={8} />
+              </ScrollIntoView>
+            </Center>
+          )}
+        </>
       )}
     </>
   );

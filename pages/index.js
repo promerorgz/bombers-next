@@ -1,4 +1,4 @@
-import { VStack } from "@chakra-ui/react";
+import { Box, VStack } from "@chakra-ui/react";
 import React from "react";
 import Hero from "../common/Hero";
 import Layout from "../common/Layout";
@@ -9,15 +9,7 @@ import useBp from "../theme/useBp";
 import Games from "../components/Games";
 
 const Home = (props) => {
-  const {
-    articles,
-    categories,
-    homepage,
-    games,
-    sponsors,
-    players,
-    ...rest
-  } = props;
+  const { articles, homepage, games, sponsors } = props;
 
   const buttons = [
     {
@@ -39,11 +31,15 @@ const Home = (props) => {
         text="St. Louis Bombers Rugby Club"
         image="/images/nationals17.jpg"
         buttons={buttons}
+        size="full"
+        contentLink="#articles"
       />
       <VStack direction="column" justifyContent="center">
-        {games.length && <Games games={games || []} {...bpProps} />}
+        {/* {games.length && <Games games={games || []} {...bpProps} />} */}
+        <Box id="articles">
+          {articles.length && <Articles articles={articles} {...bpProps} />}
+        </Box>
         {sponsors.length && <Sponsors sponsors={sponsors || []} {...bpProps} />}
-        {articles.length && <Articles articles={articles} {...bpProps} />}
       </VStack>
     </Layout>
   );
@@ -51,32 +47,19 @@ const Home = (props) => {
 
 export async function getStaticProps() {
   // Run API calls in parallel
-  const [
-    articles,
-    categories,
-    homepage,
-    games,
-    players,
-    coaches,
-    sponsors,
-  ] = await Promise.all([
+  const [articles, homepage, games, sponsors] = await Promise.all([
     fetchAPI("/articles?status=published&_sort=publishedAt:asc"),
-    fetchAPI("/categories"),
     fetchAPI("/homepage"),
     fetchAPI("/games?_sort=date:asc"),
-    fetchAPI("/players?_sort=last_name:asc"),
-    fetchAPI("/coaches?_sort=id:asc"),
+
     fetchAPI("/sponsors"),
   ]);
 
   return {
     props: {
       articles,
-      categories,
       homepage,
       games,
-      players,
-      coaches,
       sponsors,
     },
     revalidate: 1,

@@ -1,3 +1,3 @@
 export { default as formatDate } from "./formatDate";
-export { default as getCountryCode } from "./getCountryCode";
-export { default as getPosition } from "./getPosition";
+export { default as styleUtils } from "./styleUtils";
+export { default as helpers } from "./helpers";

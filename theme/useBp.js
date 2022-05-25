@@ -1,4 +1,4 @@
-import { useMediaQuery } from "@chakra-ui/media-query";
+import { useMediaQuery } from "@chakra-ui/react";
 import React from "react";
 
 const useBp = () => {

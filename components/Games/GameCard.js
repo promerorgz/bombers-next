@@ -1,8 +1,8 @@
-import { Box, Center, Flex, Heading, Stack } from "@chakra-ui/layout";
-import { Button } from "@chakra-ui/react";
+import { Box, Center, Flex, Heading, Stack, Button } from "@chakra-ui/react";
 import React, { Fragment, useState, useEffect } from "react";
 import Card from "../../common/Card";
 import GameInfo from "./GameInfo";
+import Link from "next/link";
 
 const GameCard = ({ title = "", link = "", direction = "row", games = [] }) => {
   const styles = {
@@ -19,7 +19,7 @@ const GameCard = ({ title = "", link = "", direction = "row", games = [] }) => {
       width="100%"
       maxW="2xl"
       p="4"
-      minH="360px"
+      minH="640px"
       h="100%"
     >
       <Card styles={styles} h="100%" id="game-card">
@@ -29,9 +29,11 @@ const GameCard = ({ title = "", link = "", direction = "row", games = [] }) => {
               {title}
             </Heading>
           </Flex>
-          <Button variant="link" size="xs" color="tomato" ml="4">
-            see all {title}
-          </Button>
+          <Link href={link} passHref>
+            <Button variant="link" size="xs" color="tomato" ml="4">
+              see all {title}
+            </Button>
+          </Link>
         </Center>
         <Stack direction={direction} h="100%" w="100%">
           {games
@@ -45,31 +47,23 @@ const GameCard = ({ title = "", link = "", direction = "row", games = [] }) => {
               ({
                 home,
                 away,
-                location,
-                date,
+                slug,
                 home_score,
                 away_score,
                 division,
-                slug,
-                finished,
+                ...game
               }) => {
                 const gameInfo = {
                   homeTeam: { ...home, score: home_score },
                   awayTeam: { ...away, score: away_score },
-                  location,
-                  date,
-                  finished,
-                  slug,
                   division,
+                  slug,
+                  ...game,
                 };
-
+                console.log({ game });
                 return (
                   <Fragment key={slug || `${home.name}-vs-${away.name}`}>
-                    <GameInfo
-                      {...gameInfo}
-                      division={division}
-                      preview
-                    ></GameInfo>
+                    <GameInfo {...gameInfo} division={division} preview />
                   </Fragment>
                 );
               }
