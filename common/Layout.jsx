@@ -1,67 +1,26 @@
-import { Flex, Text, Heading, Container } from "@chakra-ui/react";
-import { Box } from "@chakra-ui/layout";
-import Nav from "./Nav";
-import Hero from "./Hero";
+import { Box, Heading } from "@chakra-ui/react";
 import Footer from "./Footer";
+import Nav from "./Nav";
 import Seo from "./Seo";
 
-const Layout = ({ children, sponsors, seo, header, margin, bg }) => {
-  const navs = [
-    {
-      name: "articles",
-      id: "articles",
-      slug: "articles",
-    },
-    {
-      name: "schedule",
-      id: "schedule",
-      slug: "schedule",
-    },
-    {
-      name: "team",
-      id: "team",
-      slug: "team",
-    },
-    {
-      name: "contact",
-      id: "contact",
-      slug: "contact",
-    },
-    // {
-    //   name: "photos",
-    //   id: "photos",
-    //   slug: "photos",
-    // },
-    // {
-    //   name: "more",
-    //   id: "more",
-    //   slug: "more",
-    // },
-    {
-      name: "shop",
-      id: "shop",
-      slug: "shop",
-    },
-  ];
+const Layout = ({ children, sponsors, seo, header, margin, bg, id }) => {
   return (
-    <>
-      <>
-        <Seo seo={seo} />
-        <Box display="flex" flexDirection="column" bg={bg}>
-          <Nav navs={navs} />
-          <Box m={margin ? 8 : 0}>
-            {header && (
-              <Heading mb="8" as="h1" size="4xl">
-                {header}
-              </Heading>
-            )}
+    <div id={id}>
+      <Seo seo={seo} />
+      <Box display="flex" flexDirection="column" bg={bg}>
+        <Nav />
+        <Box>
+          {header && (
+            <Heading m="8" as="h1" size="4xl">
+              {header}
+            </Heading>
+          )}
 
-            {children}
-          </Box>
-          <Footer navs={navs} sponsors={sponsors} />
+          {children}
         </Box>
-      </>
-    </>
+        <Footer sponsors={sponsors} />
+      </Box>
+    </div>
   );
 };
 

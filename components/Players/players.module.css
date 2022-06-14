@@ -1,0 +1,17 @@
+.highlight {
+  color: #fff;
+  font-size: 14px;
+  font-size: 0.875rem;
+  line-height: 16px;
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.highlight::after {
+  border-top: 3px solid tomato;
+  position: absolute;
+  width: 24px;
+  bottom: -8px;
+  left: 0;
+  content: "";
+}

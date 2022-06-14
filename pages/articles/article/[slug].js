@@ -1,14 +1,17 @@
-import { Box, Divider, Flex, Heading, Link } from "@chakra-ui/react";
-import { useBreakpointValue } from "@chakra-ui/media-query";
-import { useState, useEffect } from "react";
-import ReactMarkdown from "react-markdown";
-import Moment from "react-moment";
-import gfm from "remark-gfm";
+import {
+  Box,
+  Divider,
+  Flex,
+  Heading,
+  useBreakpointValue,
+} from "@chakra-ui/react";
+import Mdx from "common/Mdx";
+import { format } from "date-fns";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Hero from "../../../common/Hero";
 import Layout from "../../../common/Layout";
 import Pic from "../../../common/Pic";
-import Seo from "../../../common/Seo";
 import { fetchAPI } from "../../../lib/api";
 import { getStrapiMedia } from "../../../lib/media";
 import useBp from "../../../theme/useBp";
@@ -69,13 +72,13 @@ const Article = ({ article }) => {
   return (
     <Layout seo={seo}>
       <Hero
-        size={isDesktop ? "lg" : "xl"}
+        size={heroSize}
         image={imageUrl}
         text={article?.title}
         downArrow={!isDesktop}
-        contentLink={`#${article?.tagline}` || "#start"}
+        contentLink={`#${article?.uid}` || "#start"}
       ></Hero>
-      <Flex py="70px" id={article?.tagline || "start"}>
+      <Flex py="70px" id={article?.uid || "start"}>
         <Box w="75%" m="auto" p="0">
           <Flex className="uk-grid-small uk-flex-left" data-uk-grid="true">
             <Box>
@@ -95,7 +98,7 @@ const Article = ({ article }) => {
                 By {article.author.name}
               </p>
               <p className="uk-text-meta uk-margin-remove-top">
-                <Moment format="MMM Do YYYY">{article.published_at}</Moment>
+                {format(new Date(article.publishedAt), "MM/dd/yyyy")}
               </p>
             </Box>
           </Flex>
@@ -105,15 +108,8 @@ const Article = ({ article }) => {
               {article.tagline}
             </Heading>
           )}
-          <Box textAlign="justify" mt="8">
-            <ReactMarkdown
-              source={article?.content}
-              escapeHtml={false}
-              remarkPlugins={[gfm]}
-              linkTarget="_blank"
-              transformImageUri={(uri) => uri}
-              components={{ a: <Link color="brand.highlight"></Link> }}
-            />
+          <Box textAlign="justify" mt="8" color="brand-highlight">
+            <Mdx>{article?.content}</Mdx>
           </Box>
           <hr className="uk-divider-small" />
         </Box>
@@ -128,7 +124,7 @@ export async function getStaticPaths() {
   return {
     paths: articles.map((article) => ({
       params: {
-        slug: article.slug,
+        slug: article.uid,
       },
     })),
     fallback: false,
@@ -137,11 +133,11 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const [article] =
-    (await fetchAPI(`/articles?slug=${params.slug}&status=published`)) || {};
+    (await fetchAPI(`/articles?uid=${params.slug}&status=published`)) || {};
 
   return {
     props: { article },
-    revalidate: 1,
+    revalidate: 60,
   };
 }
 

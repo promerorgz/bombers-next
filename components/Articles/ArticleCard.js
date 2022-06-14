@@ -1,16 +1,22 @@
-import { Badge, Box, Flex, LinkBox, Text } from "@chakra-ui/layout";
-import { useBreakpointValue } from "@chakra-ui/media-query";
+import {
+  Badge,
+  Box,
+  Flex,
+  LinkBox,
+  Text,
+  useBreakpointValue,
+} from "@chakra-ui/react";
 import Link from "next/link";
 import React from "react";
 import ReactMarkdown from "react-markdown";
 
 const ArticleCard = ({ article, styles, highlight = false, isDesktop }) => {
   const direction = useBreakpointValue({
-    base: highlight ? "row" : "column",
+    base: "row",
     xs: "column",
     sm: "column",
-    md: highlight ? "row" : "column",
-    lg: highlight ? "row" : "column",
+    md: "row",
+    lg: "row",
   });
 
   const imageHeight = {
@@ -24,10 +30,9 @@ const ArticleCard = ({ article, styles, highlight = false, isDesktop }) => {
     >
       <LinkBox>
         <Flex
-          minH="500px"
-          maxH="500"
-          // maxH="500px"
           direction={direction}
+          minH="350px"
+          maxH={highlight ? "500px" : "350px"}
           borderWidth="1px"
           overflow="hidden"
           borderRadius="8px"
@@ -45,14 +50,14 @@ const ArticleCard = ({ article, styles, highlight = false, isDesktop }) => {
           bgGradient="gradient.main"
         >
           <Box
+            className="image-container"
             backgroundImage={article?.image?.url}
             flexGrow="1"
-            {...imageHeight}
             backgroundPosition="center"
             backgroundSize="cover"
-            minW="40%"
+            minW="50%"
           ></Box>
-          <Flex direction="column" p="4">
+          <Flex direction="column">
             <Box d="flex" alignItems="baseline" m={4}>
               {article?.category?.name && (
                 <Badge

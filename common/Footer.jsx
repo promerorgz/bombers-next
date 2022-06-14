@@ -3,15 +3,19 @@ import {
   Box,
   Text,
   Flex,
-  Link,
+  Link as ChakraLink,
   VStack,
   HStack,
   Divider,
   Heading,
+  Grid,
+  GridItem,
 } from "@chakra-ui/react";
 import Socials from "./Socials";
 import Pic from "./Pic";
 import Sponsors from "../components/Sponsors";
+import Link from "next/link";
+import useNav from "../lib/useNav";
 
 const FooterListItem = ({ children, justifyContent, ...props }) => {
   return (
@@ -26,7 +30,8 @@ const FooterListItem = ({ children, justifyContent, ...props }) => {
   );
 };
 
-const Footer = ({ navs = [], sponsors }) => {
+const Footer = ({ sponsors }) => {
+  const { navs } = useNav();
   return (
     <>
       <VStack spacing="4" bg="brand.black" p="4">
@@ -43,21 +48,27 @@ const Footer = ({ navs = [], sponsors }) => {
         <FooterListItem>
           <Divider />
         </FooterListItem>
-        {navs?.map((nav) => {
-          return (
-            <FooterListItem key={nav.name}>
-              <Link
-                fontFamily="Big Shoulders Display"
-                fontSize="xl"
-                fontWeight="bold"
-                textTransform="uppercase"
-                color="brand.light"
-              >
-                {nav.name}
-              </Link>
-            </FooterListItem>
-          );
-        })}
+        <FooterListItem>
+          <Grid templateColumns="repeat(1, 1fr)" gap={2}>
+            {navs?.map((nav) => {
+              return (
+                <GridItem id={nav.slug}>
+                  <Link href={`/${nav?.slug}`} passHref>
+                    <ChakraLink
+                      fontFamily="Big Shoulders Display"
+                      fontSize="xl"
+                      fontWeight="bold"
+                      textTransform="uppercase"
+                      color="brand.light"
+                    >
+                      {nav.name}
+                    </ChakraLink>
+                  </Link>
+                </GridItem>
+              );
+            })}
+          </Grid>
+        </FooterListItem>
         <FooterListItem>
           <Divider />
         </FooterListItem>
@@ -78,8 +89,10 @@ const Footer = ({ navs = [], sponsors }) => {
           color="brand.light"
         >
           <Text m={0}>Copyright © </Text>
-          <Link color="inherit" href="https://stlbombers.com/">
-            St. Louis Bombers Rugby Football Club
+          <Link href="https://stlbombers.com/">
+            <ChakraLink color="inherit">
+              St. Louis Bombers Rugby Football Club
+            </ChakraLink>
           </Link>{" "}
           <Text>
             {new Date().getFullYear()}

@@ -3,18 +3,28 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import App from "next/app";
+import dynamic from "next/dynamic";
 import Head from "next/head";
 import { createContext } from "react";
 import { fetchAPI } from "../lib/api";
-import { getStrapiMedia } from "../lib/media";
 import theme from "../theme";
+import "../theme/embla.css";
 import "../theme/globalStyles.css";
+import "../theme/nprogress.css";
 
 // Store Strapi Global object in context
 export const GlobalContext = createContext({});
+
+const TopProgressBar = dynamic(
+  () => {
+    return import("../components/TopProgressBar");
+  },
+  { ssr: false }
+);
+
 config.autoAddCss = false;
 
-const MyApp = ({ Component, pageProps, appProps, ...rest }) => {
+const MyApp = ({ Component, pageProps }) => {
   const { global } = pageProps;
   const initialOptions = {
     "client-id":
@@ -29,33 +39,13 @@ const MyApp = ({ Component, pageProps, appProps, ...rest }) => {
   return (
     <>
       <Head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-          rel="shortcut icon"
-          href={getStrapiMedia(global.favicon || "/images/logo.png")}
-        />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Staatliches"
-        />
-        <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/uikit@3.2.3/dist/css/uikit.min.css"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@300;400;500;600;700;800;900&display=swap"
-          rel="stylesheet"
-        />
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.2.0/js/uikit.min.js" />
-        <script src="https://cdn.jsdelivr.net/npm/uikit@3.2.3/dist/js/uikit-icons.min.js" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.2.0/js/uikit.js" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
+
       <PayPalScriptProvider options={initialOptions}>
         <GlobalContext.Provider value={global}>
           <ChakraProvider theme={theme}>
+            <TopProgressBar />
             <Component {...pageProps} />
           </ChakraProvider>
         </GlobalContext.Provider>
@@ -73,34 +63,26 @@ MyApp.getInitialProps = async (ctx) => {
   const appProps = await App.getInitialProps(ctx);
   // Fetch global site settings from Strapi
   // Pass the data to our page via props
-  const [
-    global,
-    articles,
-    categories,
-    homepage,
-    games,
-    players,
-    coaches,
-  ] = await Promise.all([
-    fetchAPI("/global"),
-    fetchAPI("/articles?status=published"),
-    fetchAPI("/categories"),
-    fetchAPI("/homepage"),
-    fetchAPI("/games"),
-    fetchAPI("/players"),
-    fetchAPI("/coaches"),
-  ]);
+  const [global, articles, homepage, games, pages, sliders] = await Promise.all(
+    [
+      fetchAPI("/global"),
+      fetchAPI("/articles?status=published"),
+      fetchAPI("/homepage"),
+      fetchAPI("/games"),
+      fetchAPI("/pages", process.env.NODE_ENV === "development"),
+      fetchAPI("/sliders", process.env.NODE_ENV === "development"),
+    ]
+  );
 
   return {
     ...appProps,
     pageProps: {
       global,
       articles,
-      categories,
       homepage,
       games,
-      players,
-      coaches,
+      pages,
+      sliders,
     },
   };
 };

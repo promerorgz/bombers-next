@@ -1,7 +1,14 @@
-import { SimpleGrid } from "@chakra-ui/react";
-import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/tabs";
+import {
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+  SimpleGrid,
+} from "@chakra-ui/react";
+import { fetchAPI } from "lib/api";
 import { sortBy } from "lodash";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 import Hero from "../../common/Hero";
 import Layout from "../../common/Layout";
 import ArticleCard from "../../components/Articles/ArticleCard";
@@ -9,6 +16,7 @@ import useBp from "../../theme/useBp";
 
 const News = ({ articles, categories }) => {
   const [selectedTab, setSelectedTab] = useState("Latest");
+  const [size, setSize] = useState("md");
 
   const onTabChange = useCallback((e, d) => {
     setSelectedTab(e);
@@ -16,12 +24,17 @@ const News = ({ articles, categories }) => {
 
   const [isDesktop] = useBp();
 
+  useEffect(() => {
+    setSize(isDesktop ? "md" : "xl");
+  }, [isDesktop]);
+
   return (
     <Layout seo={{ metaTitle: "Articles" }}>
       <Hero
         text="Articles"
         image="/images/mcb-hero.jpeg"
         size={isDesktop ? "md" : "xl"}
+        contentLink={size === "xl" ? "#articles" : false}
       />
       <Tabs
         variant="line"
@@ -30,6 +43,7 @@ const News = ({ articles, categories }) => {
         value={selectedTab}
         onChange={onTabChange}
         isFitted
+        id="articles"
       >
         <TabList>
           <Tab
@@ -54,20 +68,24 @@ const News = ({ articles, categories }) => {
         <TabPanels>
           <TabPanel>
             {
-              <SimpleGrid m={[0, 0, 2, 2, 4]} spacing="8" minChildWidth="300px">
+              <SimpleGrid
+                columns={1}
+                m={[0, 0, 2, 2, 2]}
+                spacing="8"
+                minChildWidth="200px"
+                maxChildWidth="400px"
+              >
                 {articles.length
-                  ? sortBy(articles, (article) => article.id)
-                      .reverse()
-                      .map((item) => {
-                        return (
-                          <ArticleCard
-                            article={item}
-                            style={{
-                              maxHeight: "300px",
-                            }}
-                          ></ArticleCard>
-                        );
-                      })
+                  ? sortBy(articles, (article) => article.id).map((item) => {
+                      return (
+                        <ArticleCard
+                          article={item}
+                          style={{
+                            maxHeight: "300px",
+                          }}
+                        ></ArticleCard>
+                      );
+                    })
                   : "No Articles"}
               </SimpleGrid>
             }
@@ -100,6 +118,15 @@ const News = ({ articles, categories }) => {
   );
 };
 
+export async function getStaticProps() {
+  const categories = (await fetchAPI(`/categories`)) || {};
+
+  return {
+    props: { categories },
+    revalidate: 60,
+  };
+}
+
 export default News;
 
-[{ category: "news", articles: [] }];
+// [{ category: "news", articles: [] }];

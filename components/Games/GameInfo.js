@@ -27,6 +27,7 @@ const GameInfo = ({
       date.toLocaleDateString("en-US", { month: "short" }) +
       " " +
       date.toLocaleDateString("en-US", { day: "2-digit" });
+
     const time = date.toLocaleString("en-US", {
       hour: "2-digit",
       minute: "2-digit",
@@ -55,7 +56,7 @@ const GameInfo = ({
       // justifyContent="space-around"
       alignItems="center"
     >
-      <Flex direction="column" m="0" py="4">
+      <Flex direction="column" m="0" py="4" minH="100%">
         <Flex alignItems="center" justifyContent="space-between">
           <Stack
             w="100%"
@@ -69,18 +70,6 @@ const GameInfo = ({
             <Heading as="div" size="lg" color="brand.light">
               {division}
             </Heading>
-            {/* <Link href={`/schedule/game/${slug}`}>
-              <Button
-                as="a"
-                size="sm"
-                bg="none"
-                color="brand.highlight"
-                variant="outline"
-                border="2px solid brand.highlight"
-              >
-                {finished ? "recap" : "preview"}
-              </Button>
-            </Link> */}
             <Heading
               as="div"
               display="flex"

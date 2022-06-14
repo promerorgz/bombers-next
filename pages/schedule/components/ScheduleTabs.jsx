@@ -1,5 +1,5 @@
 import React from "react";
-import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/tabs";
+import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
 import Results from "./Results";
 import Schedule from "./Schedule";
 import Tables from "./Tables";

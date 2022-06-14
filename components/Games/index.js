@@ -1,4 +1,4 @@
-import { Grid, GridItem, Stack } from "@chakra-ui/layout";
+import { Grid, GridItem, Stack } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 import useBp from "../../theme/useBp";
 import GameCard from "./GameCard";

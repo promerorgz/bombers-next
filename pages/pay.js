@@ -1,11 +1,15 @@
-import { Box, Flex, Heading, Stack } from "@chakra-ui/layout";
-import React, { useState, useEffect } from "react";
-import Layout from "../common/Layout";
+import {
+  Heading, Stack
+} from "@chakra-ui/react";
 import { PayPalButtons } from "@paypal/react-paypal-js";
-import useBp from "../theme/useBp";
+import Layout from "common/Layout";
+import DonateButton from "components/Pay/DonateButton";
+import React, { useEffect, useState } from "react";
+import useBp from "theme/useBp";
 
 const pay = () => {
   const [success, setSuccess] = useState(false);
+
   const [isDesktop] = useBp();
   const [direction, setDirection] = useState("row");
 
@@ -20,22 +24,10 @@ const pay = () => {
     });
   };
 
-  const createOrder = (data, actions) => {
-    return actions.order.create({
-      purchase_units: [
-        {
-          amount: {
-            currency_code: "USD",
-            value: "10.00",
-          },
-        },
-      ],
-    });
-  };
-
   useEffect(() => {
     setDirection(isDesktop ? "row" : "column");
   }, [isDesktop]);
+
 
   return (
     <Layout seo={{ metaTitle: "Pay" }}>
@@ -45,7 +37,6 @@ const pay = () => {
             Current Players
           </Heading>
           <Heading
-            color="brand.light"
             fontFamily="Staatliches"
             fontWeight="300"
             size="md"
@@ -81,15 +72,8 @@ const pay = () => {
             If you would like to donate you can reach out to us or click on the
             paypal below
           </Heading>
-          <PayPalButtons
-            style={{
-              color: "gold",
-              layout: "vertical",
-              label: "donate",
-            }}
-            createOrder={createOrder}
-            onApprove={onApprove}
-          ></PayPalButtons>
+
+          <DonateButton onApprove={onApprove}></DonateButton>
         </Stack>
       </Stack>
     </Layout>

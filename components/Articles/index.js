@@ -4,56 +4,44 @@ import {
   Stack,
   Box,
   Center,
+  Link as ChakraLink,
   Heading,
-} from "@chakra-ui/layout";
-import { Link as ChakraLink, Button, Text } from "@chakra-ui/react";
+  Text,
+} from "@chakra-ui/react";
 import { indexOf } from "lodash";
 import React, { useState, useEffect } from "react";
 import ArticleCard from "./ArticleCard";
-import _slice from "lodash/slice";
+import _dropRight from "lodash/dropRight";
 import Link from "next/link";
 
 const Articles = ({ articles, isDesktop }) => {
-  const [latest, setLatest] = useState({});
-  const [allArticles, setAllArticles] = useState([]);
-
-  useEffect(() => {
-    setLatest(articles[articles.length - 1]);
-    setAllArticles(_slice(articles, 1, 6));
-  }, [articles]);
-
   return (
-    <Center flexDirection="column" p="8">
+    <Box flexDirection="column" w="100%">
       <Stack
         direction="row"
-        justifyContent="space-between"
-        alignItems="center"
+        justifyContent="flex-end"
+        alignItems="flex-end"
         w="100%"
-        p="4"
+        p="8"
       >
-        <Heading size="2xl">Articles</Heading>
-        <Link href="/news">
-          <ChakraLink>See All</ChakraLink>
+        <Link href="/articles" passHref>
+          <ChakraLink>
+            <Text fontFamily="Helvetica Neue">See All</Text>
+          </ChakraLink>
         </Link>
       </Stack>
       <Stack
         spacing="8"
         w="99%"
-        margin="8"
         justifyContent="space-evenly"
         alignContent="space-around"
         flexWrap="wrap"
       >
-        <ArticleCard
-          isDesktop={isDesktop}
-          highlight={isDesktop}
-          article={latest}
-          key={`article__left__${latest?.slug}`}
-        />
-        <SimpleGrid minChildWidth="300px" spacing={4}>
-          {allArticles.map((article, i) => {
+        <SimpleGrid spacing={4} columns={[1, 2, 2]} w="100%">
+          {articles.map((article, i) => {
             return (
               <ArticleCard
+                highlight={article?.highlight || false}
                 styles={{ maxHeight: 500 }}
                 article={article}
                 key={`article__left__${article?.slug}`}
@@ -62,7 +50,7 @@ const Articles = ({ articles, isDesktop }) => {
           })}
         </SimpleGrid>
       </Stack>
-    </Center>
+    </Box>
   );
 };
 

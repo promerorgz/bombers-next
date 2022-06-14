@@ -11,7 +11,6 @@ const ScheduleGame = (props) => {
   const [size, setSize] = useState("md");
   const [game, setGame] = useState({});
 
-  console.log(router.query);
   useEffect(() => {
     setSize(isDesktop ? "md" : "xl");
   }, [isDesktop]);

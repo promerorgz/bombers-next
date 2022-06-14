@@ -1,5 +1,4 @@
-import { Avatar } from "@chakra-ui/avatar";
-import { Box, Flex, Heading, Text } from "@chakra-ui/layout";
+import { Box, Flex, Heading, Text, Avatar } from "@chakra-ui/react";
 import React from "react";
 
 const Team = ({ team: { name, score, logo, ...teamData }, away, preview }) => {

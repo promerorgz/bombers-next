@@ -13,12 +13,15 @@ import styled from "styled-components";
 import Pic from "../common/Pic";
 import { ChevronDownIcon, ChevronLeftIcon } from "@chakra-ui/icons";
 import { useRouter } from "next/router";
+import SliderHero from "./SliderHero";
+import ScrollIntoView from "react-scroll-into-view";
 
 const heightSizes = {
   sm: "20vh",
   md: "40vh",
   lg: "70vh",
   xl: "90vh",
+  full: "100vh",
 };
 const Diagonal = styled.div`
   font-family: "Big Shoulders Display";
@@ -54,8 +57,6 @@ const Hero = ({
   startPic,
   bg,
   direction,
-  story,
-  downArrow,
   contentLink,
   backButton,
 }) => {
@@ -68,11 +69,11 @@ const Hero = ({
           alternativeText: text,
           name: text,
         },
-        size: "xs",
+        size: "sm",
       };
 
   const handleGoBack = () => {
-    return router.push("/team");
+    return router.back();
   };
 
   return (
@@ -82,7 +83,7 @@ const Hero = ({
           <Center justifyContent="flex-start" w="100%">
             <Button onClick={handleGoBack} variant="link">
               <ChevronLeftIcon color="brand.white" w={8} h={8} />
-              <Text fontSize="xl">{"Back to players"}</Text>
+              <Text fontSize="xl">{"Back"}</Text>
             </Button>
           </Center>
         )}
@@ -93,9 +94,15 @@ const Hero = ({
                 <Pic {...picProps}></Pic>
               </Box>
             )}
-            <Box ml="2">
+            <Box ml="8">
               <Stack spacing="1" direction="column">
-                <Text fontSize="5xl" casing="uppercase" as="b" color="white">
+                <Text
+                  fontSize="5xl"
+                  casing="uppercase"
+                  as="b"
+                  color="white"
+                  textAlign={direction === "column" ? "center" : "flex-start"}
+                >
                   {text}
                 </Text>
                 {secondaryText && (
@@ -104,6 +111,7 @@ const Hero = ({
                     casing="uppercase"
                     as="b"
                     color="brand.medium"
+                    textAlign={direction === "column" ? "center" : "flex-start"}
                   >
                     {secondaryText}
                   </Text>
@@ -137,9 +145,9 @@ const Hero = ({
       </Diagonal>
       {contentLink && (
         <Center alignItems="center" w="100%" position="relative" top="-50px">
-          <ChakraLink href={contentLink}>
+          <ScrollIntoView selector={contentLink}>
             <ChevronDownIcon color="brand.white" w={8} h={8} />
-          </ChakraLink>
+          </ScrollIntoView>
         </Center>
       )}
     </>

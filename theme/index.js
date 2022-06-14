@@ -17,12 +17,13 @@ export default extendTheme({
   },
   colors: {
     brand: {
-      highlight: "tomato",
+      highlight: "#f8cf2c",
       superblack: "#000",
       black: "#212121",
       medium: "#404040",
       light: "#E2E2E2",
       white: "#fff",
+      bg: "#f8f8f8",
     },
     gray: {
       light: "#303030",
@@ -32,6 +33,8 @@ export default extendTheme({
     gradient: {
       main:
         "linear-gradient(90deg, rgba(24,24,24,1) 3%, rgba(56,56,56,1) 37%, rgba(53,53,53,1) 85%)",
+      caption:
+        "linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(170,170,170,1) 8%, rgba(33,33,33,1) 100%)",
     },
     shadow: {
       1: "box-shadow: 0px 4px 4px 0px #00000040",
