@@ -1,5 +1,5 @@
-export const formatDate = (date, format) => {
-  const [y, m, d] = date.split("-").map((d) => Number(d));
+export const formatDate = (date = "", format) => {
+  const [y, m, d] = date?.split("-").map((d) => Number(d));
 
   const dateObject = new Date(date).toLocaleDateString("en-US", {
     dateStyle: "long",

@@ -15,11 +15,11 @@ const PlayerInfo = ({ player }) => {
     },
     {
       label: "Height",
-      value: player.height,
+      value: player?.height || "?",
     },
     {
       label: "Weight",
-      value: player.weight,
+      value: `${player?.weight} lbs.` || "?",
     },
     {
       label: "Nationality",
@@ -27,11 +27,11 @@ const PlayerInfo = ({ player }) => {
     },
     {
       label: "Hometown",
-      value: player?.hometown,
+      value: player?.hometown || "?",
     },
     {
       label: "Position(s)",
-      value: getPosition(player.position),
+      value: getPosition(player?.position || 2),
     },
   ];
   return (
@@ -52,18 +52,7 @@ const PlayerInfo = ({ player }) => {
               direction="row"
             >
               <Heading color="brand.black" size="lg" as="div" minW="80px">
-                {label}:
-              </Heading>
-              <Heading
-                as="div"
-                color="brand.medium"
-                fontFamily="Staatliches"
-                fontWeight="light"
-                size="lg"
-                minH="10%"
-                maxH="25%"
-              >
-                {value}
+                {label}: {value}
               </Heading>
 
               <Center>

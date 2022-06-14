@@ -5,6 +5,7 @@ import Pic from "./Pic";
 import LazyLoading from "../hooks/useLazyLoading";
 import useLazyLoading from "../hooks/useLazyLoading";
 import { keyframes } from "styled-components";
+import BgImage from "./BgImage";
 
 const Card = ({
   link,
@@ -18,6 +19,7 @@ const Card = ({
   _hover,
   imageProps,
   hoverBg,
+  bgProps,
   ...props
 }) => {
   const makeClickable = (component) =>
@@ -29,18 +31,6 @@ const Card = ({
       <LinkBox>{component}</LinkBox>
     );
 
-  const loadingAnimation = keyframes`
-  0% {
-    background-color: #fff;
-  }
-  50% {
-    background-color: #ccc;
-  }
-  100% {
-    background-color: #fff;
-  }
-`;
-
   //TODO: make these lazy loading also maybe look into cloudfront CDN,
   const hoverStyles = link
     ? {
@@ -50,44 +40,53 @@ const Card = ({
           ? {
               transform: "scale(1.02)",
               boxShadow: "0px 5px 10px #21212150",
-              background: `url(${hoverBg})` || "gray",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "contain",
+              // background: `url(${hoverBg})` || "gray",
+              // backgroundPosition: "center",
+              // backgroundRepeat: "no-repeat",
+              // backgroundSize: "contain",
             }
           : {},
       }
     : {};
 
   const overrideStyles = {
-    background: `url(${bg})` || "gray",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "contain",
+    // background: `url(${bg})` || "gray",
+    // backgroundPosition: "center",
+    // backgroundRepeat: "no-repeat",
+    // backgroundSize: "contain",
     ...styles,
   };
 
   return makeClickable(
-    <Box
-      minW="100%"
-      maxW="5xl"
-      minH="300px"
-      border={border || "2px solid #717171"}
-      overflow="hidden"
-      borderRadius={radius || "3px"}
-      cursor="pointer"
-      sx={{ ...hoverStyles, ...overrideStyles }}
-      bgGradient="gradient.main"
-      _hover={{ ..._hover, transform: "scale(1.02)" }}
-      {...props}
+    <BgImage
+      // alignItems="center"
+      imgalt={bgProps.alt || "background image"}
+      src={bg}
+      height={"50vh"}
+      justifyContent="center"
+      {...bgProps}
     >
-      {image && (
-        <Box sx={{ display: "flex", flexGrow: 3 }}>
-          <Pic image={image} {...imageProps} />
-        </Box>
-      )}
-      {children}
-    </Box>
+      <Box
+        minW="100%"
+        maxW="5xl"
+        minH="300px"
+        // border={border || "2px solid #717171"}
+        overflow="hidden"
+        borderRadius={radius || "3px"}
+        cursor="pointer"
+        sx={{ ...hoverStyles, ...overrideStyles }}
+        bgGradient="gradient.main"
+        _hover={{ ..._hover, transform: "scale(1.02)" }}
+        {...props}
+      >
+        {image && (
+          <Box sx={{ display: "flex", flexGrow: 3 }}>
+            <Pic image={image} {...imageProps} />
+          </Box>
+        )}
+        {children}
+      </Box>
+    </BgImage>
   );
 };
 

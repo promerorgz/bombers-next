@@ -6,6 +6,7 @@ import {
   Tabs,
   SimpleGrid,
 } from "@chakra-ui/react";
+import { fetchAPI } from "lib/api";
 import { sortBy } from "lodash";
 import React, { useCallback, useState, useEffect } from "react";
 import Hero from "../../common/Hero";
@@ -116,6 +117,15 @@ const News = ({ articles, categories }) => {
     </Layout>
   );
 };
+
+export async function getStaticProps() {
+  const categories = (await fetchAPI(`/categories`)) || {};
+
+  return {
+    props: { categories },
+    revalidate: 60,
+  };
+}
 
 export default News;
 

@@ -4,7 +4,9 @@ import {
   Stack,
   Box,
   Center,
+  Link as ChakraLink,
   Heading,
+  Text,
 } from "@chakra-ui/react";
 import { indexOf } from "lodash";
 import React, { useState, useEffect } from "react";
@@ -14,28 +16,28 @@ import Link from "next/link";
 
 const Articles = ({ articles, isDesktop }) => {
   return (
-    <Center flexDirection="column">
-      {/* <Stack
+    <Box flexDirection="column" w="100%">
+      <Stack
         direction="row"
-        justifyContent="space-between"
-        alignItems="center"
+        justifyContent="flex-end"
+        alignItems="flex-end"
         w="100%"
-        p="4"
+        p="8"
       >
-        <Heading size="2xl">Articles</Heading>
-        <Link href="/articles     ">
-          <ChakraLink>See All</ChakraLink>
+        <Link href="/articles" passHref>
+          <ChakraLink>
+            <Text fontFamily="Helvetica Neue">See All</Text>
+          </ChakraLink>
         </Link>
-      </Stack> */}
+      </Stack>
       <Stack
         spacing="8"
         w="99%"
-        margin="8"
         justifyContent="space-evenly"
         alignContent="space-around"
         flexWrap="wrap"
       >
-        <SimpleGrid minChildWidth="300px" spacing={4}>
+        <SimpleGrid spacing={4} columns={[1, 2, 2]} w="100%">
           {articles.map((article, i) => {
             return (
               <ArticleCard
@@ -48,7 +50,7 @@ const Articles = ({ articles, isDesktop }) => {
           })}
         </SimpleGrid>
       </Stack>
-    </Center>
+    </Box>
   );
 };
 

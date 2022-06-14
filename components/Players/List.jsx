@@ -4,7 +4,6 @@ import { getPosition } from "./utils";
 import classes from "./players.module.css";
 
 const List = ({ players, noClick, title }) => {
-  console.log({ players });
   return (
     <Box m={16}>
       <Heading m={16}>{title}</Heading>
@@ -19,10 +18,10 @@ const List = ({ players, noClick, title }) => {
 
             return (
               <Card
-                key={`${player.first_name}-${player.last_name}-card`}
+                key={`${player?.first_name}-${player?.last_name}-card`}
                 radius="8px"
                 id="player-card"
-                as={`/team/${player.division}/${player?.slug}`}
+                as={`/team/${player.division.toLowerCase()}/${player?.slug}`}
                 link={noClick ? "" : "/team/[division]/[id]"}
                 styles={{
                   minHeight: "370px",
@@ -37,8 +36,11 @@ const List = ({ players, noClick, title }) => {
                   backgroundColor: "gray",
                 }}
                 bg={background}
+                bgProps={{
+                  width: 300,
+                  alt: `${player?.first_name}-${player?.last_name}`,
+                }}
                 hoverBg={hoverBg}
-                border="1px solid #e2e2e2"
               >
                 <Box
                   style={{
@@ -98,7 +100,7 @@ const List = ({ players, noClick, title }) => {
             );
           })
         ) : (
-          <Heading>no players found</Heading>
+          <Heading as="h5">no players found</Heading>
         )}
       </SimpleGrid>
     </Box>

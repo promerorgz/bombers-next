@@ -38,8 +38,6 @@ const GameInfo = ({
     };
   };
 
-  console.log({ location, homeTeam });
-
   const bgs = {
     DIII: "brand.medium",
     D3: "brand.medium",

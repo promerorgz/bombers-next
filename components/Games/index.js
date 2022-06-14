@@ -17,8 +17,6 @@ const Games = ({ games = [] }) => {
   const played =
     games.length && games.filter(({ date }) => !isAfterToday(date));
 
-  console.log({ upcoming });
-
   const gameCards = [
     {
       games: upcoming || [],

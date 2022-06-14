@@ -7,9 +7,11 @@ import Articles from "../components/Articles";
 import { fetchAPI } from "../lib/api";
 import useBp from "../theme/useBp";
 import Games from "../components/Games";
+import { isEmpty } from "lodash";
+import SliderHero from "../common/SliderHero";
 
 const Home = (props) => {
-  const { articles, homepage, games, sponsors } = props;
+  const { articles, homepage, sponsors, sliders } = props;
 
   const buttons = [
     {
@@ -27,16 +29,18 @@ const Home = (props) => {
 
   return (
     <Layout sponsors={sponsors} seo={homepage.seo} bg="brand.light">
+      {!isEmpty(sliders) ? (
+        <SliderHero size="lg" slides={sliders?.content} />
+      ) : null}
       <Hero
         text="St. Louis Bombers Rugby Club"
         image="/images/nationals17.jpg"
         buttons={buttons}
         size="full"
-        contentLink="#articles"
       />
       <VStack direction="column" justifyContent="center">
         {/* {games.length && <Games games={games || []} {...bpProps} />} */}
-        <Box id="articles">
+        <Box id="articles" w="80%" m="auto">
           {articles.length && <Articles articles={articles} {...bpProps} />}
         </Box>
         {sponsors.length && <Sponsors sponsors={sponsors || []} {...bpProps} />}
@@ -50,8 +54,6 @@ export async function getStaticProps() {
   const [articles, homepage, games, sponsors] = await Promise.all([
     fetchAPI("/articles?status=published&_sort=publishedAt:asc"),
     fetchAPI("/homepage"),
-    fetchAPI("/games?_sort=date:asc"),
-
     fetchAPI("/sponsors"),
   ]);
 
@@ -59,10 +61,9 @@ export async function getStaticProps() {
     props: {
       articles,
       homepage,
-      games,
       sponsors,
     },
-    revalidate: 1,
+    revalidate: 60,
   };
 }
 

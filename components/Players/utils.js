@@ -1,23 +1,11 @@
-import { isNumber } from "lodash";
+import { groupBy, isNumber } from "lodash";
 
 export const matches = (string, match) => {
   return string.toLowerCase().startsWith(match.toLowerCase());
 };
 
-export const splitForwardsAndBacks = (players) => {
-  const initialValue = { forwards: [], backs: [] };
-  const isForward = (player) => player.position > 0 && player.position <= 8;
-  const isBack = (player) => player.position >= 9;
-  return players.length
-    ? players?.reduce((acc, player) => {
-        return {
-          ...acc,
-          forwards: [...acc.forwards, isForward(player) && player],
-          backs: [...acc.backs, isBack(player) && player],
-        };
-      }, initialValue)
-    : initialValue;
-};
+export const splitForwardsAndBacks = (players) =>
+  groupBy(players, ({ position }) => (position >= 9 ? "backs" : "forwards"));
 
 export const getPosition = (position) => {
   return isNumber(position)

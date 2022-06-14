@@ -32,7 +32,6 @@ const ContactForm = () => {
   };
 
   const handleSubmit = async () => {
-    console.log({ contact });
     toast({
       title: "Email Sent!",
       description: "We will get back to you ASAP",
@@ -48,7 +47,13 @@ const ContactForm = () => {
         html: contactTemplate(contact),
       });
     } catch (error) {
-      console.error(error);
+      toast({
+        title: "Oh no!",
+        description: "Something went wrong.",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
     }
 
     setContact(initialState);
@@ -111,22 +116,6 @@ const ContactForm = () => {
               onChange={handleChange}
             />
           </InputGroup>
-
-          {/* <Stack
-            {...group}
-            direction="row"
-            spacing={2}
-            justifyContent="space-evenly"
-          >
-            {options.map((value) => {
-              const radio = getRadioProps({ value });
-              return (
-                <RadioCard key={value} {...radio}>
-                  {_startCase(value)}
-                </RadioCard>
-              );
-            })}
-          </Stack> */}
 
           <Textarea
             sx={{

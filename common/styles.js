@@ -6,7 +6,7 @@ export const HeroSlider = styled.div`
   position: relative;
   height: 100vh;
   display: flex;
-  background: ${(props) => console.log(props.theme) || props.theme.main};
+  background: ${(props) => props.theme.main};
 `;
 
 export const SlideShow = styled.div`

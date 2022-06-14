@@ -30,8 +30,8 @@ const PlayerList = ({ list = [], type }) => {
         ? matches(player.first_name, search) ||
             matches(player.last_name, search) ||
             matches(player?.nickname, search)
-        : matches(player.first_name, search) ||
-            matches(player.last_name, search);
+        : matches(player?.first_name, search) ||
+            matches(player?.last_name, search);
     });
     setPlayers(foundPlayers);
     return () => setPlayers(sortByPosition(list));
@@ -46,11 +46,11 @@ const PlayerList = ({ list = [], type }) => {
           <SearchBar value={search} handleChange={handleChange} type={type} />
         </Box>
         {type === "coaches-and-staff" ? (
-          <List players={players} title="Coaches and Staff" noClick></List>
+          <List players={players} title="Coaches and Staff" noClick />
         ) : (
           <>
-            <List players={forwards} title="Forwards"></List>
-            <List players={backs} title="Backs"></List>
+            <List players={forwards} title="Forwards" />
+            <List players={backs} title="Backs" />
           </>
         )}
       </Stack>

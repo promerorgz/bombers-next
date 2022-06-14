@@ -1,4 +1,5 @@
 import { Box, Flex, Heading, SimpleGrid } from "@chakra-ui/react";
+import { fetchAPI } from "lib/api";
 import React, { useState } from "react";
 import Card from "../../common/Card";
 import Layout from "../../common/Layout";
@@ -12,7 +13,7 @@ const TeamHome = ({ players, coaches }) => {
     {
       displayName: "Division 1",
       url: "d1",
-      bg: "",
+      bg: "/images/d1_team.jpeg",
     },
     {
       displayName: "Division 3",
@@ -22,13 +23,18 @@ const TeamHome = ({ players, coaches }) => {
     {
       displayName: "Coaches & Staff",
       url: "coaches-and-staff",
-      bg: "",
+      bg: "/images/coach_pic2.jpeg",
     },
-    {
-      displayName: "Legends",
-      url: "legends",
-      bg: "",
-    },
+    // {
+    //   displayName: "Legends",
+    //   url: "legends",
+    //   bg: "/images/jk_legends_pic.jpeg",
+    // },
+    // {
+    //   displayName: "Board",
+    //   url: "board",
+    //   bg: "",
+    // },
   ];
   return (
     <Layout seo={{ metaTitle: "Team" }} header="Players and Staff">
@@ -38,7 +44,7 @@ const TeamHome = ({ players, coaches }) => {
             <Card
               key={`${team.url}`}
               radius="8px"
-              id="player-card"
+              id="team-card"
               as={`/team/${team?.url}`}
               link={"/team/[division]"}
               styles={{

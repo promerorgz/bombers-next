@@ -9,7 +9,7 @@ const contact = () => {
   const props = {
     text: "Contact Us",
     buttons: [],
-    image: "images/mcb-hero.jpeg",
+    image: "images/d1_pic.jpeg",
     size: "lg",
     contentLink: "#form",
   };

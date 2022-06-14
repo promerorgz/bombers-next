@@ -1,17 +1,18 @@
-import { Heading, Link as ChakraLink, Stack, Text } from "@chakra-ui/react";
+import { Link as ChakraLink, Stack, Text } from "@chakra-ui/react";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import React from "react";
 import Layout from "../../../common/Layout";
 import PlayerList from "../../../components/Players/PlayerList";
 import Sponsors from "../../../components/Sponsors";
 import { fetchAPI } from "../../../lib/api";
-import { useRouter } from "next/router";
 
 const Players = ({ list, division }) => {
   const routes = [
     { display: "D1", url: "d1" },
     { display: "D3", url: "d3" },
     { display: "Staff", url: "coaches-and-staff" },
+    // { display: "Board", url: "board" },
     // { display: "Legends", url: "legends" },
   ];
 
@@ -45,9 +46,14 @@ const Players = ({ list, division }) => {
   );
 };
 
-export default Players;
+export async function getStaticPaths() {
+  return {
+    paths: ["/team/d1", "/team/d3", "/team/coaches-and-staff", "/team/alumni"],
+    fallback: true,
+  };
+}
 
-export const getStaticProps = async ({ params, ...ctx }) => {
+export async function getStaticProps({ params, ...ctx }) {
   const { division } = params;
   const isPlayers = division === "d1" || division === "d3";
   const urlMap = {
@@ -58,11 +64,6 @@ export const getStaticProps = async ({ params, ...ctx }) => {
     isPlayers ? `/players?division=${division.toUpperCase()}` : urlMap[division]
   );
   return { props: { list, division } };
-};
-
-export async function getStaticPaths() {
-  return {
-    paths: ["/team/d1", "/team/d3", "/team/coaches-and-staff", "/team/alumni"],
-    fallback: true,
-  };
 }
+
+export default Players;

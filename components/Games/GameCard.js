@@ -60,7 +60,6 @@ const GameCard = ({ title = "", link = "", direction = "row", games = [] }) => {
                   slug,
                   ...game,
                 };
-                console.log({ game });
                 return (
                   <Fragment key={slug || `${home.name}-vs-${away.name}`}>
                     <GameInfo {...gameInfo} division={division} preview />

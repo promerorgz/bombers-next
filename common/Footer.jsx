@@ -15,6 +15,7 @@ import Socials from "./Socials";
 import Pic from "./Pic";
 import Sponsors from "../components/Sponsors";
 import Link from "next/link";
+import useNav from "../lib/useNav";
 
 const FooterListItem = ({ children, justifyContent, ...props }) => {
   return (
@@ -29,7 +30,8 @@ const FooterListItem = ({ children, justifyContent, ...props }) => {
   );
 };
 
-const Footer = ({ navs = [], sponsors }) => {
+const Footer = ({ sponsors }) => {
+  const { navs } = useNav();
   return (
     <>
       <VStack spacing="4" bg="brand.black" p="4">
@@ -50,7 +52,7 @@ const Footer = ({ navs = [], sponsors }) => {
           <Grid templateColumns="repeat(1, 1fr)" gap={2}>
             {navs?.map((nav) => {
               return (
-                <GridItem>
+                <GridItem id={nav.slug}>
                   <Link href={`/${nav?.slug}`} passHref>
                     <ChakraLink
                       fontFamily="Big Shoulders Display"

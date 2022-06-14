@@ -3,18 +3,15 @@ import {
   Divider,
   Flex,
   Heading,
-  Link,
   useBreakpointValue,
 } from "@chakra-ui/react";
-import { useState, useEffect, Children } from "react";
-import ReactMarkdown from "react-markdown";
-import Moment from "react-moment";
-import gfm from "remark-gfm";
+import Mdx from "common/Mdx";
+import { format } from "date-fns";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Hero from "../../../common/Hero";
 import Layout from "../../../common/Layout";
 import Pic from "../../../common/Pic";
-import Seo from "../../../common/Seo";
 import { fetchAPI } from "../../../lib/api";
 import { getStrapiMedia } from "../../../lib/media";
 import useBp from "../../../theme/useBp";
@@ -75,7 +72,7 @@ const Article = ({ article }) => {
   return (
     <Layout seo={seo}>
       <Hero
-        size={isDesktop ? "md" : "full"}
+        size={heroSize}
         image={imageUrl}
         text={article?.title}
         downArrow={!isDesktop}
@@ -101,7 +98,7 @@ const Article = ({ article }) => {
                 By {article.author.name}
               </p>
               <p className="uk-text-meta uk-margin-remove-top">
-                <Moment format="MMM Do YYYY">{article.published_at}</Moment>
+                {format(new Date(article.publishedAt), "MM/dd/yyyy")}
               </p>
             </Box>
           </Flex>
@@ -111,14 +108,8 @@ const Article = ({ article }) => {
               {article.tagline}
             </Heading>
           )}
-          {console.log({ content: article.content })}
           <Box textAlign="justify" mt="8" color="brand-highlight">
-            <ReactMarkdown
-              source={article?.content}
-              linkTarget="_blank"
-              transformImageUri={(uri) => uri}
-              plugins={[gfm]}
-            />
+            <Mdx>{article?.content}</Mdx>
           </Box>
           <hr className="uk-divider-small" />
         </Box>
@@ -141,13 +132,12 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  console.log({ params });
   const [article] =
     (await fetchAPI(`/articles?uid=${params.slug}&status=published`)) || {};
 
   return {
     props: { article },
-    revalidate: 1,
+    revalidate: 60,
   };
 }
 
