@@ -69,8 +69,8 @@ MyApp.getInitialProps = async (ctx) => {
       fetchAPI("/articles?status=published"),
       fetchAPI("/homepage"),
       fetchAPI("/games"),
-      fetchAPI("/pages", process.env.NODE_ENV === "development"),
-      fetchAPI("/sliders", process.env.NODE_ENV === "development"),
+      fetchAPI("/pages"),
+      fetchAPI("/sliders"),
     ]
   );
 
