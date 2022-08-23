@@ -9,7 +9,8 @@
     "start": "next start",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "g:page": "./scripts/generate-page.sh"
+    "g:page": "./scripts/generate-page.sh",
+    "init:hard": "rm -rf ./node_modules && rm -rf ./package-lock.json && npm i"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.0.1",
