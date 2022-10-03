@@ -1,7 +1,7 @@
 import { Box, VStack } from "@chakra-ui/react";
 import React from "react";
 import Hero from "../common/Hero";
-import Layout from "../common/Layout";
+import Layout from "../components/Layout";
 import Sponsors from "../components/Sponsors";
 import Articles from "../components/Articles";
 import { fetchAPI } from "../lib/api";
@@ -9,6 +9,7 @@ import useBp from "../theme/useBp";
 import Games from "../components/Games";
 import { isEmpty } from "lodash";
 import SliderHero from "../common/SliderHero";
+import NewsReel from "components/NewsReel";
 
 const Home = (props) => {
   const { articles, homepage, sponsors, sliders } = props;
@@ -24,26 +25,14 @@ const Home = (props) => {
     },
   ];
 
-  const [isDesktop, isTablet, isMobile, isDisplayingInBrowser] = useBp();
-  const bpProps = { isDesktop, isTablet, isMobile, isDisplayingInBrowser };
-
   return (
     <Layout sponsors={sponsors} seo={homepage.seo} bg="brand.light">
       {!isEmpty(sliders) ? (
         <SliderHero size="lg" slides={sliders?.content} />
       ) : null}
-      <Hero
-        text="St. Louis Bombers Rugby Club"
-        image="/images/nationals17.jpg"
-        buttons={buttons}
-        size="full"
-      />
+      <NewsReel articles={articles} />
       <VStack direction="column" justifyContent="center">
-        {/* {games.length && <Games games={games || []} {...bpProps} />} */}
-        <Box id="articles" w="80%" m="auto">
-          {articles.length && <Articles articles={articles} {...bpProps} />}
-        </Box>
-        {sponsors.length && <Sponsors sponsors={sponsors || []} {...bpProps} />}
+        {sponsors.length && <Sponsors sponsors={sponsors || []} />}
       </VStack>
     </Layout>
   );

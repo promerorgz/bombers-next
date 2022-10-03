@@ -1,7 +1,7 @@
 import { Box, Flex, Heading, HStack, Stack } from "@chakra-ui/react";
 import React from "react";
 import Hero from "../common/Hero";
-import Layout from "../common/Layout";
+import Layout from "../components/Layout";
 import Socials from "../common/Socials";
 import ContactForm from "../components/Contact/ContactForm";
 

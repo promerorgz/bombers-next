@@ -6,6 +6,7 @@ import LazyLoading from "../hooks/useLazyLoading";
 import useLazyLoading from "../hooks/useLazyLoading";
 import { keyframes } from "styled-components";
 import BgImage from "./BgImage";
+import { toLower } from "lodash";
 
 const Card = ({
   link,
@@ -24,7 +25,7 @@ const Card = ({
 }) => {
   const makeClickable = (component) =>
     link ? (
-      <Link as={as} href={link}>
+      <Link as={as} href={toLower(link)}>
         <LinkBox>{component}</LinkBox>
       </Link>
     ) : (

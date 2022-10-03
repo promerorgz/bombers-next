@@ -1,8 +1,6 @@
-import {
-  Heading, Stack
-} from "@chakra-ui/react";
+import { Heading, Stack } from "@chakra-ui/react";
 import { PayPalButtons } from "@paypal/react-paypal-js";
-import Layout from "common/Layout";
+import Layout from "components/Layout";
 import DonateButton from "components/Pay/DonateButton";
 import React, { useEffect, useState } from "react";
 import useBp from "theme/useBp";
@@ -27,7 +25,6 @@ const pay = () => {
   useEffect(() => {
     setDirection(isDesktop ? "row" : "column");
   }, [isDesktop]);
-
 
   return (
     <Layout seo={{ metaTitle: "Pay" }}>

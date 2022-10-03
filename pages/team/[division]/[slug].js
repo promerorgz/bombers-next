@@ -2,7 +2,7 @@ import { Center, Heading, Stack } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import Hero from "../../../common/Hero";
-import Layout from "../../../common/Layout";
+import Layout from "../../../components/Layout";
 import Pic from "../../../common/Pic";
 import useBp from "../../../theme/useBp";
 import { getPosition } from "../../../components/Players/utils";

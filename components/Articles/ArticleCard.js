@@ -6,11 +6,21 @@ import {
   Text,
   useBreakpointValue,
 } from "@chakra-ui/react";
+import { formatISO } from "date-fns";
+import { toLower } from "lodash";
 import Link from "next/link";
 import React from "react";
 import ReactMarkdown from "react-markdown";
+import formatDate from "utils/formatDate";
 
-const ArticleCard = ({ article, styles, highlight = false, isDesktop }) => {
+const ArticleCard = ({
+  article,
+  styles,
+  href,
+  highlight = false,
+  isDesktop,
+}) => {
+  console.log({ href });
   const direction = useBreakpointValue({
     base: "row",
     xs: "column",
@@ -24,8 +34,10 @@ const ArticleCard = ({ article, styles, highlight = false, isDesktop }) => {
   };
   return (
     <Link
-      as={`/articles/article/${article?.slug || "hello"}`}
-      href="articles/article/[id]"
+      as={`/articles/${toLower(article.category?.name)}/${
+        toLower(article?.slug) || "hello"
+      }`}
+      href={`${href || "/articles/"}[category]/[id]`}
       m="16"
     >
       <LinkBox>
@@ -77,7 +89,7 @@ const ArticleCard = ({ article, styles, highlight = false, isDesktop }) => {
                 fontSize="xs"
                 textTransform="uppercase"
               >
-                {new Date(article?.publishedAt).toLocaleDateString()}
+                {formatDate(article?.publishedAt, "long")}
               </Box>
             </Box>
 

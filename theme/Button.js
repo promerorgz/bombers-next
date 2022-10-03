@@ -27,15 +27,10 @@ const Button = {
       color: "brand.light",
     },
     solid: {
-      bg: "brand.medium",
-      color: "brand.light",
-    },
-    rounded: {
-      borderRadius: 12,
-    },
-    "&:hover": {
-      textDecoration: "none",
-      color: "brand.dark",
+      borderRadius: 5,
+      backgroundColor: "brand.highlight",
+      color: "brand.black",
+      size: "xs",
     },
   },
   // The default size and variant values

@@ -27,7 +27,7 @@ export const NextButton = ({ enabled, onClick }) => (
   </button>
 );
 
-const SliderHero = ({ slides, size }) => {
+const SliderHero = ({ slides = [], size }) => {
   const [emblaRef, embla] = useEmblaCarousel(
     {
       loop: true,

@@ -14,7 +14,7 @@ import ArticleCard from "./ArticleCard";
 import _dropRight from "lodash/dropRight";
 import Link from "next/link";
 
-const Articles = ({ articles, isDesktop }) => {
+const Articles = ({ articles }) => {
   return (
     <Box flexDirection="column" w="100%">
       <Stack

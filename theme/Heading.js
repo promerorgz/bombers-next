@@ -1,9 +1,10 @@
 const Heading = {
   // The styles all button have in common
   baseStyle: {
-    fontFamily: "Big Shoulders Display",
-    fontWeight: "bold",
+    fontFamily: "'Montserrat', sans-serif",
+    fontWeight: "800",
     textTransform: "uppercase",
+    textDecoration: "none",
   },
   // Two sizes: sm and md
 

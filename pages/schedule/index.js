@@ -2,7 +2,7 @@ import { Tab, TabList, TabPanel, TabPanels, Tabs, Box } from "@chakra-ui/react";
 import { groupBy } from "lodash";
 import React from "react";
 import Hero from "../../common/Hero";
-import Layout from "../../common/Layout";
+import Layout from "../../components/Layout";
 import useBp from "../../theme/useBp";
 import ScheduleTabs from "./components/ScheduleTabs";
 

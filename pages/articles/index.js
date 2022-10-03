@@ -10,7 +10,7 @@ import { fetchAPI } from "lib/api";
 import { sortBy } from "lodash";
 import React, { useCallback, useState, useEffect } from "react";
 import Hero from "../../common/Hero";
-import Layout from "../../common/Layout";
+import Layout from "../../components/Layout";
 import ArticleCard from "../../components/Articles/ArticleCard";
 import useBp from "../../theme/useBp";
 
@@ -102,6 +102,7 @@ const News = ({ articles, categories }) => {
                     ? category.articles.map((article) => {
                         return (
                           <ArticleCard
+                            href={"/articles/"}
                             article={article}
                             // highlight={category.articles.length === 1}
                           ></ArticleCard>

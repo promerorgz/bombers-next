@@ -1,7 +1,7 @@
 import { Box, Flex, Heading, Text, Stack, Link } from "@chakra-ui/react";
 import BgImage from "common/BgImage";
 import Hero from "common/Hero";
-import Layout from "common/Layout";
+import Layout from "components/Layout";
 import React from "react";
 
 const Golf = () => {

@@ -1,6 +1,6 @@
 import React from "react";
 import { fetchAPI } from "../lib/api";
-import Layout from "../common/Layout";
+import Layout from "../components/Layout";
 import Link from "next/link";
 import Hero from "../common/Hero";
 import { Flex, Heading, Stack, Box } from "@chakra-ui/react";

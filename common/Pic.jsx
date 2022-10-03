@@ -11,9 +11,10 @@ const Image = ({
   fit,
   size,
   borderRadius,
-  src,
+  src = "/images/defaultpic.png",
 }) => {
   const imageUrl = getStrapiMedia(image);
+  console.log({ imageUrl });
   return (
     <Img
       borderRadius={borderRadius || "0px"}

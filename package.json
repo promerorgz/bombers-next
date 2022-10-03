@@ -19,6 +19,7 @@
     "@emotion/styled": "^11.8.1",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-brands-svg-icons": "^6.1.1",
+    "@fortawesome/free-solid-svg-icons": "^6.2.0",
     "@fortawesome/react-fontawesome": "^0.1.18",
     "@mdx-js/loader": "^2.1.1",
     "@mdx-js/react": "^2.1.1",
@@ -40,6 +41,7 @@
     "react-moment": "^1.1.2",
     "react-scroll-into-view": "^1.12.0",
     "remark-gfm": "^3.0.1",
+    "sass": "^1.54.9",
     "styled-components": "^5.3.5"
   },
   "license": "MIT",

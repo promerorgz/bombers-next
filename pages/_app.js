@@ -9,7 +9,7 @@ import { createContext } from "react";
 import { fetchAPI } from "../lib/api";
 import theme from "../theme";
 import "../theme/embla.css";
-import "../theme/globalStyles.css";
+import "../theme/globalStyles.scss";
 import "../theme/nprogress.css";
 
 // Store Strapi Global object in context

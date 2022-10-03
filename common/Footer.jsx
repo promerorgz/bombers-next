@@ -30,10 +30,10 @@ const FooterListItem = ({ children, justifyContent, ...props }) => {
   );
 };
 
-const Footer = ({ sponsors }) => {
+const Footer = ({ sponsors, ...props }) => {
   const { navs } = useNav();
   return (
-    <>
+    <Box {...props}>
       <VStack spacing="4" bg="brand.black" p="4">
         <FooterListItem>
           <Pic
@@ -52,8 +52,11 @@ const Footer = ({ sponsors }) => {
           <Grid templateColumns="repeat(1, 1fr)" gap={2}>
             {navs?.map((nav) => {
               return (
-                <GridItem id={nav.slug}>
-                  <Link href={`/${nav?.slug}`} passHref>
+                <GridItem id={nav.slug} key={nav.slug}>
+                  <Link
+                    href={`/${nav?.slug === "home" ? "" : nav?.slug}`}
+                    passHref
+                  >
                     <ChakraLink
                       fontFamily="Big Shoulders Display"
                       fontSize="xl"
@@ -100,7 +103,7 @@ const Footer = ({ sponsors }) => {
           </Text>
         </HStack>
       </Flex>
-    </>
+    </Box>
   );
 };
 

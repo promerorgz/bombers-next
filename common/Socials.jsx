@@ -1,12 +1,11 @@
-import { Flex, Button, Stack } from "@chakra-ui/react";
+import { Button, HStack, Stack, Text } from "@chakra-ui/react";
 import {
   faFacebookSquare,
   faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
-import VenmoIcon from "../icons/Venmo";
 import Link from "next/link";
+import VenmoIcon from "../icons/Venmo";
 
 const Socials = ({ color, size }) => {
   const socials = [
@@ -42,27 +41,42 @@ const Socials = ({ color, size }) => {
   return (
     <Stack
       direction="row"
-      justifyContent="flex-end"
+      justifyContent="flex-start"
       alignItems="center"
-      spacing={5}
+      spacing={2}
     >
-      {socials.map((page) => {
-        return (
-          <Link href={page?.url} target="_blank" key={page?.url} passHref>
-            <Button variant="link" as="a" pb="3" m="2">
-              {page.name === "venmo" ? (
-                <VenmoIcon size={size || "lg"} color={iconColor || "white"} />
-              ) : (
-                <FontAwesomeIcon
-                  color={iconColor || "white"}
-                  size={iconSize || "1x"}
-                  icon={page.icon}
-                />
-              )}
-            </Button>
-          </Link>
-        );
-      })}
+      <Text
+        color="brand.light"
+        fontFamily="Montserrat"
+        fontWeight="bold"
+        fontSize="sm"
+      >
+        Follow us:
+      </Text>
+      <HStack spacing={0}>
+        {socials.map((page) => {
+          return (
+            <>
+              <Link href={page?.url} target="_blank" key={page?.url} passHref>
+                <Button variant="link" as="a" pb="3">
+                  {page.name === "venmo" ? (
+                    <VenmoIcon
+                      size={size || "lg"}
+                      color={iconColor || "white"}
+                    />
+                  ) : (
+                    <FontAwesomeIcon
+                      color={iconColor || "white"}
+                      size={iconSize || "1x"}
+                      icon={page.icon}
+                    />
+                  )}
+                </Button>
+              </Link>
+            </>
+          );
+        })}
+      </HStack>
     </Stack>
   );
 };

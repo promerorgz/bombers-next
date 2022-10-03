@@ -2,7 +2,7 @@ import { Link as ChakraLink, Stack, Text } from "@chakra-ui/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
-import Layout from "../../../common/Layout";
+import Layout from "../../../components/Layout";
 import PlayerList from "../../../components/Players/PlayerList";
 import Sponsors from "../../../components/Sponsors";
 import { fetchAPI } from "../../../lib/api";

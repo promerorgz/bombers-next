@@ -1,3 +1,4 @@
+import { Box } from "@chakra-ui/react";
 import styled from "styled-components";
 
 const offset = "2rem";
@@ -66,4 +67,18 @@ export const Info = styled.div`
   flex: 1;
   padding: ${offset};
   background-color: #fff;
+`;
+
+export const FormatMd = styled(Box)`
+  margin: 12px auto;
+  ol {
+    list-style-type: inherit;
+  }
+  li::marker {
+    display: inline-block;
+    color: var(--chakra-colors-brand-black);
+    font-weight: bold;
+    font-size: larger;
+    margin: 2px;
+  }
 `;
