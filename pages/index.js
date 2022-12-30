@@ -1,4 +1,3 @@
-import { VStack } from "@chakra-ui/react";
 import NewsReel from "components/NewsReel";
 import Layout from "../components/Layout";
 import Sponsors from "../components/Sponsors";
