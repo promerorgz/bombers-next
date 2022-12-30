@@ -15,19 +15,18 @@ const Mdx = (props) => {
       5: "xs",
     };
     return (
-      console.log({ node, ...props }) || (
-        <Heading
-          my="8"
-          as={node.tagName}
-          size={size[props.level]}
-          {...props}
-        ></Heading>
-      )
+      <Heading
+        my="8"
+        as={node.tagName}
+        size={size[props.level]}
+        {...props}
+      ></Heading>
     );
   };
 
-  const format = ({ node, ...props }) =>
-    console.log({ node, props }) || <FormatMd as={node.tagName} {...props} />;
+  const format = ({ node, ...props }) => (
+    <FormatMd as={node.tagName} {...props} />
+  );
 
   return (
     <ReactMarkdown

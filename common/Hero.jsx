@@ -176,7 +176,6 @@ const Hero = ({
             </Stack>
           </Flex>
         )}
-        {console.log({ contentLink })}
         {contentLink && (
           <Center
             alignItems="flex-end"

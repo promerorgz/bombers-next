@@ -3,8 +3,9 @@ import { groupBy } from "lodash";
 import React, { useEffect, useState } from "react";
 import Pic from "../../common/Pic";
 import useBp from "../../theme/useBp";
+import { SponsorContainer, SponsorsTitle } from "./styles";
 
-const Sponsors = ({ sponsors = [], forFooter }) => {
+const Sponsors = ({ level, forFooter, sponsors = [], ...props }) => {
   const [columns, setColumns] = useState(sponsors.length);
   const [isDesktop] = useBp();
 
@@ -34,31 +35,22 @@ const Sponsors = ({ sponsors = [], forFooter }) => {
       })}
     </Wrap>
   ) : (
-    <Center minH="2xs" bg="brand.white" p="8" w="100%">
-      <Grid
-        gap="12"
-        templateColumns={`repeat(${columns}, 1fr)`}
-        justifyContent="space-evenly"
-        w="100%"
-        // direction={["column", "column", "column", "row"]}
-      >
-        {sponsors?.map((sponsor) => {
-          const logo = sponsor?.image?.url || sponsor.logo;
-          return (
-            <GridItem display="flex" justifyContent="center" key={sponsor.name}>
-              <Pic
-                style={{
-                  width: 100,
-                  height: 100,
-                }}
-                src={logo}
-                fit="contain"
-              ></Pic>
-            </GridItem>
-          );
-        })}
-      </Grid>
-    </Center>
+    <SponsorContainer>
+      <SponsorsTitle>Main Partners</SponsorsTitle>
+      {sponsors.map((sponsor) => (
+        <Pic
+          fit="contain"
+          style={{
+            height: 100,
+            width: 100,
+            height: "4rem",
+            opacity: 0.4,
+            marginLeft: "2.8rem",
+          }}
+          src={sponsor.image.url || sponsor.logo}
+        ></Pic>
+      ))}
+    </SponsorContainer>
   );
 };
 

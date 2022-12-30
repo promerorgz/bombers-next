@@ -20,7 +20,6 @@ const ArticleCard = ({
   highlight = false,
   isDesktop,
 }) => {
-  console.log({ href });
   const direction = useBreakpointValue({
     base: "row",
     xs: "column",

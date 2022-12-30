@@ -4,11 +4,13 @@ import { getPosition } from "./utils";
 import classes from "./players.module.css";
 
 const List = ({ players, noClick, title }) => {
-  return (
-    <Box m={16}>
-      <Heading m={16}>{title}</Heading>
-      <SimpleGrid columns={[1, 1, 3]} spacing={10} m={16}>
-        {players.length ? (
+  return !players ? (
+    <>Nothing found here</>
+  ) : (
+    <Box m={[0, 0, 0, 8, 16]} id="players-list">
+      <Heading m={[8, 16]}>{title}</Heading>
+      <SimpleGrid columns={[1, 1, 3]} spacing={10} m={[0, 0, 8, 16]}>
+        {players?.length ? (
           players?.map((player) => {
             const { picture, hoverPic } = player;
 
@@ -21,7 +23,7 @@ const List = ({ players, noClick, title }) => {
                 key={`${player?.first_name}-${player?.last_name}-card`}
                 radius="8px"
                 id="player-card"
-                as={`/team/${player.division.toLowerCase()}/${player?.slug}`}
+                as={`/team/${player?.division?.toLowerCase()}/${player?.slug}`}
                 link={noClick ? "" : "/team/[division]/[id]"}
                 styles={{
                   minHeight: "370px",

@@ -1,14 +1,18 @@
-import React from "react";
 import {
   Box,
   Button,
-  Center,
   Flex,
   HStack,
   Link as ChakraLink,
   LinkBox,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
 } from "@chakra-ui/react";
-import Link from "next/link";
+import { ChevronDownIcon } from "@chakra-ui/icons";
+
+import Link from "common/Link";
 import NavLogo from "./NavLogo";
 
 const DesktopNav = ({ navs }) => {
@@ -25,7 +29,7 @@ const DesktopNav = ({ navs }) => {
         {/* bombers logo */}
         <NavLogo />
         {/* navs */}
-        <HStack flex="1" spacing={10} size="150px" justifyContent="center">
+        <HStack flex="1" spacing={2} size="150px" justifyContent="center">
           {navs?.map(
             (nav) =>
               !nav.hide && (
@@ -38,13 +42,17 @@ const DesktopNav = ({ navs }) => {
                   color="brand.black"
                   _hover={{
                     color: "#212121",
-
                     borderBottom: "3px solid #212121",
                   }}
                 >
-                  {nav.name !== "more" ? (
-                    <Link key={nav.name} href={`/${nav.slug}`}>
-                      <ChakraLink
+                  {!nav.subMenus?.length ? (
+                    <Link key={nav.name} href={`/${nav.slug}`} passHref>
+                      {nav.name.toUpperCase()}
+                    </Link>
+                  ) : (
+                    <Menu flip>
+                      <MenuButton
+                        rightIcon={<ChevronDownIcon />}
                         color="brand.black"
                         fontFamily="Montserrat"
                         textTransform="uppercase"
@@ -54,26 +62,32 @@ const DesktopNav = ({ navs }) => {
                           color: "#212121",
                           textDecoration: "none",
                         }}
+                        as={Button}
                       >
-                        {nav.name.toUpperCase()}
-                      </ChakraLink>
-                    </Link>
-                  ) : (
-                    <Box
-                      onClick={handleCheck}
-                      color="brand.black"
-                      fontFamily="Big Shoulders Display"
-                      textTransform="uppercase"
-                      fontWeight="bold"
-                      fontSize="xl"
-                      _hover={{
-                        color: "#212121",
-                        textDecoration: "none",
-                        cursor: "pointer",
-                      }}
-                    >
-                      More
-                    </Box>
+                        {nav.name}
+                      </MenuButton>
+                      <MenuList>
+                        {nav.subMenus?.map((sub) => {
+                          return (
+                            <MenuItem
+                              color="brand.black"
+                              fontFamily="Montserrat"
+                              textTransform="uppercase"
+                              fontWeight="bold"
+                              fontSize="sm"
+                              _hover={{
+                                color: "#212121",
+                                textDecoration: "none",
+                              }}
+                              key={sub.name}
+                              href={`/${sub.slug}`}
+                            >
+                              {sub.name}
+                            </MenuItem>
+                          );
+                        })}
+                      </MenuList>
+                    </Menu>
                   )}
                 </LinkBox>
               )

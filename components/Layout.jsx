@@ -24,16 +24,18 @@ const Layout = ({
           h="100%"
           flex="1 0 100%"
           bg={mainBg || "brand.light"}
+          mt={[100, "80px", "80px", 200]}
         >
           {header && (
-            <Heading m="8" as="h1" size="4xl">
+            <Heading m="8" as="h1" size={["2xl", "xl", "2xl", "3xl", "4xl"]}>
               {header}
             </Heading>
           )}
           {children}
         </Box>
-        <Footer sponsors={sponsors} as="footer" />
+        <Footer sponsors={sponsors} as="footer" id="footer" />
       </Flex>
+      {children}
     </Box>
   );
 };

@@ -1,14 +1,25 @@
-import { Box, Flex, HStack, IconButton, Button } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  HStack,
+  IconButton,
+  Button,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+} from "@chakra-ui/react";
 import { useState } from "react";
 import Drawer from "../../common/Drawer";
 import NavLink from "../../common/NavLink";
-
+import { RxPerson } from "react-icons/rx";
 import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
 import Logo from "../../common/Logo";
 import Socials from "../../common/Socials";
 import NavLogo from "./NavLogo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
 
 const TopNav = ({ navs }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,18 +49,55 @@ const TopNav = ({ navs }) => {
         justifyContent="space-between"
       >
         <Socials />
-        <Button
-          variant="solid"
-          bgImage="linear-gradient(90deg,#f8cf2c, #d2a800);"
-          _hover={{
-            borderColor: "brand.highlight",
-            bg: "brand.light",
-          }}
-          leftIcon={<FontAwesomeIcon icon={faUser} />}
-          size="sm"
-        >
-          Members
-        </Button>
+        <Menu>
+          <MenuButton>
+            <Button
+              as="a"
+              id="button-error"
+              variant="solid"
+              bgImage="linear-gradient(90deg,#f8cf2c, #d2a800);"
+              _hover={{
+                borderColor: "brand.highlight",
+                bg: "brand.light",
+              }}
+              leftIcon={<FontAwesomeIcon icon={faUser} />}
+              size="sm"
+            >
+              Members
+            </Button>
+          </MenuButton>
+          <MenuList>
+            <MenuItem
+              color="brand.black"
+              fontFamily="Montserrat"
+              textTransform="uppercase"
+              fontWeight="bold"
+              fontSize="sm"
+              textAlign="right"
+              _hover={{
+                color: "#212121",
+                textDecoration: "none",
+              }}
+            >
+              Login
+            </MenuItem>
+            <MenuItem
+              color="brand.black"
+              fontFamily="Montserrat"
+              textTransform="uppercase"
+              fontWeight="bold"
+              fontSize="sm"
+              textAlign="right"
+              _hover={{
+                color: "#212121",
+                textDecoration: "none",
+              }}
+              href={"/pay"}
+            >
+              Dues
+            </MenuItem>
+          </MenuList>
+        </Menu>
       </Flex>
       <Box id="mobile-view" display={["flex", "flex", "flex", "none"]} w="100%">
         <Flex my="1" px="4" justifyContent="space-between" alignItems="center">
