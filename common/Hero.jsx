@@ -13,7 +13,6 @@ import styled from "styled-components";
 import Pic from "../common/Pic";
 import { ChevronDownIcon, ChevronLeftIcon } from "@chakra-ui/icons";
 import { useRouter } from "next/router";
-import SliderHero from "./SliderHero";
 import ScrollIntoView from "react-scroll-into-view";
 
 const heightSizes = {

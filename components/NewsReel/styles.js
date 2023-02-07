@@ -14,6 +14,9 @@ export const HeroContainer = styled.div`
   img {
     border: 0;
   }
+  @media (max-width: 1025px) {
+    flex-wrap: wrap;
+  }
 `;
 
 export const HeroTile = styled.a`
@@ -30,11 +33,32 @@ export const HeroTile = styled.a`
     outline: 0;
   }
 
+  &.hero_tile__large {
+    width: 100%;
+    flex: 1 0 100%;
+  }
+
+  &.hero_tile__small {
+    width: 50%;
+    flex: 1 0 50%;
+  }
   @supports (transition: flex) {
     will-change: flex;
     transition: flex 0.3s;
   }
 
+  @media (max-width: 1025px) {
+    height: 50%;
+
+    .hero_tile__description {
+      .description {
+        display: none;
+      }
+      opacity: 1;
+      max-height: 10rem;
+      transition: opacity 0.6s 0.1s, max-height 0.6s;
+    }
+  }
   @media (min-width: 1025px) {
     width: 25%;
     :hover {
@@ -144,6 +168,14 @@ export const HeroTileGradient = styled.div`
   @media (min-width: 1025px) {
     top: 20%;
   }
+  @media (max-width: 1025px) {
+    top: -1px;
+    background: linear-gradient(
+      0deg,
+      var(--chakra-colors-brand-black) 6rem,
+      rgba(8, 14, 31, 0)
+    );
+  }
 `;
 
 export const HeroTitleExplainer = styled.div`
@@ -170,6 +202,7 @@ export const HeroTileTitle = styled.h4`
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   padding: 0 2rem;
+  font-weight: bold;
 
   @media (min-width: 1025px) {
     width: 20vw;
@@ -208,6 +241,9 @@ export const HeroTileMetaData = styled.div`
   font-size: 0.7rem;
   margin-top: 1rem;
   padding: 0 1rem;
+  @media (max-width: 1025px) {
+    margin: 0;
+  }
 `;
 
 export const ContentTag = styled.div`

@@ -50,7 +50,7 @@ export default extendTheme({
   fonts: {
     header: {
       fontWeight: "bold",
-      fontFamily: "Big Shoulders Display",
+      fontFamily: "'Montserrat', sans-serif",
       fontSize: "xl",
       color: "brand.black",
     },

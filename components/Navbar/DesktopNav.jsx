@@ -70,6 +70,8 @@ const DesktopNav = ({ navs }) => {
                         {nav.subMenus?.map((sub) => {
                           return (
                             <MenuItem
+                              as={"a"}
+                              zIndex={100}
                               color="brand.black"
                               fontFamily="Montserrat"
                               textTransform="uppercase"
@@ -82,7 +84,7 @@ const DesktopNav = ({ navs }) => {
                               key={sub.name}
                               href={`/${sub.slug}`}
                             >
-                              {sub.name}
+                              {sub.name || sub.title}
                             </MenuItem>
                           );
                         })}

@@ -1,5 +1,5 @@
 import { getStrapiMedia } from "../lib/media";
-import { Img, Skeleton } from "@chakra-ui/react";
+import { border, Img, Skeleton } from "@chakra-ui/react";
 
 const Image = ({
   image = {

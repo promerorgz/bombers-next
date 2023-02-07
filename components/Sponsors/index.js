@@ -36,7 +36,7 @@ const Sponsors = ({ level, forFooter, sponsors = [], ...props }) => {
     </Wrap>
   ) : (
     <SponsorContainer>
-      <SponsorsTitle>Main Partners</SponsorsTitle>
+      <SponsorsTitle>Our Sponsors</SponsorsTitle>
       {sponsors.map((sponsor) => (
         <Pic
           fit="contain"
@@ -46,6 +46,7 @@ const Sponsors = ({ level, forFooter, sponsors = [], ...props }) => {
             height: "4rem",
             opacity: 0.4,
             marginLeft: "2.8rem",
+            // filter: `contrast(0)`,
           }}
           src={sponsor.image.url || sponsor.logo}
         ></Pic>

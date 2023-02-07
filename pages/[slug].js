@@ -7,6 +7,7 @@ import { Flex, Heading, Stack, Box } from "@chakra-ui/react";
 import ReactMarkdown from "react-markdown";
 import Pic from "../common/Pic";
 import Form from "../common/Form";
+import { useRouter } from "next/router";
 
 const DynamicPage = ({ page }) => {
   return (
@@ -49,7 +50,7 @@ const DynamicPage = ({ page }) => {
                         <ReactMarkdown>{block.content}</ReactMarkdown>
                       </Box>
                       <Box w="50%" h="100%">
-                        <Pic src={block.image || ""}></Pic>
+                        <Pic borderRadius="10px" src={block.image || ""}></Pic>
                       </Box>
                     </Stack>
                   </Flex>
@@ -74,10 +75,7 @@ const DynamicPage = ({ page }) => {
 };
 
 export async function getStaticPaths() {
-  const pages = await fetchAPI(
-    "/pages",
-    process.env.NODE_ENV === "development"
-  );
+  const pages = await fetchAPI("/pages");
 
   return {
     paths: pages.map((page) => ({
@@ -90,14 +88,10 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const [page] =
-    (await fetchAPI(
-      `/pages?slug=${params.slug}`,
-      process.env.NODE_ENV === "development"
-    )) || {};
+  const [page] = (await fetchAPI(`/pages?slug=${params.slug}`)) || {};
 
   return {
-    props: { page },
+    props: { key: page.id, page },
     revalidate: 60,
   };
 }

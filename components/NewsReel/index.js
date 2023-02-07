@@ -16,6 +16,8 @@ import {
   HeroTitleExplainer,
 } from "./styles";
 import { AiOutlineClockCircle } from "react-icons/ai";
+import { useCallback } from "react";
+import { useMediaQuery } from "@chakra-ui/react";
 
 const NewsReel = ({ articles }) => {
   const features = useFeatures(articles);
@@ -23,6 +25,23 @@ const NewsReel = ({ articles }) => {
     Object.entries(formats).reduce((acc, [k, v]) => {
       return [...acc, { format: k, ...v }];
     }, []);
+  const [isSmallerThan1024] = useMediaQuery("(max-width: 1024px)", {
+    ssr: true,
+    fallback: false, // return false on the server, and re-evaluate on the client side
+  });
+
+  const getHeroClassName = useCallback(
+    (i) => {
+      if (isSmallerThan1024 && i === 0) {
+        return "hero_tile__large";
+      }
+      if (isSmallerThan1024 && i !== 0) {
+        return "hero_tile__small";
+      }
+      if (!isSmallerThan1024) return "";
+    },
+    [isSmallerThan1024]
+  );
 
   return (
     <HeroContainer id="hero-container">
@@ -33,7 +52,7 @@ const NewsReel = ({ articles }) => {
             passHref
             key={feature.name}
           >
-            <HeroTile>
+            <HeroTile className={getHeroClassName(i)}>
               <HeroTileImageContainer>
                 {reduceFormats(feature.image.formats).map((format) => {
                   return (
@@ -50,7 +69,7 @@ const NewsReel = ({ articles }) => {
                   {feature.title}
                 </HeroTileTitle>
                 <HeroTileDescription className="hero_tile__description">
-                  {feature.description}
+                  <div className="description">{feature.description}</div>
                   <HeroTileMeta>
                     <HeroTileMetaData>
                       <ContentTag>{feature.category.name}</ContentTag>

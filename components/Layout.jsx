@@ -3,16 +3,7 @@ import Footer from "../common/Footer";
 import Nav from "../components/Navbar";
 import Seo from "../common/Seo";
 
-const Layout = ({
-  children,
-  sponsors,
-  seo,
-  header,
-  margin,
-  bg,
-  mainBg,
-  id,
-}) => {
+const Layout = ({ children, sponsors, seo, header, bg, mainBg, id }) => {
   return (
     <Box id={id} h="100%">
       <Seo seo={seo} />
@@ -35,7 +26,6 @@ const Layout = ({
         </Box>
         <Footer sponsors={sponsors} as="footer" id="footer" />
       </Flex>
-      {children}
     </Box>
   );
 };
