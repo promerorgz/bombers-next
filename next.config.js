@@ -1,5 +1,8 @@
 module.exports = {
   pageExtensions: ["js", "jsx"],
+  compiler: {
+    styledComponents: true,
+  },
   env: {
     strapi: "https://bombers-backend.herokuapp.com",
   },

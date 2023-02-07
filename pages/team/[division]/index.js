@@ -12,21 +12,52 @@ const Players = ({ list, division }) => {
     { display: "D1", url: "d1" },
     { display: "D3", url: "d3" },
     { display: "Staff", url: "coaches-and-staff" },
-    // { display: "Board", url: "board" },
-    // { display: "Legends", url: "legends" },
+    { display: "Board", url: "board" },
+    { display: "Legends", url: "legends" },
   ];
 
   const router = useRouter();
 
   return (
     <>
-      <Layout seo={{ metaTitle: router.query.division.toUpperCase() }} margin>
-        <Stack direction="horizontal" ml={16}>
+      <Layout
+        seo={{ metaTitle: router?.query?.division?.toUpperCase() }}
+        margin
+      >
+        <Stack
+          direction="horizontal"
+          gap={3}
+          overflowX="scroll"
+          bg="brand.white"
+          position="relative"
+          padding="24px 8px 0"
+          maxW="100%"
+        >
           {routes.map(({ url, display }) => {
             const isCurrentRoute = router?.query?.division === url;
             return (
               <Link href={`/team/${url}`} passHref>
-                <ChakraLink m={8}>
+                <ChakraLink
+                  px="8"
+                  borderRadius=".2rem"
+                  color="brand.medium"
+                  bg="brand.white"
+                  _active={{
+                    textDecoration: "none",
+                  }}
+                  sx={{
+                    minWidth: 120,
+                    maxWidth: 120,
+                    textAlign: "center",
+                    fontFamily: '"Montserrat", sans-serif',
+                    fontWeight: 400,
+                    textTransform: "uppercase",
+                    fontSize: "1.2rem",
+                    padding: "2px 8px",
+                    transition: "background-color .2s ease, color .2s ease",
+                    zIndex: 10,
+                  }}
+                >
                   <Text
                     sx={{
                       fontWeight: isCurrentRoute ? 800 : 400,

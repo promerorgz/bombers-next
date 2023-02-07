@@ -56,24 +56,19 @@ const Socials = ({ color, size }) => {
       <HStack spacing={0}>
         {socials.map((page) => {
           return (
-            <>
-              <Link href={page?.url} target="_blank" key={page?.url} passHref>
-                <Button variant="link" as="a" pb="3">
-                  {page.name === "venmo" ? (
-                    <VenmoIcon
-                      size={size || "lg"}
-                      color={iconColor || "white"}
-                    />
-                  ) : (
-                    <FontAwesomeIcon
-                      color={iconColor || "white"}
-                      size={iconSize || "1x"}
-                      icon={page.icon}
-                    />
-                  )}
-                </Button>
-              </Link>
-            </>
+            <Link href={page?.url} target="_blank" key={page?.url} passHref>
+              <Button variant="link" as="a" pb="3">
+                {page.name === "venmo" ? (
+                  <VenmoIcon size={size || "lg"} color={iconColor || "white"} />
+                ) : (
+                  <FontAwesomeIcon
+                    color={iconColor || "white"}
+                    size={iconSize || "1x"}
+                    icon={page.icon}
+                  />
+                )}
+              </Button>
+            </Link>
           );
         })}
       </HStack>

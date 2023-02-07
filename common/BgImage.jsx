@@ -52,14 +52,16 @@ const BgImage = ({
       width={width}
       height={height}
     >
-      <Image
-        alt={imgalt}
-        src={src}
-        layout="fill"
-        objectFit={fit}
-        quality={80}
-        objectPosition={position}
-      />
+      {src ? (
+        <Image
+          alt={imgalt}
+          src={src}
+          layout="fill"
+          objectFit={fit}
+          quality={80}
+          objectPosition={position}
+        />
+      ) : null}
       {children && <InnerContainer>{children}</InnerContainer>}
     </Container>
   );

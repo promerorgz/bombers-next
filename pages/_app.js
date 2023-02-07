@@ -8,7 +8,6 @@ import Head from "next/head";
 import { createContext } from "react";
 import { fetchAPI } from "../lib/api";
 import theme from "../theme";
-import "../theme/embla.css";
 import "../theme/globalStyles.scss";
 import "../theme/nprogress.css";
 
@@ -45,7 +44,7 @@ const MyApp = ({ Component, pageProps }) => {
       <PayPalScriptProvider options={initialOptions}>
         <GlobalContext.Provider value={global}>
           <ChakraProvider theme={theme}>
-            <TopProgressBar />
+            {/* <TopProgressBar /> */}
             <Component {...pageProps} />
           </ChakraProvider>
         </GlobalContext.Provider>

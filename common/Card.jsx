@@ -61,7 +61,7 @@ const Card = ({
   return makeClickable(
     <BgImage
       // alignItems="center"
-      imgalt={bgProps.alt || "background image"}
+      imgalt={bgProps?.alt || "background image"}
       src={bg}
       height={"50vh"}
       justifyContent="center"

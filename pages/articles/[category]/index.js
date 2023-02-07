@@ -32,8 +32,6 @@ const defaultArticle = {
 };
 
 const Article = ({ articles }) => {
-  console.log({ articles });
-
   return (
     <Layout seo={{}} mainBg="brand.black">
       {articles.map((article) => (
@@ -57,7 +55,6 @@ const Article = ({ articles }) => {
 
 export async function getStaticPaths() {
   const categories = await fetchAPI("/categories");
-  console.log({ categories });
 
   return {
     paths: categories.map(({ name }) => ({
@@ -70,12 +67,10 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  console.log({ params });
   const articles = await fetchAPI(
     `/articles?[category.name]=${params.category}&status=published`
   );
 
-  console.log({ articles });
   return {
     props: { articles },
     revalidate: 60 * 60 * 60,

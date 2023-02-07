@@ -1,11 +1,12 @@
 import { Box, Flex, Heading, SimpleGrid } from "@chakra-ui/react";
+import Sponsors from "components/Sponsors";
 import { fetchAPI } from "lib/api";
 import React, { useState } from "react";
 import Card from "../../common/Card";
 import Layout from "../../components/Layout";
 import useBp from "../../theme/useBp";
 
-const TeamHome = ({ players, coaches }) => {
+const TeamHome = ({ players, coaches, ...props }) => {
   const [selectedTab, setSelectedTab] = useState(0);
   const [heroSize, setHeroSize] = useState("md");
   const [isDesktop] = useBp();
@@ -38,7 +39,12 @@ const TeamHome = ({ players, coaches }) => {
   ];
   return (
     <Layout seo={{ metaTitle: "Team" }} header="Players and Staff">
-      <SimpleGrid columns={{ sm: 1, md: 2, lg: 3 }} spacing={10} m={16}>
+      <SimpleGrid
+        h="100%"
+        columns={{ sm: 1, md: 2, lg: 3 }}
+        spacing={[0, 0, 5, 10]}
+        m={[0, 0, 8, 16]}
+      >
         {teams.map((team) => {
           return (
             <Card
@@ -99,7 +105,7 @@ const TeamHome = ({ players, coaches }) => {
           );
         })}
       </SimpleGrid>
-      <Box minH="20vh"></Box>
+      <Sponsors />
     </Layout>
   );
 };

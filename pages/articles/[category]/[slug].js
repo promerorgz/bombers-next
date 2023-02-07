@@ -47,7 +47,6 @@ const defaultArticle = {
 };
 
 const Article = ({ article }) => {
-  console.log({ article });
   const [isDesktop] = useBp();
 
   const imageUrl = getStrapiMedia(article?.image);
@@ -134,7 +133,12 @@ const Article = ({ article }) => {
           m="auto"
         >
           <Box w="70%" m="auto" p="8" h="100%">
-            <HeroTileMeta justify="flex-start" margin="8px" padding="0">
+            <HeroTileMeta
+              justify="flex-start"
+              margin="8px"
+              padding="0"
+              color="meta"
+            >
               {meta.map((item) => (
                 <div className={item?.type || "dateTag"} key={item.name}>
                   {item.content}
@@ -201,7 +205,6 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  console.log({ params });
   const [article] =
     (await fetchAPI(`/articles?uid=${params.slug}&status=published`)) || {};
 

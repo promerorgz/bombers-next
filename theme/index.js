@@ -36,6 +36,12 @@ export default extendTheme({
       caption:
         "linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(170,170,170,1) 8%, rgba(33,33,33,1) 100%)",
       regular: "linear-gradient(90deg, #212121 0, #404040)",
+      background: `linear-gradient(
+        0deg,
+        var(--chakra-colors-brand-black) 0,
+        var(--chakra-colors-brand-black) 30%,
+        var(--chakra-colors-brand-medium)
+      );`,
     },
     shadow: {
       1: "box-shadow: 0px 4px 4px 0px #00000040",
@@ -44,7 +50,7 @@ export default extendTheme({
   fonts: {
     header: {
       fontWeight: "bold",
-      fontFamily: "Big Shoulders Display",
+      fontFamily: "'Montserrat', sans-serif",
       fontSize: "xl",
       color: "brand.black",
     },
