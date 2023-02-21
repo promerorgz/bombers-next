@@ -1,4 +1,4 @@
-import { fetchAPI } from "./api";
+import { fetchAPI } from "../lib/api";
 import { useState, useEffect } from "react";
 
 const useNav = () => {
@@ -67,6 +67,7 @@ const useNav = () => {
         subMenus: more,
       },
     ],
+    subMenus: more,
   };
 };
 

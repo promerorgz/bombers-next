@@ -5,14 +5,13 @@ import {
   InputLeftAddon,
   Radio,
   RadioGroup,
-  Stack,
   SimpleGrid,
 } from "@chakra-ui/react";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const DonateButton = ({ onApprove }) => {
-  const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
+  const [{ options }, dispatch] = usePayPalScriptReducer();
   const [donationAmount, setDonationAmount] = useState("10");
   const [customAmount, setCustomAmount] = useState(0);
   const [value, setValue] = useState(10);
@@ -22,7 +21,7 @@ const DonateButton = ({ onApprove }) => {
       type: "resetOptions",
       value: { ...options, intent: "capture" },
     });
-  }, []);
+  }, [dispatch, options]);
 
   useEffect(() => {
     setValue(donationAmount === "custom" ? customAmount : donationAmount);

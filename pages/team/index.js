@@ -1,15 +1,9 @@
 import { Box, Flex, Heading, SimpleGrid } from "@chakra-ui/react";
 import Sponsors from "components/Sponsors";
-import { fetchAPI } from "lib/api";
-import React, { useState } from "react";
 import Card from "../../common/Card";
 import Layout from "../../components/Layout";
-import useBp from "../../theme/useBp";
 
 const TeamHome = ({ players, coaches, ...props }) => {
-  const [selectedTab, setSelectedTab] = useState(0);
-  const [heroSize, setHeroSize] = useState("md");
-  const [isDesktop] = useBp();
   const teams = [
     {
       displayName: "Division 1",
@@ -111,6 +105,3 @@ const TeamHome = ({ players, coaches, ...props }) => {
 };
 
 export default TeamHome;
-
-// fetchAPI("/players?_sort=last_name:asc"),
-// fetchAPI("/coaches?_sort=id:asc"),

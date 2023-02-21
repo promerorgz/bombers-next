@@ -3,6 +3,7 @@ module.exports = {
   compiler: {
     styledComponents: true,
   },
+  // largePageDataBytes: 135,
   env: {
     strapi: "https://bombers-backend.herokuapp.com",
   },

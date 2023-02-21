@@ -1,7 +1,5 @@
-import { Box, Flex, Stack, Text, Heading, Button } from "@chakra-ui/react";
-import React from "react";
+import { Box, Flex, Heading, Stack } from "@chakra-ui/react";
 import Team from "./Team";
-import Link from "next/link";
 
 const GameInfo = ({
   homeTeam,

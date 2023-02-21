@@ -2,6 +2,7 @@ import { getStrapiMedia } from "../lib/media";
 import { border, Img, Skeleton } from "@chakra-ui/react";
 
 const Image = ({
+  className,
   image = {
     alternativeText: "",
     name: "",
@@ -13,9 +14,10 @@ const Image = ({
   borderRadius,
   src = "/images/defaultpic.png",
 }) => {
-  const imageUrl = getStrapiMedia(image);
+  const imageUrl = image && getStrapiMedia(image);
   return (
     <Img
+      className={className}
       borderRadius={borderRadius || "0px"}
       boxSize={size || "auto"}
       objectFit={fit || "cover"}

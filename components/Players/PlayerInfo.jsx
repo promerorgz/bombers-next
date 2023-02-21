@@ -1,17 +1,20 @@
-import React from "react";
-import { Stack, Heading, Center, Box } from "@chakra-ui/react";
-import { getFlag, getPosition } from "./utils";
+import { Center, Heading, Stack } from "@chakra-ui/react";
 import { formatDate } from "../../utils";
+import { getFlag, getPosition } from "./utils";
 
 const PlayerInfo = ({ player }) => {
   const data = [
     {
       label: "Date of Birth",
-      value: formatDate(player?.date_of_birth, "long"),
+      value: player?.date_of_birth
+        ? formatDate(player?.date_of_birth, "long")
+        : "?",
     },
     {
       label: "Age",
-      value: formatDate(player?.date_of_birth, "age"),
+      value: player?.date_of_birth
+        ? formatDate(player?.date_of_birth, "age")
+        : "?",
     },
     {
       label: "Height",
@@ -19,7 +22,7 @@ const PlayerInfo = ({ player }) => {
     },
     {
       label: "Weight",
-      value: `${player?.weight} lbs.` || "?",
+      value: player?.weight ? `${player?.weight} lbs.` : "?",
     },
     {
       label: "Nationality",
@@ -46,13 +49,16 @@ const PlayerInfo = ({ player }) => {
         {data?.map(({ label, value }) => {
           return (
             <Stack
-              alignItems="baseline"
+              alignItems="center"
               display="flex"
               spacing="3"
               direction="row"
             >
-              <Heading color="brand.black" size="lg" as="div" minW="80px">
-                {label}: {value}
+              <Heading color="brand.black" size="md" as="div" minW="80px">
+                {label}:
+              </Heading>
+              <Heading size="md" textTransform="capitalize" fontWeight="light">
+                {value}
               </Heading>
 
               <Center>
@@ -60,9 +66,9 @@ const PlayerInfo = ({ player }) => {
                   <Heading
                     as="div"
                     color="brand.medium"
-                    fontFamily="Staatliches"
+                    fontFamily="Montserrat"
                     fontWeight="light"
-                    size="lg"
+                    size="md"
                     minH="10%"
                     maxH="25%"
                   >

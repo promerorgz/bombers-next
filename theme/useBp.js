@@ -1,5 +1,4 @@
 import { useMediaQuery } from "@chakra-ui/react";
-import React from "react";
 
 const useBp = () => {
   const [isDesktop, isTablet, isMobile, isDisplayingInBrowser] = useMediaQuery([

@@ -1,5 +1,5 @@
 import { Box, Center, Flex, Heading, Stack, Button } from "@chakra-ui/react";
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment } from "react";
 import Card from "../../common/Card";
 import GameInfo from "./GameInfo";
 import Link from "next/link";

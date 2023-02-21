@@ -15,7 +15,7 @@ import Socials from "./Socials";
 import Pic from "./Pic";
 import Sponsors from "../components/Sponsors";
 import Link from "next/link";
-import useNav from "../lib/useNav";
+import useNav from "../hooks/useNav";
 
 const FooterListItem = ({ children, justifyContent, ...props }) => {
   return (

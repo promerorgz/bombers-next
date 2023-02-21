@@ -1,9 +1,7 @@
 import { Center, Heading, Stack } from "@chakra-ui/react";
-import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import Hero from "../../../common/Hero";
 import Layout from "../../../components/Layout";
-import Pic from "../../../common/Pic";
 import useBp from "../../../theme/useBp";
 import { getPosition } from "../../../components/Players/utils";
 import PlayerInfo from "../../../components/Players/PlayerInfo";
@@ -11,7 +9,6 @@ import { fetchAPI } from "lib/api";
 import BgImage from "common/BgImage";
 
 const Player = ({ player }) => {
-  const router = useRouter();
   const [direction, setDirection] = useState("row");
   const [isDesktop] = useBp();
 
@@ -67,7 +64,7 @@ export async function getStaticPaths() {
       },
     })),
 
-    fallback: false,
+    fallback: true,
   };
 }
 

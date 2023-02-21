@@ -20,7 +20,7 @@ const ScheduleGame = (props) => {
       (game) => router.query.slug === game.slug
     )[0];
     setGame(game);
-  }, []);
+  }, [props.games, router.query.slug]);
 
   const text = `${game?.home?.name} vs. ${game?.away?.name}`;
   const secondaryText = `${game?.division} · ${

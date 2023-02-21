@@ -1,10 +1,5 @@
-import {
-  Box,
-  Divider,
-  Flex,
-  Heading,
-  useBreakpointValue,
-} from "@chakra-ui/react";
+/* eslint-disable no-unused-vars */
+import { Box, Divider, Flex, Heading } from "@chakra-ui/react";
 import Mdx from "common/Mdx";
 import { format, formatDistanceToNow } from "date-fns";
 import { useEffect, useState } from "react";
@@ -102,8 +97,10 @@ const Article = ({ article }) => {
 
               case unit === "xYears":
                 return `${count} y`;
+
+              default:
+                return "%d hours";
             }
-            return "%d hours";
           },
         },
       }),

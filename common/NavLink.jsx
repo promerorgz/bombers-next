@@ -10,7 +10,7 @@ import {
   LinkBox,
   Box,
 } from "@chakra-ui/react";
-import useNav from "../lib/useNav";
+import useNav from "../hooks/useNav";
 
 const NavLink = ({ id, nav, onClick }) => {
   const navName = nav.name || nav.title;
@@ -59,11 +59,13 @@ const NavLink = ({ id, nav, onClick }) => {
           </Box>
           <AccordionIcon />
         </AccordionButton>
-        <AccordionPanel pb={4}>
-          {subMenus.map((item) => (
-            <NavLink id={item.id} nav={item} onClick={onClick} />
-          ))}
-        </AccordionPanel>
+        {subMenus.length && (
+          <AccordionPanel pb={4}>
+            {subMenus?.map((item) => (
+              <NavLink id={item.id} nav={item} onClick={onClick} />
+            ))}
+          </AccordionPanel>
+        )}
       </AccordionItem>
     </Accordion>
   ) : (

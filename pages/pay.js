@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Heading, Stack } from "@chakra-ui/react";
 import { PayPalButtons } from "@paypal/react-paypal-js";
 import Layout from "components/Layout";
@@ -5,8 +6,8 @@ import DonateButton from "components/Pay/DonateButton";
 import React, { useEffect, useState } from "react";
 import useBp from "theme/useBp";
 
-const pay = () => {
-  const [success, setSuccess] = useState(false);
+const Pay = () => {
+  const [_success, setSuccess] = useState(false);
 
   const [isDesktop] = useBp();
   const [direction, setDirection] = useState("row");
@@ -77,4 +78,4 @@ const pay = () => {
   );
 };
 
-export default pay;
+export default Pay;

@@ -4,7 +4,7 @@ const mediaQuery = (is, size) => {
     mobileM: 376,
     mobileL: 425,
     tablet: 767,
-    laptop: 1025,
+    laptop: 1024,
     laptopL: 1441,
   };
 
@@ -17,4 +17,6 @@ const mediaQuery = (is, size) => {
   }[is];
 };
 
-export default { breakpoint: (is, size) => mediaQuery(is, size) };
+const media = { breakpoint: (is, size) => mediaQuery(is, size) };
+
+export default media;

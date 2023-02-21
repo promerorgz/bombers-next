@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 export const debounce = (func, wait, immediate) => {
   var timeout;
   return function () {

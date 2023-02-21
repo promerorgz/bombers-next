@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { SimpleGrid } from "@chakra-ui/react";
 import ArticleCard from "components/Articles/ArticleCard";
 import styled from "styled-components";
@@ -46,7 +47,7 @@ const Article = ({ articles }) => {
                   ></ArticleCard>
                 );
               })
-            : `No ${category.name} article`}
+            : `No ${article.category.name} article`}
         </SimpleGrid>
       ))}
     </Layout>

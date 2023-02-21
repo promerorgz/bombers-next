@@ -1,10 +1,8 @@
-import { css } from "@emotion/react";
 import PageContent from "common/PageContent";
 import Games from "components/Games";
 import NewsReel from "components/NewsReel";
 import Section from "components/Section";
 import Layout from "../components/Layout";
-import Sponsors from "../components/Sponsors";
 import { fetchAPI } from "../lib/api";
 
 const Home = (props) => {
@@ -13,7 +11,7 @@ const Home = (props) => {
   return (
     <Layout sponsors={sponsors} seo={homepage.seo} bg="brand.light">
       <NewsReel articles={articles} />
-      <Sponsors sponsors={sponsors || []} />
+      {/* <Sponsors sponsors={sponsors || []} /> */}
       <PageContent>
         <Section
           rounded
@@ -41,6 +39,7 @@ export async function getStaticProps() {
       articles,
       homepage,
       sponsors,
+      games,
     },
     revalidate: 60,
   };

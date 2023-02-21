@@ -14,7 +14,7 @@ export const HeroContainer = styled.div`
   img {
     border: 0;
   }
-  @media (max-width: 1025px) {
+  @media (max-width: 1024px) {
     flex-wrap: wrap;
   }
 `;
@@ -47,7 +47,7 @@ export const HeroTile = styled.a`
     transition: flex 0.3s;
   }
 
-  @media (max-width: 1025px) {
+  @media (max-width: 1024px) {
     height: 50%;
 
     .hero_tile__description {
@@ -59,7 +59,7 @@ export const HeroTile = styled.a`
       transition: opacity 0.6s 0.1s, max-height 0.6s;
     }
   }
-  @media (min-width: 1025px) {
+  @media (min-width: 1024px) {
     width: 25%;
     :hover {
       width: 50%;
@@ -76,7 +76,7 @@ export const HeroTile = styled.a`
     }
   }
 
-  @media (min-width: 1025px) {
+  @media (min-width: 1024px) {
     @supports (transition: flex) {
       flex: 1 0 25%;
       :hover {
@@ -165,10 +165,10 @@ export const HeroTileGradient = styled.div`
   );
   will-change: top;
   transition: top 0.2s;
-  @media (min-width: 1025px) {
+  @media (min-width: 1024px) {
     top: 20%;
   }
-  @media (max-width: 1025px) {
+  @media (max-width: 1024px) {
     top: -1px;
     background: linear-gradient(
       0deg,
@@ -204,7 +204,7 @@ export const HeroTileTitle = styled.h4`
   padding: 0 2rem;
   font-weight: bold;
 
-  @media (min-width: 1025px) {
+  @media (min-width: 1024px) {
     width: 20vw;
   }
 `;
@@ -223,7 +223,7 @@ export const HeroTileDescription = styled.div`
     display: block;
     height: 1rem;
   }
-  @media (min-width: 1025px) {
+  @media (min-width: 1024px) {
     opacity: 1;
   }
 `;
@@ -241,7 +241,7 @@ export const HeroTileMetaData = styled.div`
   font-size: 0.7rem;
   margin-top: 1rem;
   padding: 0 1rem;
-  @media (max-width: 1025px) {
+  @media (max-width: 1024px) {
     margin: 0;
   }
 `;

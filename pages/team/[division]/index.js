@@ -79,20 +79,17 @@ const Players = ({ list, division }) => {
 
 export async function getStaticPaths() {
   return {
-    paths: ["/team/d1", "/team/d3", "/team/coaches-and-staff", "/team/alumni"],
-    fallback: true,
+    paths: ["/team/d1", "/team/d3", "/team/coaches-and-staff"],
+    fallback: false,
   };
 }
 
 export async function getStaticProps({ params, ...ctx }) {
   const { division } = params;
   const isPlayers = division === "d1" || division === "d3";
-  const urlMap = {
-    "coaches-and-staff": "/coaches",
-    alumni: "/alumni",
-  };
+
   const list = await fetchAPI(
-    isPlayers ? `/players?division=${division.toUpperCase()}` : urlMap[division]
+    isPlayers ? `/players?division=${division.toUpperCase()}` : "/coaches"
   );
   return { props: { list, division } };
 }

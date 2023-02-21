@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 import Router from "next/router";
 import NProgress from "nprogress";
 

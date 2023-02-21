@@ -1,1 +1,1 @@
-const GOOGLE_PHOTOS_URL = ""
+export const GOOGLE_PHOTOS_URL = "";

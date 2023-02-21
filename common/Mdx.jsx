@@ -32,7 +32,7 @@ const Mdx = (props) => {
     <ReactMarkdown
       linkTarget="_blank"
       transformImageUri={(uri) => uri}
-      plugins={[gfm]}
+      remarkPlugins={[gfm]}
       components={{
         a: ({ node, ...props }) => (
           <Link

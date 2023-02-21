@@ -6,10 +6,8 @@ import {
   Text,
   useBreakpointValue,
 } from "@chakra-ui/react";
-import { formatISO } from "date-fns";
 import { toLower } from "lodash";
 import Link from "next/link";
-import React from "react";
 import ReactMarkdown from "react-markdown";
 import formatDate from "utils/formatDate";
 
@@ -28,9 +26,6 @@ const ArticleCard = ({
     lg: "row",
   });
 
-  const imageHeight = {
-    [`${highlight ? "min" : "max"}H`]: "250px",
-  };
   return (
     <Link
       as={`/articles/${toLower(article.category?.name)}/${

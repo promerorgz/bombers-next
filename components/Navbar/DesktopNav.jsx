@@ -1,17 +1,15 @@
 import {
-  Box,
   Button,
   Flex,
   HStack,
-  Link as ChakraLink,
   LinkBox,
   Menu,
   MenuButton,
   MenuItem,
   MenuList,
+  Show,
 } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
-
 import Link from "common/Link";
 import NavLogo from "./NavLogo";
 
@@ -22,12 +20,14 @@ const DesktopNav = ({ navs }) => {
       bg="brand.light"
       minH={120}
       p={4}
-      display={["none", "none", "none", "flex"]}
+      display={["none", "none", "flex", "flex"]}
       justifyContent={["space-evenly", "center", "center", "space-evenly"]}
     >
       <>
         {/* bombers logo */}
-        <NavLogo />
+        <Show breakpoint="(min-width: 1024px)">
+          <NavLogo />
+        </Show>
         {/* navs */}
         <HStack flex="1" spacing={2} size="150px" justifyContent="center">
           {navs?.map(

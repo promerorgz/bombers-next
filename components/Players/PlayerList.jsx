@@ -1,8 +1,8 @@
-import { Flex, Stack, Box } from "@chakra-ui/react";
-import React, { useCallback, useEffect, useState } from "react";
-import SearchBar from "../../common/SearchBar";
+/* eslint-disable no-unused-vars */
+import { Flex, Stack } from "@chakra-ui/react";
+import { useCallback } from "react";
 import List from "./List";
-import { matches, splitForwardsAndBacks } from "./utils";
+import { splitForwardsAndBacks } from "./utils";
 
 const PlayerList = ({ list = [], type }) => {
   const sortByPosition = useCallback(
@@ -15,20 +15,13 @@ const PlayerList = ({ list = [], type }) => {
     [type]
   );
 
-  const [players, setPlayers] = useState(sortByPosition(list));
-
-  // TODO: uncomment when search is implemented
-  // const handleChange = (e) => setSearch(e.target.value);
+  const players = sortByPosition(list);
 
   const { forwards, backs } = splitForwardsAndBacks(players);
 
   return (
     <Flex direction="column" spacing="8" bg="brand.white">
       <Stack direction="column" spacing="16">
-        {/* TODO: uncomment when search is implemented */}
-        {/* <Box px={16} pt={8}>
-          <SearchBar value={search} handleChange={handleChange} type={type} />
-        </Box> */}
         {type === "coaches-and-staff" ? (
           <List players={players} title="Coaches and Staff" noClick />
         ) : (

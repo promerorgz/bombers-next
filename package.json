@@ -5,12 +5,13 @@
   "scripts": {
     "develop": "concurrently --kill-others \"next dev\" \"./scripts/mobiledev.sh\"",
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run lint:fix && next build",
     "start": "next start",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "g:page": "./scripts/generate-page.sh",
-    "init:hard": "rm -rf ./node_modules && rm -rf ./package-lock.json && npm i"
+    "init:hard": "rm -rf ./node_modules && rm -rf ./package-lock.json && npm i",
+    "pretty": "prettier . -c"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.0.1",
@@ -50,6 +51,7 @@
     "@typescript-eslint/eslint-plugin": "^5.26.0",
     "babel-eslint": "10.x",
     "eslint": "^8.16.0",
+    "eslint-config-prettier": "^8.6.0",
     "eslint-config-react-app": "^7.0.1",
     "eslint-plugin-flowtype": "^8.0.3",
     "eslint-plugin-import": "^2.26.0",

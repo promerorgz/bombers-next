@@ -1,13 +1,4 @@
-import React from "react";
-import {
-  Box,
-  Button,
-  Center,
-  Flex,
-  Heading,
-  Stack,
-  VStack,
-} from "@chakra-ui/react";
+import { Box, Center, Flex, Heading, Stack } from "@chakra-ui/react";
 import Link from "next/link";
 
 const NavLogo = ({ size, color }) => {

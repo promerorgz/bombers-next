@@ -1,12 +1,12 @@
-import { Center, Wrap, Grid, GridItem, WrapItem } from "@chakra-ui/react";
-import { groupBy } from "lodash";
-import React, { useEffect, useState } from "react";
+/* eslint-disable no-unused-vars */
+import { Wrap, WrapItem } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 import Pic from "../../common/Pic";
 import useBp from "../../theme/useBp";
-import { SponsorContainer, SponsorsTitle } from "./styles";
+import { SponsorContainer, SponsorsTitle, SponsorList } from "./styles";
 
 const Sponsors = ({ level, forFooter, sponsors = [], ...props }) => {
-  const [columns, setColumns] = useState(sponsors.length);
+  const [_columns, setColumns] = useState(sponsors.length);
   const [isDesktop] = useBp();
 
   useEffect(() => {
@@ -37,20 +37,15 @@ const Sponsors = ({ level, forFooter, sponsors = [], ...props }) => {
   ) : (
     <SponsorContainer>
       <SponsorsTitle>Our Sponsors</SponsorsTitle>
-      {sponsors.map((sponsor) => (
-        <Pic
-          fit="contain"
-          style={{
-            height: 100,
-            width: 100,
-            height: "4rem",
-            opacity: 0.4,
-            marginLeft: "2.8rem",
-            // filter: `contrast(0)`,
-          }}
-          src={sponsor.image.url || sponsor.logo}
-        ></Pic>
-      ))}
+      <SponsorList>
+        {sponsors.map((sponsor) => (
+          <Pic
+            fit="contain"
+            className="sponsor_image"
+            src={sponsor.image.url || sponsor.logo}
+          ></Pic>
+        ))}
+      </SponsorList>
     </SponsorContainer>
   );
 };

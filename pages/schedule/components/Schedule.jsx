@@ -1,16 +1,14 @@
 import {
-  Box,
-  Divider,
-  Flex,
-  Stack,
-  Text,
   Accordion,
   AccordionButton,
   AccordionIcon,
   AccordionItem,
   AccordionPanel,
+  Box,
+  Divider,
+  Stack,
+  Text,
 } from "@chakra-ui/react";
-import React from "react";
 import GameInfo from "../../../components/Games/GameInfo";
 
 const Schedule = ({ upcoming }) => {

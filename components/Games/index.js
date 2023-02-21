@@ -1,8 +1,7 @@
-import { Grid, GridItem, Stack } from "@chakra-ui/react";
-import React, { useState, useEffect } from "react";
+import { Stack } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 import useBp from "../../theme/useBp";
 import GameCard from "./GameCard";
-import { toDate, fromUnixTime, isAfter } from "date-fns";
 
 const Games = ({ games = [] }) => {
   const isAfterToday = (date) => {

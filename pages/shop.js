@@ -1,16 +1,9 @@
-import { SimpleGrid, Box, Center, Text } from "@chakra-ui/react";
-import { Container } from "next/app";
-import React from "react";
+import { Center, SimpleGrid, Text } from "@chakra-ui/react";
 import Layout from "../components/Layout";
-import Hero from "../common/Hero";
-import useBp from "../theme/useBp";
 
-const shop = () => {
-  const [isDesktop] = useBp();
-  const size = isDesktop ? "md" : "xl";
+const Shop = () => {
   return (
     <Layout seo={{ metaTitle: "Team Store" }}>
-      <Hero text="Team Store" image="/images/mcb-hero.jpeg" size={size} />
       <SimpleGrid
         columns="1"
         spacing={8}
@@ -29,4 +22,4 @@ const shop = () => {
   );
 };
 
-export default shop;
+export default Shop;

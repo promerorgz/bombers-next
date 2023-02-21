@@ -1,18 +1,12 @@
 import {
-  SimpleGrid,
-  Flex,
-  Stack,
   Box,
-  Center,
   Link as ChakraLink,
-  Heading,
+  SimpleGrid,
+  Stack,
   Text,
 } from "@chakra-ui/react";
-import { indexOf } from "lodash";
-import React, { useState, useEffect } from "react";
-import ArticleCard from "./ArticleCard";
-import _dropRight from "lodash/dropRight";
 import Link from "next/link";
+import ArticleCard from "./ArticleCard";
 
 const Articles = ({ articles }) => {
   return (

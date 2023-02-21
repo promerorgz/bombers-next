@@ -1,13 +1,11 @@
-import React from "react";
-import { fetchAPI } from "../lib/api";
-import Layout from "../components/Layout";
+import { Box, Flex, Heading, Stack } from "@chakra-ui/react";
 import Link from "next/link";
-import Hero from "../common/Hero";
-import { Flex, Heading, Stack, Box } from "@chakra-ui/react";
 import ReactMarkdown from "react-markdown";
-import Pic from "../common/Pic";
 import Form from "../common/Form";
-import { useRouter } from "next/router";
+import Hero from "../common/Hero";
+import Pic from "../common/Pic";
+import Layout from "../components/Layout";
+import { fetchAPI } from "../lib/api";
 
 const DynamicPage = ({ page }) => {
   return (

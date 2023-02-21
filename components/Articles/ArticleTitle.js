@@ -1,5 +1,4 @@
 import { Text } from "@chakra-ui/react";
-import React from "react";
 import styled from "styled-components";
 
 export default styled(Text)`

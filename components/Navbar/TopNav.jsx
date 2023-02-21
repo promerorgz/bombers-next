@@ -1,33 +1,28 @@
+import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
 import {
   Box,
+  Button,
   Flex,
   HStack,
   IconButton,
-  Button,
   Menu,
   MenuButton,
-  MenuList,
   MenuItem,
+  MenuList,
 } from "@chakra-ui/react";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import Drawer from "../../common/Drawer";
 import NavLink from "../../common/NavLink";
-import { RxPerson } from "react-icons/rx";
-import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
-import Logo from "../../common/Logo";
 import Socials from "../../common/Socials";
 import NavLogo from "./NavLogo";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
-import Link from "next/link";
 
 const TopNav = ({ navs }) => {
   const [isOpen, setIsOpen] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [showSub, setShowSub] = useState(false);
 
-  const handleCheck = () => {
-    setShowSub(!showSub);
-  };
   const handleMenuOpen = () => setIsOpen(true);
   const onClose = () => {
     setShowSub(false);
@@ -44,7 +39,7 @@ const TopNav = ({ navs }) => {
     >
       <Flex
         w="100%"
-        display={["none", "none", "none", "flex"]}
+        display={["none", "none", "flex", "flex"]}
         mx={8}
         justifyContent="space-between"
       >
@@ -131,9 +126,10 @@ const TopNav = ({ navs }) => {
         </Flex>
         {isOpen && (
           <Drawer position="left" onClose={onClose} show={isOpen} size="lg">
-            {navs?.map((nav) => (
-              <NavLink nav={nav} id={nav.slug} onClick={onClose} />
-            ))}
+            {navs.length &&
+              navs?.map((nav) => (
+                <NavLink nav={nav} id={nav.slug} onClick={onClose} />
+              ))}
           </Drawer>
         )}
       </Box>
