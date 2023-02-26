@@ -11,8 +11,26 @@ import { fetchAPI } from "../../../lib/api";
 import { getStrapiMedia } from "../../../lib/media";
 import useBp from "../../../theme/useBp";
 import ArticleTitle, { ArticleSummary } from "components/Articles/ArticleTitle";
-import { HeroTileMeta } from "components/NewsReel/styles";
+import {
+  ContentTag,
+  ContentTime,
+  HeroTileMeta,
+} from "components/NewsReel/styles";
 import { enUS } from "date-fns/locale";
+import {
+  EmailIcon,
+  EmailShareButton,
+  FacebookIcon,
+  FacebookMessengerShareButton,
+  FacebookShareButton,
+  FacebookMessengerIcon,
+  FacebookShareCount,
+  TwitterIcon,
+  TwitterShareButton,
+  WhatsappIcon,
+  WhatsappShareButton,
+} from "react-share";
+import { useRouter } from "next/router";
 
 const ArticleHeader = styled.div`
   font-size: 44px;
@@ -41,8 +59,9 @@ const defaultArticle = {
   content: "",
 };
 
-const Article = ({ article }) => {
+const Article = ({ article, context }) => {
   const [isDesktop] = useBp();
+  const router = useRouter();
 
   const imageUrl = getStrapiMedia(article?.image);
   const [heroSize, setHeroSize] = useState("xs");
@@ -62,11 +81,13 @@ const Article = ({ article }) => {
     {
       name: "category",
       type: "categoryTag",
+      Component: ContentTag,
       content: article?.category?.name || "Story",
     },
     {
       name: "publishedAt",
       type: "dateTag",
+      Component: ContentTime,
       content: formatDistanceToNow(new Date(article?.publishedAt), {
         addSuffix: true,
         locale: {
@@ -130,41 +151,66 @@ const Article = ({ article }) => {
           m="auto"
         >
           <Box w="70%" m="auto" p="8" h="100%">
-            <HeroTileMeta
-              justify="flex-start"
-              margin="8px"
-              padding="0"
-              color="meta"
-            >
-              {meta.map((item) => (
-                <div className={item?.type || "dateTag"} key={item.name}>
-                  {item.content}
-                </div>
-              ))}
-            </HeroTileMeta>
             <ArticleTitle as="h1">{article?.title}</ArticleTitle>
             <ArticleSummary as="p">{article?.description}</ArticleSummary>
             <Flex gap="4" alignItems="center">
               <Box>
-                {
-                  <Pic
-                    image={article.author?.picture || ""}
-                    style={{
-                      position: "static",
-                      borderRadius: "50%",
-                      height: 30,
-                    }}
-                  />
-                }
+                <Pic
+                  image={article.author?.picture || ""}
+                  style={{
+                    position: "static",
+                    borderRadius: "50%",
+                    height: 30,
+                  }}
+                />
               </Box>
-              <Box>
-                <p>By {article?.author?.name || "Anonymous"}</p>
-                <p className="uk-text-meta uk-margin-remove-top">
-                  {format(new Date(article.publishedAt), "PPPp")}
-                </p>
+              <Box
+                display="flex"
+                flexDirection="row"
+                justifyContent="space-between"
+                w="100%"
+              >
+                <Box>
+                  <p>By {article?.author?.name || "Anonymous"}</p>
+                  <p className="uk-text-meta uk-margin-remove-top">
+                    {format(new Date(article.publishedAt), "PPPp")}
+                  </p>
+                </Box>
               </Box>
             </Flex>
-            <Divider size="1px" variant="solid" m="8" />
+            <Box py="8">
+              {`${process.env.HOST_URL || "http://localhost:3000"}${
+                router.asPath
+              }`}
+              <FacebookShareButton
+                url={`${process.env.HOST_URL || "http://localhost:3000"}${
+                  router.asPath
+                }`}
+                quote={"Dummy text!"}
+                hashtag="#muo"
+              >
+                <FacebookIcon size={32} round />
+              </FacebookShareButton>
+              <TwitterShareButton
+                url={`${process.env.HOST_URL || "http://localhost:3000"}${
+                  router.asPath
+                }`}
+                quote={"Dummy text!"}
+                hashtag="#muo"
+              >
+                <TwitterIcon size={32} round />
+              </TwitterShareButton>
+              <EmailShareButton>
+                <EmailIcon size={32} round></EmailIcon>
+              </EmailShareButton>
+              <WhatsappShareButton>
+                <WhatsappIcon size={32} round></WhatsappIcon>
+              </WhatsappShareButton>
+              <FacebookMessengerShareButton>
+                <FacebookMessengerIcon size={32} round></FacebookMessengerIcon>
+              </FacebookMessengerShareButton>
+            </Box>
+            <Divider size="1px" variant="solid" m="8" color="brand.black" />
             <Flex
               justifyContent="flex-start"
               m="auto"
@@ -187,7 +233,7 @@ const Article = ({ article }) => {
   );
 };
 
-export async function getStaticPaths() {
+export async function getStaticPaths(ctx) {
   const articles = await fetchAPI("/articles");
 
   return {
@@ -207,6 +253,7 @@ export async function getStaticProps({ params }) {
 
   return {
     props: { article },
+    // refetch every hr
     revalidate: 60 * 60 * 60,
   };
 }

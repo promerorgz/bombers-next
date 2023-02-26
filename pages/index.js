@@ -1,3 +1,4 @@
+import Hero from "common/Hero";
 import PageContent from "common/PageContent";
 import Games from "components/Games";
 import NewsReel from "components/NewsReel";

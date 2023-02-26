@@ -45,7 +45,7 @@ const NewsReel = ({ articles }) => {
 
   return (
     <HeroContainer id="hero-container">
-      {features.map((feature, i) => {
+      {features?.map((feature, i) => {
         return (
           <Link
             href={`/articles/${feature.category.name}/${feature.slug}`}

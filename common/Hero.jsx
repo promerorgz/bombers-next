@@ -24,7 +24,6 @@ const heightSizes = {
 };
 const Diagonal = styled.div`
   font-family: "Montserrat";
-  margin-top: 200px;
   font-weight: 900;
   line-height: 65px;
   text-transform: uppercase;

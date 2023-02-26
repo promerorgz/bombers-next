@@ -9,6 +9,7 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
+  Text,
 } from "@chakra-ui/react";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -45,21 +46,8 @@ const TopNav = ({ navs }) => {
       >
         <Socials />
         <Menu>
-          <MenuButton>
-            <Button
-              as="a"
-              id="button-error"
-              variant="solid"
-              bgImage="linear-gradient(90deg,#f8cf2c, #d2a800);"
-              _hover={{
-                borderColor: "brand.highlight",
-                bg: "brand.light",
-              }}
-              leftIcon={<FontAwesomeIcon icon={faUser} />}
-              size="sm"
-            >
-              Members
-            </Button>
+          <MenuButton as={Button} size="default" variant="expandy">
+            <FontAwesomeIcon icon={faUser} className="icon" />
           </MenuButton>
           <MenuList>
             <MenuItem
@@ -111,8 +99,8 @@ const TopNav = ({ navs }) => {
           </Flex>
           <Flex flexGrow="1" justifyContent="flex-end">
             <Button
-              variant="solid"
-              bgImage="linear-gradient(90deg,#f8cf2c, #d2a800);"
+              variant="outline"
+              isRound
               _hover={{
                 borderColor: "brand.highlight",
                 bg: "brand.light",

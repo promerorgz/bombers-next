@@ -1,4 +1,11 @@
-import { Box, Center, Flex, Heading, Stack } from "@chakra-ui/react";
+import {
+  Box,
+  Center,
+  Flex,
+  Heading,
+  Stack,
+  Link as ChakraLink,
+} from "@chakra-ui/react";
 import Link from "next/link";
 
 const NavLogo = ({ size, color }) => {
@@ -6,7 +13,14 @@ const NavLogo = ({ size, color }) => {
   return (
     <Center minW="100px" p={4}>
       <Link href={`/`}>
-        <a>
+        <ChakraLink
+          _hover={{
+            color: "inherit",
+          }}
+          style={{
+            textDecoration: "none",
+          }}
+        >
           <Flex direction="row" alignItems="center" justifyContent="flex-start">
             <Box mr={3}>
               <img
@@ -32,7 +46,7 @@ const NavLogo = ({ size, color }) => {
               </Heading>
             </Stack>
           </Flex>
-        </a>
+        </ChakraLink>
       </Link>
     </Center>
   );

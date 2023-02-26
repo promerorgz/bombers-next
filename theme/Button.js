@@ -8,6 +8,11 @@ const Button = {
   },
   // Two sizes: sm and md
   sizes: {
+    default: {
+      fontSize: "md",
+      px: 2, // <-- px is short for paddingLeft and paddingRight
+      py: 2,
+    },
     sm: {
       fontSize: "sm",
       px: 4, // <-- px is short for paddingLeft and paddingRight
@@ -21,6 +26,35 @@ const Button = {
   },
   // Two variants: outline and solid
   variants: {
+    expandy: {
+      color: "white",
+      textDecoration: "none",
+      borderRadius: "60px",
+      height: "32px",
+      display: "inline-flex",
+      flexDirection: "row",
+      alignItems: "center",
+      overflow: "hidden",
+      width: "auto",
+      maxWidth:
+        "32px" /** I'm animating max-width because width needs to be auto, and auto can't be animated **/,
+      "-webkit-transition": "max-width 0.5s",
+      transition: "max-width 0.5s",
+      // _hover: {
+      //   maxWidth: "400px",
+      // },
+      ".icon": {
+        fontSize: "16px",
+        marginRight: "15px",
+        padding: "0px 8px",
+        display: "flex",
+        alignItems: "center",
+      },
+      ".text": {
+        whiteSpace: "nowrap",
+        paddingRight: "15px",
+      },
+    },
     outline: {
       border: "2px solid",
       borderColor: "brand.light",
@@ -36,7 +70,7 @@ const Button = {
   // The default size and variant values
   defaultProps: {
     size: "md",
-    variant: "outline",
+    variant: "ghost",
   },
 };
 
