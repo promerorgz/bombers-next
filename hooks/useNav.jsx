@@ -1,7 +1,7 @@
 import { fetchAPI } from "../lib/api";
 import { useState, useEffect } from "react";
 
-const useNav = () => {
+const useNav = (type = null) => {
   const [more, setMore] = useState([]);
 
   useEffect(() => {
@@ -12,63 +12,122 @@ const useNav = () => {
       .catch((err) => console.error(err));
   }, []);
 
-  return {
-    navs: [
-      // { name: "home", id: "/", slug: "home" },
-      // {
-      //   name: "about",
-      //   id: "about",
-      //   slug: "about",
-      // },
-      {
-        name: "articles",
-        id: "articles",
-        slug: "articles",
-      },
-      // {
-      //   name: "schedule",
-      //   id: "schedule",
-      //   slug: "schedule",
-      // },
-      {
-        name: "team",
-        id: "team",
-        slug: "team",
-      },
-      {
-        name: "contact",
-        id: "contact",
-        slug: "contact",
-      },
+  const navs = [
+    {
+      name: "articles",
+      id: "articles",
+      slug: "articles",
+    },
+    {
+      name: "club",
+      id: "club",
+      slug: "club",
+      subMenus: [
+        {
+          name: "history",
+          id: "history",
+          slug: "history",
+        },
+        {
+          name: "board",
+          id: "board",
+          slug: "board",
+        },
+        {
+          name: "bombers career center",
+          id: "youth-rugby",
+          slug: "career-center",
+        },
+        {
+          name: "youth rugby",
+          id: "youth-rugby",
+          slug: "youth-rugby",
+          subMenus: [
+            {
+              name: "sharks",
+              id: "sharks",
+              slug: "sharks",
+            },
+          ],
+        },
+      ],
+    },
 
-      {
-        name: "club",
-        id: "club",
-        slug: "club",
-        subMenus: [
-          {
-            name: "Golf",
-            id: "golf",
-            slug: "golf",
-          },
-          {
-            name: "donate",
-            id: "donate",
-            slug: "pay",
-          },
-        ],
-      },
+    {
+      name: "team",
+      id: "team",
+      slug: "team",
+      subMenus: [
+        {
+          name: "Home",
+          id: "team",
+          slug: "team",
+        },
+        {
+          name: "Division I",
+          id: "d1",
+          slug: "team/d1",
+        },
+        {
+          name: "Division III",
+          id: "d3",
+          slug: "team/d3",
+        },
+        {
+          name: "Coaches and Staff",
+          id: "coaches-and-staff",
+          slug: "team/coaches-and-staff",
+        },
+        {
+          name: "practice",
+          id: "practice",
+          slug: "practice",
+        },
+        {
+          name: "schedule",
+          id: "practice",
+          slug: "practice",
+        },
+        {
+          name: "results",
+          id: "practice",
+          slug: "practice",
+        },
+      ],
+    },
+    {
+      name: "contact",
+      id: "contact",
+      slug: "contact",
+    },
 
-      {
-        name: "more",
-        id: "more",
-        slug: "",
-        hide: !more.length,
+    {
+      name: "more",
+      id: "more",
+      slug: "",
+      hide: false,
+      subMenus: [
+        ...more,
+        {
+          name: "Golf",
+          id: "golf",
+          slug: "golf",
+        },
+        {
+          name: "donate",
+          id: "donate",
+          slug: "pay",
+        },
+      ],
+    },
+  ];
+
+  return type
+    ? navs.find((nav) => nav.name === type)
+    : {
+        navs,
         subMenus: more,
-      },
-    ],
-    subMenus: more,
-  };
+      };
 };
 
 export default useNav;

@@ -6,8 +6,8 @@ import { splitForwardsAndBacks } from "./utils";
 
 const PlayerList = ({ list = [], type }) => {
   const sortByPosition = useCallback(
-    (playerList) => {
-      return playerList.sort((a, b) => {
+    (playerList = []) => {
+      return playerList?.sort((a, b) => {
         const sortBy = type === "coaches-and-staff" ? "id" : "position";
         return a[sortBy] - b[sortBy];
       });
@@ -15,7 +15,7 @@ const PlayerList = ({ list = [], type }) => {
     [type]
   );
 
-  const players = sortByPosition(list);
+  const players = sortByPosition(list || []);
 
   const { forwards, backs } = splitForwardsAndBacks(players);
 

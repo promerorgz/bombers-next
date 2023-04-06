@@ -12,7 +12,8 @@ const Image = ({
   fit,
   size,
   borderRadius,
-  src = "/images/defaultpic.png",
+  src,
+  children,
 }) => {
   const imageUrl = image && getStrapiMedia(image);
   return (
@@ -21,7 +22,7 @@ const Image = ({
       borderRadius={borderRadius || "0px"}
       boxSize={size || "auto"}
       objectFit={fit || "cover"}
-      src={src || imageUrl}
+      src={src || imageUrl || children}
       alt={image.alternativeText || image.name}
       style={style}
       fallback={<Skeleton minH="200px" />}

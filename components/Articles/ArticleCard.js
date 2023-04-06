@@ -29,7 +29,7 @@ const ArticleCard = ({
   return (
     <Link
       as={`/articles/${toLower(article.category?.name)}/${
-        toLower(article?.slug) || "hello"
+        toLower(article?.uid) || "hello"
       }`}
       href={`${href || "/articles/"}[category]/[id]`}
       m="16"

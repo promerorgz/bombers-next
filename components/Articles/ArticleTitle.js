@@ -13,8 +13,8 @@ export default styled(Text)`
     (-webkit-text-fill-color: transparent) {
     background: linear-gradient(
       90deg,
-      var(--chakra-colors-brand-superblack),
-      var(--chakra-colors-brand-black)
+      var(--chakra-colors-brand-black),
+      var(--chakra-colors-brand-dark)
     );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

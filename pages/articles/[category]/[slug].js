@@ -131,6 +131,7 @@ const Article = ({ article, context }) => {
   return (
     <Layout seo={seo} mainBg="brand.black">
       <Hero
+        backButton={"/articles"}
         parallax
         size={heroSize}
         image={imageUrl}
@@ -178,10 +179,10 @@ const Article = ({ article, context }) => {
                 </Box>
               </Box>
             </Flex>
-            <Box py="8">
-              {`${process.env.HOST_URL || "http://localhost:3000"}${
-                router.asPath
-              }`}
+            <Flex py="8" gap="4px">
+              <EmailShareButton>
+                <EmailIcon size={32} round></EmailIcon>
+              </EmailShareButton>
               <FacebookShareButton
                 url={`${process.env.HOST_URL || "http://localhost:3000"}${
                   router.asPath
@@ -200,16 +201,14 @@ const Article = ({ article, context }) => {
               >
                 <TwitterIcon size={32} round />
               </TwitterShareButton>
-              <EmailShareButton>
-                <EmailIcon size={32} round></EmailIcon>
-              </EmailShareButton>
+
               <WhatsappShareButton>
                 <WhatsappIcon size={32} round></WhatsappIcon>
               </WhatsappShareButton>
               <FacebookMessengerShareButton>
                 <FacebookMessengerIcon size={32} round></FacebookMessengerIcon>
               </FacebookMessengerShareButton>
-            </Box>
+            </Flex>
             <Divider size="1px" variant="solid" m="8" color="brand.black" />
             <Flex
               justifyContent="flex-start"
@@ -233,7 +232,7 @@ const Article = ({ article, context }) => {
   );
 };
 
-export async function getStaticPaths(ctx) {
+export async function getStaticPaths() {
   const articles = await fetchAPI("/articles");
 
   return {
@@ -254,7 +253,7 @@ export async function getStaticProps({ params }) {
   return {
     props: { article },
     // refetch every hr
-    revalidate: 60 * 60 * 60,
+    revalidate: 3600000,
   };
 }
 

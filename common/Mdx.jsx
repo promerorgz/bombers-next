@@ -1,8 +1,8 @@
 import ReactMarkdown from "react-markdown";
 import React from "react";
 import gfm from "remark-gfm";
-import { Link } from ".";
-import { Heading, Text } from "@chakra-ui/react";
+import Link from "next/link";
+import { Heading, Text, Link as ChakraLink } from "@chakra-ui/react";
 import { FormatMd } from "./styles";
 
 const Mdx = (props) => {
@@ -35,14 +35,14 @@ const Mdx = (props) => {
       remarkPlugins={[gfm]}
       components={{
         a: ({ node, ...props }) => (
-          <Link
-            href={props.href}
-            {...props}
-            as={node.tagName}
-            sx={{
-              color: "var(--chakra-colors-messenger-400)",
-            }}
-          ></Link>
+          <Link passHref href={props.href}>
+            <ChakraLink
+              {...props}
+              sx={{
+                color: "var(--chakra-colors-messenger-400)",
+              }}
+            ></ChakraLink>
+          </Link>
         ),
         h1: formatText,
         h2: formatText,

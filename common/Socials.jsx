@@ -19,11 +19,6 @@ const Socials = ({ color, size }) => {
       url: "https://www.instagram.com/stl_bombersrfc/",
       icon: faInstagram,
     },
-    {
-      name: "venmo",
-      url: "https://account.venmo.com/u/STLBombersRFC",
-      icon: "",
-    },
   ];
 
   const iconColor = {
@@ -53,7 +48,7 @@ const Socials = ({ color, size }) => {
       >
         Follow us:
       </Text>
-      <HStack spacing={0}>
+      <HStack spacing={size === "xl" ? 8 : 0}>
         {socials.map((page) => {
           return (
             <Link href={page?.url} target="_blank" key={page?.url} passHref>

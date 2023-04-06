@@ -30,26 +30,42 @@ export const getPosition = (position) => {
 };
 
 export const countryCodes = {
-  mexico: "🇲🇽",
-  mexican: "🇲🇽",
-  american: "🇺🇸",
-  "new zealand": "🇳🇿",
-  "south africa": "🇿🇦",
-  "south african": "🇿🇦",
-  england: "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-  english: "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-  australia: "🇦🇺",
-  australian: "🇦🇺",
-  scotland: "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
-  scottish: "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
-  colombia: "🇨🇴",
-  colombian: "🇨🇴",
-  "united states": "🇺🇸",
-  spanish: "🇪🇸",
-  spain: "🇪🇸",
+  mexico: { nationality: "MX" },
+  mexican: { nationality: "MX" },
+  american: { nationality: "USA" },
+  "new zealand": { nationality: "NZ" },
+  "south africa": { nationality: "SA" },
+  "south african": { nationality: "SA" },
+  england: { nationality: "ENG" },
+  english: { nationality: "ENG" },
+  australia: { nationality: "AUS" },
+  australian: { nationality: "AUS" },
+  scotland: { nationality: "SCOTLAND" },
+  scottish: { nationality: "SCOTLAND" },
+  colombia: { nationality: "COLOMBIA" },
+  colombian: { nationality: "COLOMBIA" },
+  "united states": { nationality: "USA" },
+  spanish: { nationality: "SPAIN" },
+  spain: { nationality: "SPAIN" },
+};
+
+const flags = {
+  MX: "🇲🇽",
+  USA: "🇺🇸",
+  NZ: "🇳🇿",
+  SA: "🇿🇦",
+  ENG: "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+  AUS: "🇦🇺",
+  SCOTLAND: "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
+  COLOMBIA: "🇨🇴",
+  SPAIN: "🇪🇸",
+};
+
+export const getNationality = (nationality) => {
+  const nat = nationality || "United States";
+  return countryCodes[nat.toLowerCase()]?.nationality;
 };
 
 export const getFlag = (nationality = "") => {
-  const nat = nationality || "United States";
-  return countryCodes[nat.toLowerCase()];
+  return flags[nationality];
 };

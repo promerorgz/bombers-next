@@ -17,8 +17,8 @@ export default extendTheme({
   colors: {
     brand: {
       highlight: "#f8cf2c",
-      superblack: "#000",
-      black: "#212121",
+      black: "#000",
+      dark: "#212121",
       medium: "#404040",
       meta: "#999",
       light: "#E2E2E2",
@@ -52,6 +52,21 @@ export default extendTheme({
       fontFamily: "'Montserrat', sans-serif",
       fontSize: "xl",
       color: "brand.black",
+    },
+    menuItem: {
+      fontWeight: `var(--chakra-fontWeights-bold)`,
+      transitionProperty: `var(--chakra-transition-property-common)`,
+      transitionDuration: `var(--chakra-transition-duration-normal)`,
+      color: `var(--chakra-colors-brand-black)`,
+      textTransform: `uppercase`,
+      height: `var(--chakra-sizes-10)`,
+      minWidth: `var(--chakra-sizes-10)`,
+      fontSize: `var(--chakra-fontSizes-sm)`,
+      paddingInlineStart: `var(--chakra-space-6)`,
+      paddingInlineEnd: ` var(--chakra-space-6)`,
+      paddingTop: `var(--chakra-space-4)`,
+      paddingBottom: `var(--chakra-space-4)`,
+      fontFamily: `Montserrat`,
     },
   },
 });

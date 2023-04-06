@@ -44,7 +44,7 @@ const Player = ({ player }) => {
           </Heading>
         </Center>
         <Stack direction={direction} spacing="4" m="0" id="kkck">
-          <Center w="50%">
+          <Center minW="50%">
             <BgImage src={player?.hoverPic?.url} />
           </Center>
           <PlayerInfo w="50%" player={player} />

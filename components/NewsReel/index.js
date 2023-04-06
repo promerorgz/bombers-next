@@ -21,10 +21,12 @@ import { useMediaQuery } from "@chakra-ui/react";
 
 const NewsReel = ({ articles }) => {
   const features = useFeatures(articles);
+
   const reduceFormats = (formats) =>
     Object.entries(formats).reduce((acc, [k, v]) => {
       return [...acc, { format: k, ...v }];
     }, []);
+
   const [isSmallerThan1024] = useMediaQuery("(max-width: 1024px)", {
     ssr: true,
     fallback: false, // return false on the server, and re-evaluate on the client side
@@ -43,12 +45,13 @@ const NewsReel = ({ articles }) => {
     [isSmallerThan1024]
   );
 
+  console.log({ features });
   return (
     <HeroContainer id="hero-container">
       {features?.map((feature, i) => {
         return (
           <Link
-            href={`/articles/${feature.category.name}/${feature.slug}`}
+            href={`/articles/${feature.category.name}/${feature.uid}`}
             passHref
             key={feature.name}
           >

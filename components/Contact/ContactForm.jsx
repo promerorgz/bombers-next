@@ -124,12 +124,14 @@ const ContactForm = () => {
                 color: "black",
               },
             }}
+            rows="10"
             variant="filled"
             size="lg"
             placeholder="Message"
             onChange={handleChange}
             name="message"
             value={contact.message}
+            resize="vertical"
           />
         </Stack>
         <Button variant="solid" width="100%" onClick={handleSubmit}>

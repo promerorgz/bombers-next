@@ -80,26 +80,20 @@ const Footer = ({ sponsors, ...props }) => {
         </FooterListItem>
       </VStack>
       <Flex
-        justifyContent="flex-start"
-        bg="brand.medium"
-        p="8"
+        justifyContent="center"
+        bg="gradient.regular"
+        p="4"
         alignItems="center"
       >
         <HStack
-          fontFamily="Big Shoulders Display"
-          letterSpacing="wide"
-          fontWeight="bold"
+          textAlign="center"
+          fontFamily="Montserrat"
+          fontSize="xx-small"
           color="brand.light"
         >
-          <Text m={0}>Copyright © </Text>
-          <Link href="https://stlbombers.com/">
-            <ChakraLink color="inherit">
-              St. Louis Bombers Rugby Football Club
-            </ChakraLink>
-          </Link>{" "}
-          <Text>
+          <Text m={0}>
+            Copyright© | St. Louis Bombers Rugby Football Club |{" "}
             {new Date().getFullYear()}
-            {"."}
           </Text>
         </HStack>
       </Flex>

@@ -12,8 +12,6 @@ const Players = ({ list, division }) => {
     { display: "D1", url: "d1" },
     { display: "D3", url: "d3" },
     { display: "Staff", url: "coaches-and-staff" },
-    { display: "Board", url: "board" },
-    { display: "Legends", url: "legends" },
   ];
 
   const router = useRouter();
@@ -89,9 +87,11 @@ export async function getStaticProps({ params, ...ctx }) {
   const isPlayers = division === "d1" || division === "d3";
 
   const list = await fetchAPI(
-    isPlayers ? `/players?division=${division.toUpperCase()}` : "/coaches"
+    isPlayers ? `/players?division=${division.toUpperCase()}` : `/${division}`
   );
-  return { props: { list, division } };
+  return {
+    props: { list, division },
+  };
 }
 
 export default Players;

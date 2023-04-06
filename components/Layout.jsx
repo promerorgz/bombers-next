@@ -13,6 +13,7 @@ const Layout = ({ children, sponsors, seo, header, bg, mainBg, id }) => {
           id="main"
           as="main"
           h="100%"
+          minH="100%"
           flex="1 0 100%"
           bg={mainBg || "brand.light"}
           mt={[100, "80px", "80px", 200]}
