@@ -13,7 +13,7 @@ import PageContent from "common/PageContent";
 import Games from "components/Games";
 import NewsReel from "components/NewsReel";
 import Section from "components/Section";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Layout from "../components/Layout";
 import { fetchAPI } from "../lib/api";
 import media from "utils/styleUtils";

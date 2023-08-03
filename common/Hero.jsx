@@ -3,7 +3,7 @@ import { Button, Center, Flex, Stack, Text } from "@chakra-ui/react";
 import Link from "next/link";
 import ScrollIntoView from "react-scroll-into-view";
 import styled from "styled-components";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 const heightSizes = {
   sm: "20vh",
