@@ -30,7 +30,7 @@ const MobileNav = () => {
         <Flex
           id="mobile-nav"
           minH={"100px"}
-          bg="gradient.regular"
+          bg="transparent"
           minW="100%"
           maxH={"120px"}
           flexDirection="row"
@@ -56,14 +56,6 @@ const MobileNav = () => {
             />
           </Flex>
         </Flex>
-        <Box
-          minH="7vw"
-          bg="linear-gradient(
-        180deg,
-        var(--chakra-colors-brand-dark) -30%,
-        transparent
-      )"
-        ></Box>
       </Box>
       <Drawer
         onClose={onClose}

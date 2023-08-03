@@ -1,7 +1,7 @@
 import {
   Box,
   Link as ChakraLink,
-  SimpleGrid,
+  Divider,
   Stack,
   Text,
 } from "@chakra-ui/react";
@@ -30,19 +30,20 @@ const Articles = ({ articles }) => {
         justifyContent="space-evenly"
         alignContent="space-around"
         flexWrap="wrap"
+        direction="column"
       >
-        <SimpleGrid spacing={4} columns={[1, 2, 2]} w="100%">
-          {articles.map((article, i) => {
-            return (
+        {articles.map((article, i) => {
+          return (
+            <>
               <ArticleCard
-                highlight={article?.highlight || false}
                 styles={{ maxHeight: 500 }}
                 article={article}
                 key={`article__left__${article?.slug}`}
               />
-            );
-          })}
-        </SimpleGrid>
+              <Divider />
+            </>
+          );
+        })}
       </Stack>
     </Box>
   );

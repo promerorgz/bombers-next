@@ -17,6 +17,9 @@ const mediaQuery = (is, size) => {
   }[is];
 };
 
-const media = { breakpoint: (is, size) => mediaQuery(is, size) };
+const media = {
+  breakpoint: (is, size) => mediaQuery(is, size),
+  mobileOnly: ["block", "block", "none", "none"],
+};
 
 export default media;

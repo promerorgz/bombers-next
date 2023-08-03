@@ -37,6 +37,7 @@ const News = ({ articles, categories }) => {
         contentLink={size === "xl" ? "#articles" : false}
       />
       <Tabs
+        fontFamily="Montserrat"
         variant="line"
         size="lg"
         colorScheme="gray"
@@ -46,18 +47,14 @@ const News = ({ articles, categories }) => {
         id="articles"
       >
         <TabList>
-          <Tab
-            fontFamily="Big Shoulders Display"
-            fontSize="xl"
-            fontWeight="bold"
-          >
+          <Tab fontSize="xl" fontWeight="bold">
             Latest
           </Tab>
           {categories.map((category) => (
             <Tab
               fontSize="xl"
               fontWeight="bold"
-              fontFamily="Big Shoulders Display"
+              fontFamily="Montserrat"
               textTransform="capitalize"
               key={category.id}
             >
@@ -67,28 +64,11 @@ const News = ({ articles, categories }) => {
         </TabList>
         <TabPanels>
           <TabPanel>
-            {
-              <SimpleGrid
-                columns={1}
-                m={[0, 0, 2, 2, 2]}
-                spacing="8"
-                minChildWidth="200px"
-                maxChildWidth="400px"
-              >
-                {articles.length
-                  ? sortBy(articles, (article) => article.id).map((item) => {
-                      return (
-                        <ArticleCard
-                          article={item}
-                          style={{
-                            maxHeight: "300px",
-                          }}
-                        ></ArticleCard>
-                      );
-                    })
-                  : "No Articles"}
-              </SimpleGrid>
-            }
+            {articles.length
+              ? sortBy(articles, (article) =>
+                  new Date(article.publishedAt).toLocaleDateString("en")
+                ).map((item) => <ArticleCard article={item} />)
+              : "No Articles"}
           </TabPanel>
           {categories.map((category) => {
             return (

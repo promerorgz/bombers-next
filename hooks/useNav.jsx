@@ -26,22 +26,22 @@ const useNav = (type = null) => {
         {
           name: "history",
           id: "history",
-          slug: "history",
+          slug: "club/history",
         },
         {
           name: "board",
           id: "board",
-          slug: "board",
+          slug: "club/board",
         },
         {
           name: "bombers career center",
           id: "youth-rugby",
-          slug: "career-center",
+          slug: "club/career-center",
         },
         {
           name: "youth rugby",
           id: "youth-rugby",
-          slug: "youth-rugby",
+          slug: "club/youth-rugby",
           subMenus: [
             {
               name: "sharks",

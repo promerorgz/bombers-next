@@ -1,4 +1,11 @@
-import { Box, Flex, Grid, GridItem } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Grid,
+  GridItem,
+  Show,
+  useMediaQuery,
+} from "@chakra-ui/react";
 import Card from "common/Card";
 import Hero from "common/Hero";
 import { Pic } from "common/index";
@@ -19,8 +26,24 @@ const Home = (props) => {
 
   const countdownDate = new Date(d1Upcoming[0]?.date || d3Upcoming[0]?.date);
   console.log({ d1Results, d1Upcoming, d3Results, d3Upcoming });
+
   return (
     <Layout seo={homepage.seo} bg="brand.light">
+      <Box display={media.mobileOnly} bg="black">
+        <Hero
+          direction="column"
+          image="/images/DSC_0885.jpg"
+          size="2xl"
+          textAlign="start"
+          text=""
+          buttons={[
+            {
+              link: "/contact",
+              display: "See more",
+            },
+          ]}
+        />
+      </Box>
       <NewsReel articles={articles} />
       <PageContent>
         <Section

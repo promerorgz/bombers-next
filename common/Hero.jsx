@@ -1,15 +1,16 @@
 import { ChevronDownIcon } from "@chakra-ui/icons";
-import { Box, Button, Center, Flex, Stack, Text } from "@chakra-ui/react";
+import { Button, Center, Flex, Stack, Text } from "@chakra-ui/react";
 import Link from "next/link";
 import ScrollIntoView from "react-scroll-into-view";
 import styled from "styled-components";
-import Pic from "../common/Pic";
+import Image from "next/image";
 
 const heightSizes = {
   sm: "20vh",
   md: "30vh",
   lg: "40vh",
   xl: "50vh",
+  "2xl": "75vh",
   full: "100vh",
 };
 
@@ -22,8 +23,7 @@ const HeroContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
-  padding: 1%;
+  justify-content: center;
   min-height: ${(props) => heightSizes[props.size] || "50vh"};
   ${(props) =>
     props.parallax
@@ -33,8 +33,9 @@ const HeroContainer = styled.div`
       background-repeat: no-repeat;
       background-size: cover;`
       : ""}
+  opacity:0.4;
   background-repeat: no-repeat;
-  background-position: right;
+  background-position: center;
   background-size: ${(props) => (props.bg ? "contain" : "cover")};
   background-image: ${(props) =>
     props.bg ||
@@ -55,7 +56,7 @@ const Hero = ({
   buttons = [],
   image,
   size = "xl",
-  startPic,
+  textAlign,
   bg,
   direction,
   contentLink,
@@ -64,55 +65,76 @@ const Hero = ({
   return (
     <>
       <HeroContainer image={image} size={size} bg={bg} parallax={parallax}>
+        <Image
+          fill
+          src={image}
+          alt="hero-image"
+          style={{
+            objectFit: "cover",
+          }}
+        ></Image>
         <Flex
           direction={direction}
           alignItems="center"
-          justifyContent="space-around"
           spacing="16"
           p="8"
+          justifyContent="space-evenly"
+          w="100%"
         >
-          <Box>
-            <Stack spacing="1" direction="column">
-              {text && (
-                <Text fontSize="5xl" casing="uppercase" as="b" color="white">
-                  {text}
-                </Text>
-              )}
-              {secondaryText && (
-                <Text
-                  fontSize="3xl"
-                  casing="uppercase"
-                  as="b"
-                  color="brand.medium"
-                  textAlign={direction === "column" ? "center" : "flex-start"}
-                >
-                  {secondaryText}
-                </Text>
-              )}
-            </Stack>
-            <Stack spacing={4} direction="row" align="center" marginTop={8}>
-              {buttons &&
-                buttons?.map(({ link, display, color }) => {
-                  return (
-                    <Link href={link || ""} key={link}>
-                      <Button
-                        as="a"
-                        colorScheme="gray"
-                        size="md"
-                        color={color || "brand.light"}
-                        textDecoration="none"
-                        _hover={{
-                          backgroundColor: "#e2e2e2",
-                          color: "#212121",
-                        }}
-                      >
-                        {display}
-                      </Button>
-                    </Link>
-                  );
-                })}
-            </Stack>
-          </Box>
+          <Stack spacing="1" direction="column">
+            {text && (
+              <Text
+                fontSize="5xl"
+                casing="uppercase"
+                as="b"
+                color="white"
+                textAlign={textAlign}
+              >
+                {text}
+              </Text>
+            )}
+            {secondaryText && (
+              <Text
+                fontSize="xl"
+                casing="uppercase"
+                as="b"
+                color="brand.medium"
+                textAlign={direction === "column" ? "center" : "flex-start"}
+              >
+                {secondaryText}
+              </Text>
+            )}
+          </Stack>
+          <Stack
+            display="flex"
+            spacing={4}
+            w="100%"
+            direction="row"
+            alignItems="center"
+            justifyContent="center"
+            marginTop={8}
+          >
+            {buttons &&
+              buttons?.map(({ link, display, color }) => {
+                return (
+                  <Link href={link || ""} key={link} passHref>
+                    <Button
+                      variant="solid"
+                      as="a"
+                      size="md"
+                      color={color || "brand.dark"}
+                      textDecoration="none"
+                      _hover={{
+                        backgroundColor: "#e2e2e2",
+                        color: "#212121",
+                      }}
+                    >
+                      {display}
+                    </Button>
+                  </Link>
+                );
+              })}
+          </Stack>
         </Flex>
         {contentLink && (
           <Center

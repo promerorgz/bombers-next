@@ -5,8 +5,10 @@ import List from "./List";
 import { splitForwardsAndBacks } from "./utils";
 
 const PlayerList = ({ list = [], type }) => {
+  console.log({ list, type });
   const sortByPosition = useCallback(
     (playerList = []) => {
+      console.log({ playerList });
       return playerList?.sort((a, b) => {
         const sortBy = type === "coaches-and-staff" ? "id" : "position";
         return a[sortBy] - b[sortBy];
