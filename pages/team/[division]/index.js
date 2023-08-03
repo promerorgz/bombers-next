@@ -16,63 +16,61 @@ const Players = ({ list, division }) => {
 
   const router = useRouter();
 
-  return (
-    <>
-      <Layout
-        seo={{ metaTitle: router?.query?.division?.toUpperCase() }}
-        margin
+  return <>
+    <Layout
+      seo={{ metaTitle: router?.query?.division?.toUpperCase() }}
+      margin
+    >
+      <Stack
+        direction="horizontal"
+        gap={3}
+        overflowX="scroll"
+        bg="brand.white"
+        position="relative"
+        padding="24px 8px 0"
+        maxW="100%"
       >
-        <Stack
-          direction="horizontal"
-          gap={3}
-          overflowX="scroll"
-          bg="brand.white"
-          position="relative"
-          padding="24px 8px 0"
-          maxW="100%"
-        >
-          {routes.map(({ url, display }) => {
-            const isCurrentRoute = router?.query?.division === url;
-            return (
-              <Link href={`/team/${url}`} passHref>
-                <ChakraLink
-                  px="8"
-                  borderRadius=".2rem"
-                  color="brand.medium"
-                  bg="brand.white"
-                  _active={{
-                    textDecoration: "none",
-                  }}
+        {routes.map(({ url, display }) => {
+          const isCurrentRoute = router?.query?.division === url;
+          return (
+            <Link href={`/team/${url}`} passHref legacyBehavior>
+              <ChakraLink
+                px="8"
+                borderRadius=".2rem"
+                color="brand.medium"
+                bg="brand.white"
+                _active={{
+                  textDecoration: "none",
+                }}
+                sx={{
+                  minWidth: 120,
+                  maxWidth: 120,
+                  textAlign: "center",
+                  fontFamily: '"Montserrat", sans-serif',
+                  fontWeight: 400,
+                  textTransform: "uppercase",
+                  fontSize: "1.2rem",
+                  padding: "2px 8px",
+                  transition: "background-color .2s ease, color .2s ease",
+                  zIndex: 10,
+                }}
+              >
+                <Text
                   sx={{
-                    minWidth: 120,
-                    maxWidth: 120,
-                    textAlign: "center",
-                    fontFamily: '"Montserrat", sans-serif',
-                    fontWeight: 400,
-                    textTransform: "uppercase",
-                    fontSize: "1.2rem",
-                    padding: "2px 8px",
-                    transition: "background-color .2s ease, color .2s ease",
-                    zIndex: 10,
+                    fontWeight: isCurrentRoute ? 800 : 400,
                   }}
                 >
-                  <Text
-                    sx={{
-                      fontWeight: isCurrentRoute ? 800 : 400,
-                    }}
-                  >
-                    {display}
-                  </Text>
-                </ChakraLink>
-              </Link>
-            );
-          })}
-        </Stack>
-        <PlayerList list={list} type={division} />
-        <Sponsors />
-      </Layout>
-    </>
-  );
+                  {display}
+                </Text>
+              </ChakraLink>
+            </Link>
+          );
+        })}
+      </Stack>
+      <PlayerList list={list} type={division} />
+      <Sponsors />
+    </Layout>
+  </>;
 };
 
 export async function getStaticPaths() {

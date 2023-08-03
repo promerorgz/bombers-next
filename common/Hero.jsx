@@ -62,108 +62,106 @@ const Hero = ({
   contentLink,
   parallax,
 }) => {
-  return (
-    <>
-      <HeroContainer image={image} size={size} bg={bg} parallax={parallax}>
-        <Image
-          fill
-          src={image}
-          alt="hero-image"
-          style={{
-            objectFit: "cover",
-          }}
-        ></Image>
-        <Flex
-          direction={direction}
-          alignItems="center"
-          spacing="16"
-          p="8"
-          justifyContent="space-evenly"
-          w="100%"
-        >
-          <Stack spacing="1" direction="column">
-            {text && (
-              <Text
-                fontSize="5xl"
-                casing="uppercase"
-                as="b"
-                color="white"
-                textAlign={textAlign}
-              >
-                {text}
-              </Text>
-            )}
-            {secondaryText && (
-              <Text
-                fontSize="xl"
-                casing="uppercase"
-                as="b"
-                color="brand.medium"
-                textAlign={direction === "column" ? "center" : "flex-start"}
-              >
-                {secondaryText}
-              </Text>
-            )}
-          </Stack>
-          <Stack
-            display="flex"
-            spacing={4}
-            w="100%"
-            direction="row"
-            alignItems="center"
-            justifyContent="center"
-            marginTop={8}
-          >
-            {buttons &&
-              buttons?.map(({ link, display, color }) => {
-                return (
-                  <Link href={link || ""} key={link} passHref>
-                    <Button
-                      variant="solid"
-                      as="a"
-                      size="md"
-                      color={color || "brand.dark"}
-                      textDecoration="none"
-                      _hover={{
-                        backgroundColor: "#e2e2e2",
-                        color: "#212121",
-                      }}
-                    >
-                      {display}
-                    </Button>
-                  </Link>
-                );
-              })}
-          </Stack>
-        </Flex>
-        {contentLink && (
-          <Center
-            alignItems="center"
-            w="100%"
-            position="relative"
-            top="10px"
-            id="scroll-into-view"
-          >
-            <ScrollIntoView
-              style={{
-                marginTop: 4,
-              }}
-              selector={contentLink}
-              smooth
-              alignToTop={false}
-              scrollOptions={{
-                behavior: "smooth",
-                block: "end",
-                inline: "nearest",
-              }}
+  return <>
+    <HeroContainer image={image} size={size} bg={bg} parallax={parallax}>
+      <Image
+        fill
+        src={image}
+        alt="hero-image"
+        style={{
+          objectFit: "cover",
+        }}
+      ></Image>
+      <Flex
+        direction={direction}
+        alignItems="center"
+        spacing="16"
+        p="8"
+        justifyContent="space-evenly"
+        w="100%"
+      >
+        <Stack spacing="1" direction="column">
+          {text && (
+            <Text
+              fontSize="5xl"
+              casing="uppercase"
+              as="b"
+              color="white"
+              textAlign={textAlign}
             >
-              <ChevronDownIcon color="brand.white" w={8} h={8} />
-            </ScrollIntoView>
-          </Center>
-        )}
-      </HeroContainer>
-    </>
-  );
+              {text}
+            </Text>
+          )}
+          {secondaryText && (
+            <Text
+              fontSize="xl"
+              casing="uppercase"
+              as="b"
+              color="brand.medium"
+              textAlign={direction === "column" ? "center" : "flex-start"}
+            >
+              {secondaryText}
+            </Text>
+          )}
+        </Stack>
+        <Stack
+          display="flex"
+          spacing={4}
+          w="100%"
+          direction="row"
+          alignItems="center"
+          justifyContent="center"
+          marginTop={8}
+        >
+          {buttons &&
+            buttons?.map(({ link, display, color }) => {
+              return (
+                <Link href={link || ""} key={link} passHref legacyBehavior>
+                  <Button
+                    variant="solid"
+                    as="a"
+                    size="md"
+                    color={color || "brand.dark"}
+                    textDecoration="none"
+                    _hover={{
+                      backgroundColor: "#e2e2e2",
+                      color: "#212121",
+                    }}
+                  >
+                    {display}
+                  </Button>
+                </Link>
+              );
+            })}
+        </Stack>
+      </Flex>
+      {contentLink && (
+        <Center
+          alignItems="center"
+          w="100%"
+          position="relative"
+          top="10px"
+          id="scroll-into-view"
+        >
+          <ScrollIntoView
+            style={{
+              marginTop: 4,
+            }}
+            selector={contentLink}
+            smooth
+            alignToTop={false}
+            scrollOptions={{
+              behavior: "smooth",
+              block: "end",
+              inline: "nearest",
+            }}
+          >
+            <ChevronDownIcon color="brand.white" w={8} h={8} />
+          </ScrollIntoView>
+        </Center>
+      )}
+    </HeroContainer>
+  </>;
 };
 
 export default Hero;

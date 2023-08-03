@@ -55,7 +55,7 @@ const DynamicPage = ({ page }) => {
                   <div>
                     {block.links.map((link) => (
                       <Link href={`/${link.link}`} passHref>
-                        <a>{link.title}</a>
+                        {link.title}
                       </Link>
                     ))}
                   </div>

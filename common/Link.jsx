@@ -11,7 +11,7 @@ import { toLower } from "lodash";
 
 const Link = ({ as, href, children, ...props }) => {
   return (
-    <NextLink as={as} href={toLower(href)} passHref>
+    <NextLink as={as} href={toLower(href)} passHref legacyBehavior>
       <Button
         color="brand.black"
         fontFamily="Montserrat"

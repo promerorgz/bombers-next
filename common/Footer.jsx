@@ -56,7 +56,7 @@ const Footer = ({ sponsors, ...props }) => {
                   <Link
                     href={`/${nav?.slug === "home" ? "" : nav?.slug}`}
                     passHref
-                  >
+                    legacyBehavior>
                     <ChakraLink
                       fontFamily="Big Shoulders Display"
                       fontSize="xl"

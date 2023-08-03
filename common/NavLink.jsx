@@ -89,7 +89,7 @@ const NavLink = ({ id, nav, onClick }) => {
         href={navName === "home" ? "/" : `/${nav.slug}`}
         passHref
         style={{ textAlign: "center", color: "teal" }}
-      >
+        legacyBehavior>
         <ChakraLink
           color="brand.white"
           fontFamily="Big Shoulders Display"

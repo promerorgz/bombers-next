@@ -54,7 +54,7 @@ const NewsReel = ({ articles }) => {
             href={`/articles/${feature.category.name}/${feature.uid}`}
             passHref
             key={feature.name}
-          >
+            legacyBehavior>
             <HeroTile className={getHeroClassName(i)}>
               <HeroTileImageContainer>
                 {reduceFormats(feature.image.formats).map((format) => {

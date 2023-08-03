@@ -25,7 +25,7 @@ const Card = ({
 }) => {
   const makeClickable = (component) =>
     link ? (
-      <Link as={as} href={toLower(link)}>
+      <Link as={as} href={toLower(link)} legacyBehavior>
         <LinkBox>{component}</LinkBox>
       </Link>
     ) : (

@@ -29,7 +29,7 @@ const GameCard = ({ title = "", link = "", direction = "row", games = [] }) => {
               {title}
             </Heading>
           </Flex>
-          <Link href={link} passHref>
+          <Link href={link} passHref legacyBehavior>
             <Button variant="link" size="xs" color="tomato" ml="4">
               see all {title}
             </Button>

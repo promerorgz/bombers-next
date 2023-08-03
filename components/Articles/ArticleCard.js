@@ -11,7 +11,7 @@ const ArticleCard = ({ article, href }) => {
   const linkHref = `${href || "/articles/"}[category]/[id]`;
 
   return (
-    <Link as={link} href={linkHref} m="16">
+    <Link as={link} href={linkHref} m="16" legacyBehavior>
       <LinkBox>
         <Flex
           direction={["column", "column", "row"]}

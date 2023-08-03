@@ -33,7 +33,7 @@ const NavLogo = ({ size, color, logoOnly, disableGutters }) => {
       transition="width .2s,opacity .2s ease-in-out .2s"
       zIndex={30}
     >
-      <Link href={`/`} passHref>
+      <Link href={`/`} passHref legacyBehavior>
         <ChakraLink
           display="flex"
           flex-grow="1"

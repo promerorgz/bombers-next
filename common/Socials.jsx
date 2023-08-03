@@ -51,7 +51,7 @@ const Socials = ({ color, size }) => {
       <HStack spacing={size === "xl" ? 8 : 0}>
         {socials.map((page) => {
           return (
-            <Link href={page?.url} target="_blank" key={page?.url} passHref>
+            <Link href={page?.url} target="_blank" key={page?.url} passHref legacyBehavior>
               <Button variant="link" as="a" pb="3">
                 {page.name === "venmo" ? (
                   <VenmoIcon size={size || "lg"} color={iconColor || "white"} />

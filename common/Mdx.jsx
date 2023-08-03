@@ -35,7 +35,7 @@ const Mdx = (props) => {
       remarkPlugins={[gfm]}
       components={{
         a: ({ node, ...props }) => (
-          <Link passHref href={props.href}>
+          <Link passHref href={props.href} legacyBehavior>
             <ChakraLink
               {...props}
               sx={{

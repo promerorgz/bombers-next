@@ -6,7 +6,7 @@ import Pic from "./Pic";
 const Logo = ({ w, sx }) => {
   return (
     <Center {...sx} w={w || "100%"}>
-      <Link href="/" passHref>
+      <Link href="/" passHref legacyBehavior>
         <ChakraLink>
           <Pic
             fit="contain"

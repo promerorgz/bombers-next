@@ -18,7 +18,7 @@ const Articles = ({ articles }) => {
         w="100%"
         p="8"
       >
-        <Link href="/articles" passHref>
+        <Link href="/articles" passHref legacyBehavior>
           <ChakraLink>
             <Text fontFamily="Helvetica Neue">See All</Text>
           </ChakraLink>
