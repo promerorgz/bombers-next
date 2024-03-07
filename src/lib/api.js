@@ -11,7 +11,7 @@ export async function fetchAPI(path, useLocal = false) {
     const response = await fetch(requestUrl);
     return await response?.json();
   } catch (error) {
-    console.error("Seem to be offline 💀");
+    console.error("Were offline");
     return {};
   }
 }

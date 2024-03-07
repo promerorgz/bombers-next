@@ -3,7 +3,7 @@ const Heading = {
   baseStyle: {
     fontFamily: "'Montserrat', sans-serif",
     fontWeight: "800",
-    textTransform: "uppercase",
+    // textTransform: "uppercase",
     textDecoration: "none",
   },
   // Two sizes: sm and md

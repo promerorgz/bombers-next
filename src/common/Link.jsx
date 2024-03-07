@@ -1,18 +1,12 @@
-import React from "react";
-import {
-  Box,
-  Flex,
-  LinkBox,
-  Link as ChakraLink,
-  Button,
-} from "@chakra-ui/react";
-import NextLink from "next/link";
+import { Button } from "@chakra-ui/react";
 import { toLower } from "lodash";
+import NextLink from "next/link";
 
 const Link = ({ as, href, children, ...props }) => {
   return (
     <NextLink as={as} href={toLower(href)} passHref legacyBehavior>
       <Button
+        variant={props.variant || "outline"}
         color="brand.black"
         fontFamily="Montserrat"
         textTransform="uppercase"

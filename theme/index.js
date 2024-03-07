@@ -59,7 +59,7 @@ export default extendTheme({
       transitionProperty: `var(--chakra-transition-property-common)`,
       transitionDuration: `var(--chakra-transition-duration-normal)`,
       color: `var(--chakra-colors-brand-black)`,
-      textTransform: `uppercase`,
+      // textTransform: `uppercase`,
       height: `var(--chakra-sizes-10)`,
       minWidth: `var(--chakra-sizes-10)`,
       fontSize: `var(--chakra-fontSizes-sm)`,

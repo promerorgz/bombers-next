@@ -66,6 +66,9 @@ const Button = {
       color: "brand.black",
       size: "xs",
     },
+    menu: {
+      textTransform: "capitalize",
+    },
   },
   // The default size and variant values
   defaultProps: {
