@@ -1,5 +1,5 @@
 import { Center, SimpleGrid, Text } from "@chakra-ui/react";
-import Layout from "../components/Layout";
+import Layout from "../src/components/Layout";
 
 const Shop = () => {
   return (

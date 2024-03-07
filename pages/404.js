@@ -1,12 +1,19 @@
-import { Box } from "@chakra-ui/react";
-import Layout from "components/Layout";
 import React from "react";
+import Layout from "../src/components/Layout";
 
 const Fof = () => {
   return (
-    <Layout seo={{}} header="Page not found" mainBg="#fff">
-      <Box minH="50vh"></Box>
-    </Layout>
+    <Layout
+      seo={{
+        metaTitle: "Oops! Page does not exist",
+      }}
+      header="Page not found"
+      mainBg="#fff"
+      cover={{
+        full: true,
+        url: "/static/coach_pic1.jpeg",
+      }}
+    />
   );
 };
 

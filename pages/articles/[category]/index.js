@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 import { SimpleGrid } from "@chakra-ui/react";
-import ArticleCard from "components/Articles/ArticleCard";
+import ArticleCard from "src/components/Articles/ArticleCard";
 import styled from "styled-components";
-import Layout from "../../../components/Layout";
-import { fetchAPI } from "../../../lib/api";
+import Layout from "../../../src/components/Layout";
+import { fetchAPI } from "../../../src/lib/api";
 
 const ArticleHeader = styled.div`
   font-size: 44px;
@@ -63,8 +63,6 @@ export async function getStaticProps({ params }) {
   const articles = await fetchAPI(
     `/articles?[category.name]=${params.category}&status=published`
   );
-
-  console.log({ articles });
 
   return {
     props: { articles, category: params.category },

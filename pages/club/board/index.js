@@ -1,4 +1,4 @@
-import Layout from "components/Layout";
+import Layout from "src/components/Layout";
 import React from "react";
 
 const Board = () => {

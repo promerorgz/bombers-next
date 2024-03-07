@@ -1,21 +1,20 @@
 import { Box, Flex, Heading, Text, Stack, Link } from "@chakra-ui/react";
-import BgImage from "common/BgImage";
-import Hero from "common/Hero";
-import Layout from "components/Layout";
+import BgImage from "src/common/BgImage";
+import Hero from "src/common/Hero";
+import Layout from "../src/components/Layout";
 import React from "react";
 
 const Golf = () => {
   const props = {
     buttons: [],
-    image: "images/golf.jpeg",
+    image: "/static/golf.jpeg",
   };
   return (
-    <Layout seo={{ metaTitle: "2022-golf-tournament" }}>
-      <Hero
-        // text="2022 Annual St. Louis Bombers Golf Tournament"
-        size="lg"
-        {...props}
-      ></Hero>
+    <Layout
+      seo={{ metaTitle: "2022-golf-tournament" }}
+      header="2023 Golf Tournament"
+      cover={{ url: props.image, alternativeText: "golf flyer image" }}
+    >
       <Stack p="8" spacing="8" id="form">
         <Heading
           size="2xl"

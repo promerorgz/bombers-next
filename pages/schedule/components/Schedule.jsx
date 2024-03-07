@@ -9,7 +9,7 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import GameInfo from "../../../components/Games/GameInfo";
+import GameInfo from "../../../src/components/Games/GameInfo";
 
 const Schedule = ({ upcoming }) => {
   const formatDateTime = (dateTime) => {

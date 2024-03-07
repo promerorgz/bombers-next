@@ -1,16 +1,13 @@
 /* eslint-disable no-unused-vars */
-import { Heading, Stack } from "@chakra-ui/react";
+import { Heading, Stack, Box, SimpleGrid } from "@chakra-ui/react";
 import { PayPalButtons } from "@paypal/react-paypal-js";
-import Layout from "components/Layout";
-import DonateButton from "components/Pay/DonateButton";
+import Layout from "../src/components/Layout";
+import DonateButton from "../src/components/Pay/DonateButton";
 import React, { useEffect, useState } from "react";
 import useBp from "theme/useBp";
 
 const Pay = () => {
   const [_success, setSuccess] = useState(false);
-
-  const [isDesktop] = useBp();
-  const [direction, setDirection] = useState("row");
 
   const onApprove = (data, actions) => {
     alert(data.subscriptionID);
@@ -23,13 +20,9 @@ const Pay = () => {
     });
   };
 
-  useEffect(() => {
-    setDirection(isDesktop ? "row" : "column");
-  }, [isDesktop]);
-
   return (
     <Layout seo={{ metaTitle: "Pay" }}>
-      <Stack minH="100vh" direction={direction} spacing="0">
+      <SimpleGrid columns={[1, 1, 2, 2]} minH="100vh" spacing="0">
         <Stack minH="100%" w="100%" bg="brand.medium" p="8" spacing="8">
           <Heading color="brand.light" size="xl">
             Current Players
@@ -45,7 +38,7 @@ const Pay = () => {
             Pay dues below. There is an option to sign up for a monthly
             subscription or you can pay in full
           </Heading>
-          <PayPalButtons
+          {/* <PayPalButtons
             style={{
               color: "blue",
               layout: "vertical",
@@ -53,7 +46,7 @@ const Pay = () => {
             }}
             createSubscription={createSubscription}
             onApprove={onApprove}
-          ></PayPalButtons>
+          ></PayPalButtons> */}
         </Stack>
         <Stack minH="100%" w="100%" bg="brand.black" p="8" spacing="8">
           <Heading color="brand.light" size="xl">
@@ -71,9 +64,9 @@ const Pay = () => {
             paypal below
           </Heading>
 
-          <DonateButton onApprove={onApprove}></DonateButton>
+          {/* <DonateButton onApprove={onApprove}></DonateButton> */}
         </Stack>
-      </Stack>
+      </SimpleGrid>
     </Layout>
   );
 };

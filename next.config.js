@@ -1,5 +1,11 @@
+// @ts-check
+
+/**
+ * @type {import('next').NextConfig}
+ **/
+
 module.exports = {
-  pageExtensions: ["js", "jsx"],
+  pageExtensions: ["js", "jsx", "ts", "tsx"],
   compiler: {
     styledComponents: true,
   },

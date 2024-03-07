@@ -3,23 +3,15 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import App from "next/app";
-import dynamic from "next/dynamic";
 import Head from "next/head";
 import { createContext } from "react";
-import { fetchAPI } from "../lib/api";
+import { fetchAPI } from "../src/lib/api";
 import theme from "../theme";
 import "../theme/globalStyles.scss";
 import "../theme/nprogress.css";
 
 // Store Strapi Global object in context
 export const GlobalContext = createContext({});
-
-const TopProgressBar = dynamic(
-  () => {
-    return import("../components/TopProgressBar");
-  },
-  { ssr: false }
-);
 
 config.autoAddCss = false;
 
@@ -40,7 +32,6 @@ const MyApp = ({ Component, pageProps }) => {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
-      <TopProgressBar />
       <PayPalScriptProvider options={initialOptions}>
         <GlobalContext.Provider value={global}>
           <ChakraProvider theme={theme}>
@@ -62,16 +53,13 @@ MyApp.getInitialProps = async (ctx) => {
   const appProps = await App.getInitialProps(ctx);
   // Fetch global site settings from Strapi
   // Pass the data to our page via props
-  const [global, articles, homepage, games, pages, sliders] = await Promise.all(
-    [
-      fetchAPI("/global"),
-      fetchAPI("/articles?status=published"),
-      fetchAPI("/homepage"),
-      fetchAPI("/games"),
-      fetchAPI("/pages"),
-      fetchAPI("/sliders"),
-    ]
-  );
+  const [global, articles, homepage, games, pages] = await Promise.all([
+    fetchAPI("/global"),
+    fetchAPI("/articles?status=published"),
+    fetchAPI("/homepage"),
+    fetchAPI("/games"),
+    fetchAPI("/pages"),
+  ]);
 
   return {
     ...appProps,
@@ -81,7 +69,6 @@ MyApp.getInitialProps = async (ctx) => {
       homepage,
       games,
       pages,
-      sliders,
     },
   };
 };

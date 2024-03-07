@@ -3,14 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "init:hard": "rm -rf ./node_modules && rm -rf ./package-lock.json && npm i",
     "develop": "concurrently --kill-others \"next dev\" \"./scripts/mobiledev.sh\"",
     "dev": "next dev",
     "build": "npm run lint:fix && next build",
     "start": "next start",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "g:page": "./scripts/generate-page.sh",
-    "init:hard": "rm -rf ./node_modules && rm -rf ./package-lock.json && npm i",
     "pretty": "prettier . -c"
   },
   "dependencies": {

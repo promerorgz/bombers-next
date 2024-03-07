@@ -1,5 +1,6 @@
 {
   "cSpell.words": ["chakra"],
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "workbench.colorTheme": "Cobalt2"
 }

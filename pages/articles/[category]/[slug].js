@@ -1,21 +1,23 @@
 /* eslint-disable no-unused-vars */
 import { Box, Divider, Flex, Heading } from "@chakra-ui/react";
-import Mdx from "common/Mdx";
+import Mdx from "src/common/Mdx";
 import { format, formatDistanceToNow } from "date-fns";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import Hero from "../../../common/Hero";
-import Layout from "../../../components/Layout";
-import Pic from "../../../common/Pic";
-import { fetchAPI } from "../../../lib/api";
-import { getStrapiMedia } from "../../../lib/media";
+import Hero from "../../../src/common/Hero";
+import Layout from "../../../src/components/Layout";
+import Pic from "../../../src/common/Pic";
+import { fetchAPI } from "../../../src/lib/api";
+import { getStrapiMedia } from "../../../src/lib/media";
 import useBp from "../../../theme/useBp";
-import ArticleTitle, { ArticleSummary } from "components/Articles/ArticleTitle";
+import ArticleTitle, {
+  ArticleSummary,
+} from "../../../src/components/Articles/ArticleTitle";
 import {
   ContentTag,
   ContentTime,
   HeroTileMeta,
-} from "components/NewsReel/styles";
+} from "src/components/NewsReel/styles";
 import { enUS } from "date-fns/locale";
 import {
   EmailIcon,
@@ -129,15 +131,11 @@ const Article = ({ article, context }) => {
   ];
 
   return (
-    <Layout seo={seo} mainBg="brand.black">
-      <Hero
-        backButton={"/articles"}
-        parallax
-        size={heroSize}
-        image={imageUrl}
-        downArrow={!isDesktop}
-        contentLink={`#${article?.uid}` || "#start"}
-      ></Hero>
+    <Layout
+      cover={{ url: imageUrl, alternativeText: article.description }}
+      seo={seo}
+      mainBg="brand.black"
+    >
       <>
         <Flex
           bg="brand.light"
@@ -152,7 +150,9 @@ const Article = ({ article, context }) => {
           m="auto"
         >
           <Box w="70%" m="auto" p="8" h="100%">
-            <ArticleTitle as="h1">{article?.title}</ArticleTitle>
+            <ArticleTitle fontSize={["2xl", "3xl", "4xl"]}>
+              {article?.title}
+            </ArticleTitle>
             <ArticleSummary as="p">{article?.description}</ArticleSummary>
             <Flex gap="4" alignItems="center">
               <Box>
