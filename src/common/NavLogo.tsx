@@ -8,6 +8,7 @@ import {
 } from "@chakra-ui/react";
 import Link from "next/link";
 
+<<<<<<< Updated upstream:src/common/NavLogo.tsx
 export type NavLogoProps = {
   size?: string;
   color?: string;
@@ -23,6 +24,9 @@ const defaultProps: NavLogoProps = {
 };
 
 const NavLogo = ({ size, color, logoOnly, disableGutters }: NavLogoProps) => {
+=======
+const NavLogo = ({ size, color, logoOnly }) => {
+>>>>>>> Stashed changes:components/Navbar/NavLogo.jsx
   const dims = {
     sm: [30, 30],
     md: [50, 50],
@@ -31,7 +35,7 @@ const NavLogo = ({ size, color, logoOnly, disableGutters }: NavLogoProps) => {
     undefined: [null, null],
   };
 
-  const [height, width] = dims[size];
+  const [height, width] = typeof size === "string" ? dims[size] : size;
 
   const display = logoOnly ? "none" : "flex";
 
