@@ -1,11 +1,11 @@
 import { Box, Flex, Heading, Stack } from "@chakra-ui/react";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
-import Form from "../common/Form";
-import Hero from "../common/Hero";
-import Pic from "../common/Pic";
-import Layout from "../components/Layout";
-import { fetchAPI } from "../lib/api";
+import Form from "../src/common/Form";
+import Hero from "../src/common/Hero";
+import Pic from "../src/common/Pic";
+import Layout from "../src/common/Layout";
+import { fetchAPI } from "../src/lib/api";
 
 const DynamicPage = ({ page }) => {
   return (
@@ -55,7 +55,7 @@ const DynamicPage = ({ page }) => {
                   <div>
                     {block.links.map((link) => (
                       <Link href={`/${link.link}`} passHref>
-                        <a>{link.title}</a>
+                        {link.title}
                       </Link>
                     ))}
                   </div>

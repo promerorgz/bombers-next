@@ -1,35 +1,29 @@
 import { Box, Flex, Heading, SimpleGrid } from "@chakra-ui/react";
-import Sponsors from "components/Sponsors";
-import Card from "../../common/Card";
-import Layout from "../../components/Layout";
+import Card from "../../src/common/Card";
+import Layout from "../../src/common/Layout";
 
-const TeamHome = ({ players, coaches, ...props }) => {
+const TeamHome = () => {
   const teams = [
     {
       displayName: "Division 1",
       url: "d1",
-      bg: "/images/d1_team.jpeg",
+      bg: "/static/d1_team.jpeg",
     },
     {
-      displayName: "Division 3",
+      displayName: "Division 2",
       url: "d3",
-      bg: "/images/d3TeamPhoto.JPG",
+      bg: "/static/d3TeamPhoto.JPG",
     },
     {
       displayName: "Coaches & Staff",
       url: "coaches-and-staff",
-      bg: "/images/coach_pic2.jpeg",
+      bg: "/static/coach_pic1.jpeg",
     },
-    // {
-    //   displayName: "Legends",
-    //   url: "legends",
-    //   bg: "/images/jk_legends_pic.jpeg",
-    // },
-    // {
-    //   displayName: "Board",
-    //   url: "board",
-    //   bg: "",
-    // },
+    {
+      displayName: "Legends",
+      url: "legends",
+      bg: "/static/jk_legends_pic.jpeg",
+    },
   ];
   return (
     <Layout seo={{ metaTitle: "Team" }} header="Players and Staff">
@@ -99,7 +93,6 @@ const TeamHome = ({ players, coaches, ...props }) => {
           );
         })}
       </SimpleGrid>
-      <Sponsors />
     </Layout>
   );
 };

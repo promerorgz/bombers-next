@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 import { SimpleGrid } from "@chakra-ui/react";
-import ArticleCard from "components/Articles/ArticleCard";
+import ArticleCard from "src/components/Articles/ArticleCard";
 import styled from "styled-components";
-import Layout from "../../../components/Layout";
-import { fetchAPI } from "../../../lib/api";
+import Layout from "../../../src/common/Layout";
+import { fetchAPI } from "../../../src/lib/api";
 
 const ArticleHeader = styled.div`
   font-size: 44px;
@@ -32,24 +32,16 @@ const defaultArticle = {
   content: "",
 };
 
-const Article = ({ articles }) => {
+const Article = ({ articles, category }) => {
   return (
-    <Layout seo={{}} mainBg="brand.black">
-      {articles.map((article) => (
-        <SimpleGrid m={[0, 0, 2, 2, 4]} spacing="8" minChildWidth="300px">
-          {articles.length
-            ? articles.map((article) => {
-                return (
-                  <ArticleCard
-                    article={article}
-                    href="/articles/"
-                    // highlight={category.articles.length === 1}
-                  ></ArticleCard>
-                );
-              })
-            : `No ${article.category.name} article`}
-        </SimpleGrid>
-      ))}
+    <Layout seo={{ mainTitle: category }} header={category}>
+      <SimpleGrid m={[0, 0, 2, 2, 4]} spacing="8" minChildWidth="300px">
+        {articles.map((article) => {
+          return (
+            <ArticleCard article={article} href="/articles/"></ArticleCard>
+          );
+        })}
+      </SimpleGrid>
     </Layout>
   );
 };
@@ -73,7 +65,7 @@ export async function getStaticProps({ params }) {
   );
 
   return {
-    props: { articles },
+    props: { articles, category: params.category },
     revalidate: 60 * 60 * 60,
   };
 }

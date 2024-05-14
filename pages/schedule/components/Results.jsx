@@ -1,5 +1,5 @@
 import React from "react";
-import GameInfo from "../../../components/Games/GameInfo";
+import GameInfo from "../../../src/components/Games/GameInfo";
 
 import {
   Box,

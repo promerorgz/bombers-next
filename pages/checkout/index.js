@@ -1,5 +1,5 @@
-import Layout from "../../components/Layout";
-import CheckoutForm from "../../components/CheckoutForm";
+import Layout from "../../src/common/Layout";
+import CheckoutForm from "../../src/components/CheckoutForm";
 
 const DonatePage = () => {
   return (

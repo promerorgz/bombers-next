@@ -1,12 +1,11 @@
-import { Center, Heading, Stack } from "@chakra-ui/react";
+import { Center, Heading, Text, Stack } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import Hero from "../../../common/Hero";
-import Layout from "../../../components/Layout";
+import Pic from "../../../src/common/Pic";
+import Layout from "../../../src/common/Layout";
 import useBp from "../../../theme/useBp";
-import { getPosition } from "../../../components/Players/utils";
-import PlayerInfo from "../../../components/Players/PlayerInfo";
-import { fetchAPI } from "lib/api";
-import BgImage from "common/BgImage";
+import { getPosition } from "../../../src/components/Players/utils";
+import PlayerInfo from "../../../src/components/Players/PlayerInfo";
+import { fetchAPI } from "src/lib/api";
 
 const Player = ({ player }) => {
   const [direction, setDirection] = useState("row");
@@ -18,37 +17,44 @@ const Player = ({ player }) => {
 
   const inQuotes = (string) => (string ? `"${string}"` : "");
 
-  const playerBg = `linear-gradient(315deg, #404040 0%, #212121 74%)`;
   const text = `${player?.first_name} ${inQuotes(player?.nickname)} ${
     player?.last_name
   }`;
-  const startPic = player?.picture?.url
-    ? player?.picture?.url
-    : "/images/defaultpic.png";
+
+  const position = getPosition(player?.position);
 
   return (
-    <Layout seo={{ metaTitle: `${player?.first_name} ${player?.last_name}` }}>
-      <Hero
-        backButton
-        text={text}
-        secondaryText={getPosition(player?.position)}
-        size="sm"
-        startPic={startPic}
-        bg={playerBg}
-        direction={direction}
-      />
+    <Layout
+      seo={{ metaTitle: `${player?.first_name} ${player?.last_name}` }}
+      header={text}
+      subheader={position}
+      cover={{
+        url: player?.hoverPic?.url,
+      }}
+    >
+      {/* <Hero backButton text={text} /> */}
       <Stack minH="100%" w="100%" bg="brand.light" spacing="0">
-        <Center bg="brand.black" w="100%" p="8">
-          <Heading as="quote" color="brand.light">
-            {inQuotes(player?.bio)}
-          </Heading>
-        </Center>
-        <Stack direction={direction} spacing="4" m="0" id="kkck">
-          <Center w="50%">
-            <BgImage src={player?.hoverPic?.url} />
+        <Stack direction={direction} spacing="4" m="0" bg={"gradient.regular"}>
+          <Center flex={1}>
+            <Pic
+              fit={player?.picture?.size > 3000 ? "cover" : "contain"}
+              image={player?.picture}
+              size="xl"
+            />
           </Center>
-          <PlayerInfo w="50%" player={player} />
+          <Center flex={1} p={8} lineHeight={2}>
+            <Text
+              color="brand.lightSecondary"
+              size="lg"
+              textTransform="capitalize"
+              fontWeight="hairline"
+            >
+              {player?.bio}
+            </Text>
+          </Center>
+          {player?.bio}
         </Stack>
+        <PlayerInfo w="50%" player={player} />
       </Stack>
     </Layout>
   );

@@ -1,63 +1,56 @@
 import {
+  SimpleGrid,
   Tab,
   TabList,
   TabPanel,
   TabPanels,
   Tabs,
-  SimpleGrid,
 } from "@chakra-ui/react";
 import { fetchAPI } from "lib/api";
 import { sortBy } from "lodash";
-import React, { useCallback, useState, useEffect } from "react";
-import Hero from "../../common/Hero";
-import Layout from "../../components/Layout";
-import ArticleCard from "../../components/Articles/ArticleCard";
-import useBp from "../../theme/useBp";
+import React, { useCallback, useState } from "react";
+import ArticleCard from "../../src/components/Articles/ArticleCard";
+import Layout from "../../src/common/Layout";
 
 const News = ({ articles, categories }) => {
   const [selectedTab, setSelectedTab] = useState("Latest");
-  const [size, setSize] = useState("md");
 
   const onTabChange = useCallback((e, d) => {
     setSelectedTab(e);
   }, []);
 
-  const [isDesktop] = useBp();
-
-  useEffect(() => {
-    setSize(isDesktop ? "md" : "xl");
-  }, [isDesktop]);
-
   return (
-    <Layout seo={{ metaTitle: "Articles" }}>
-      <Hero
-        text="Articles"
-        image="/images/mcb-hero.jpeg"
-        size={isDesktop ? "md" : "xl"}
-        contentLink={size === "xl" ? "#articles" : false}
-      />
+    <Layout
+      header="Articles"
+      seo={{
+        metaTitle: "Articles",
+        metaDescription: `${selectedTab} articles`,
+      }}
+      cover={{
+        url: "/static/mcb-hero.jpeg",
+        alternativeText: "McBride cover photo",
+      }}
+    >
       <Tabs
+        fontFamily="Montserrat"
+        align="center"
         variant="line"
         size="lg"
         colorScheme="gray"
         value={selectedTab}
         onChange={onTabChange}
-        isFitted
-        id="articles"
+        id="article-tabs"
+        defaultIndex={0}
       >
         <TabList>
-          <Tab
-            fontFamily="Big Shoulders Display"
-            fontSize="xl"
-            fontWeight="bold"
-          >
+          <Tab fontSize="xl" fontWeight="bold">
             Latest
           </Tab>
           {categories.map((category) => (
             <Tab
               fontSize="xl"
               fontWeight="bold"
-              fontFamily="Big Shoulders Display"
+              fontFamily="Montserrat"
               textTransform="capitalize"
               key={category.id}
             >
@@ -65,51 +58,27 @@ const News = ({ articles, categories }) => {
             </Tab>
           ))}
         </TabList>
-        <TabPanels>
+        <TabPanels my="24px">
           <TabPanel>
-            {
-              <SimpleGrid
-                columns={1}
-                m={[0, 0, 2, 2, 2]}
-                spacing="8"
-                minChildWidth="200px"
-                maxChildWidth="400px"
-              >
-                {articles.length
-                  ? sortBy(articles, (article) => article.id).map((item) => {
-                      return (
-                        <ArticleCard
-                          article={item}
-                          style={{
-                            maxHeight: "300px",
-                          }}
-                        ></ArticleCard>
-                      );
-                    })
-                  : "No Articles"}
-              </SimpleGrid>
-            }
+            {articles.length
+              ? sortBy(articles, (article) =>
+                  new Date(article.publishedAt).toLocaleDateString("en")
+                ).map((item) => <ArticleCard article={item} />)
+              : "No Articles"}
           </TabPanel>
           {categories.map((category) => {
             return (
               <TabPanel textTransform="capitalize">
-                <SimpleGrid
-                  m={[0, 0, 2, 2, 4]}
-                  spacing="8"
-                  minChildWidth="300px"
-                >
-                  {category.articles.length
-                    ? category.articles.map((article) => {
-                        return (
-                          <ArticleCard
-                            href={"/articles/"}
-                            article={article}
-                            // highlight={category.articles.length === 1}
-                          ></ArticleCard>
-                        );
-                      })
-                    : `No ${category.name} article`}
-                </SimpleGrid>
+                {category.articles.length
+                  ? category.articles.map((article) => {
+                      return (
+                        <ArticleCard
+                          href={"/articles/"}
+                          article={article}
+                        ></ArticleCard>
+                      );
+                    })
+                  : `No ${category.name} article`}
               </TabPanel>
             );
           })}
