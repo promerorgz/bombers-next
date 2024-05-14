@@ -1,9 +1,7 @@
-import { Box, Flex, Heading, Text, Stack, Link } from "@chakra-ui/react";
-import BgImage from "src/common/BgImage";
-import Hero from "src/common/Hero";
-import Layout from "../src/components/Layout";
+import { Box, Flex, Heading, Link, Stack, Text } from "@chakra-ui/react";
 import React from "react";
-
+import BgImage from "src/common/BgImage";
+import Layout from "../src/common/Layout";
 const Golf = () => {
   const props = {
     buttons: [],
@@ -47,7 +45,7 @@ const Golf = () => {
             </Text>
           </Box>
           <Box flexGrow="1" width="50%">
-            <BgImage src="/images/golf2.jpeg" hei></BgImage>
+            <BgImage src="/images/golf2.jpeg"></BgImage>
           </Box>
         </Flex>
       </Stack>

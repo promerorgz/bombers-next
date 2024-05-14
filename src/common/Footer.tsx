@@ -46,9 +46,9 @@ const Footer: FC<{ sponsors: Array<Sponsors> }> = ({ sponsors = [] }) => {
           })}
         </FooterLinks>
       </FooterContainer>{" "}
-      <Copyright backgroundColor="gray" p="4">
-        <Text size="xs" textAlign="center">
-          <span>Copyright © {new Date().getFullYear()} St. Louis Bombers.</span>
+      <Copyright backgroundColor="brand.dark" p="4">
+        <Text size="xs" textAlign="start">
+          <span> © {new Date().getFullYear()} St. Louis Bombers.</span>
         </Text>
       </Copyright>
     </>

@@ -1,7 +1,7 @@
 import { Box, Heading } from "@chakra-ui/react";
 import Mdx from "../../../src/common/Mdx";
 import PageContent from "../../../src/common/PageContent";
-import Layout from "../../../src/components/Layout";
+import Layout from "../../../src/common/Layout";
 import { fetchAPI } from "../../../src/lib/api";
 
 const ClubHistory = ({ history }) => {

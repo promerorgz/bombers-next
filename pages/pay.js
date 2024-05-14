@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { Heading, Stack, Box, SimpleGrid } from "@chakra-ui/react";
 import { PayPalButtons } from "@paypal/react-paypal-js";
-import Layout from "../src/components/Layout";
+import Layout from "../src/common/Layout";
 import DonateButton from "../src/components/Pay/DonateButton";
 import React, { useEffect, useState } from "react";
 import useBp from "theme/useBp";

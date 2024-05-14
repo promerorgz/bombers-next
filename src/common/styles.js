@@ -151,7 +151,7 @@ export const FooterIcons = styled.div`
 `;
 
 export const FooterContainer = styled(Box)`
-  background: #263238;
+  background: rgb(0, 0, 0);
   color: #fff;
   /* $text-secondary-clr: #cccccc; */
   width: 100%;

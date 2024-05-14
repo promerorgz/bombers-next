@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "../src/components/Layout";
+import Layout from "../src/common/Layout";
 import ContactForm from "../src/components/Contact/ContactForm";
 import { Heading, Stack } from "@chakra-ui/react";
 

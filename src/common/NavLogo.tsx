@@ -8,12 +8,12 @@ import {
 } from "@chakra-ui/react";
 import Link from "next/link";
 
-<<<<<<< Updated upstream:src/common/NavLogo.tsx
 export type NavLogoProps = {
-  size?: string;
+  size?: "sm" | "md" | "lg" | "xl" | string;
   color?: string;
   logoOnly?: boolean;
   disableGutters?: boolean;
+  styles?: any;
 };
 
 const defaultProps: NavLogoProps = {
@@ -23,10 +23,13 @@ const defaultProps: NavLogoProps = {
   disableGutters: false,
 };
 
-const NavLogo = ({ size, color, logoOnly, disableGutters }: NavLogoProps) => {
-=======
-const NavLogo = ({ size, color, logoOnly }) => {
->>>>>>> Stashed changes:components/Navbar/NavLogo.jsx
+const NavLogo = ({
+  size,
+  color,
+  logoOnly,
+  disableGutters,
+  styles,
+}: NavLogoProps) => {
   const dims = {
     sm: [30, 30],
     md: [50, 50],
@@ -50,6 +53,7 @@ const NavLogo = ({ size, color, logoOnly }) => {
       textDecoration="none"
       transition="width .2s,opacity .2s ease-in-out .2s"
       zIndex={30}
+      sx={{ ...styles }}
     >
       <Link href={`/`} passHref legacyBehavior>
         <ChakraLink
@@ -71,6 +75,7 @@ const NavLogo = ({ size, color, logoOnly }) => {
           <Flex direction="row" alignItems="center" justifyContent="flex-start">
             <Box mr={logoOnly ? 0 : 3}>
               <img
+                className="logo-img"
                 src={
                   color === "brand.light"
                     ? "/static/logos/white_logo.png"
@@ -88,6 +93,7 @@ const NavLogo = ({ size, color, logoOnly }) => {
               display={display}
             >
               <Heading
+                className="logo-heading"
                 size={{
                   base: size || "md",
                   sm: size || "md",
@@ -102,6 +108,7 @@ const NavLogo = ({ size, color, logoOnly }) => {
               </Heading>
 
               <Heading
+                className="logo-heading"
                 size={{
                   base: size || "md",
                   sm: size || "md",

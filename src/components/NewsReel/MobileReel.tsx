@@ -14,7 +14,7 @@ const MobileReel = ({ articles }) => {
       {articles.map((article: Article) => {
         return (
           <MobileCard
-            bg={article?.image?.formats.medium.url}
+            bg={article?.image?.formats.large.url}
             key={article.title}
           >
             <MobileCardDescription>

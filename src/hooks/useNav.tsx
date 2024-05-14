@@ -29,9 +29,14 @@ function useNav(type?: undefined | String | Array<string>): DefaultNavs {
 
   const baseNavs = [
     {
-      name: "articles",
+      name: "latest",
       id: "articles",
       slug: "articles",
+    },
+    {
+      name: "fixtures",
+      id: "fixtures",
+      slug: "fixtures",
     },
     {
       name: "club",

@@ -2,7 +2,7 @@ import { Box } from "@chakra-ui/react";
 import styled from "styled-components";
 
 export const HeroContainer = styled.div`
-  height: 68vh;
+  height: 50vh;
   min-height: 35rem;
   position: relative;
   background: var(--chakra-color-background);
@@ -128,7 +128,7 @@ export const HeroTileImageContainer = styled.picture`
     right: 0;
     bottom: 0;
     left: 0;
-    opacity: 0;
+    opacity: 0.8;
     background-color: rgba(24, 23, 51, 0.6);
     will-change: opacity;
     transition: opacity 0.2s ease;
@@ -164,7 +164,7 @@ export const HeroTileGradient = styled.div`
   z-index: 10;
   background: linear-gradient(
     0deg,
-    var(--chakra-colors-brand-black) 6rem,
+    var(--chakra-colors-brand-black) 5rem,
     rgba(8, 14, 31, 0)
   );
   will-change: top;
@@ -289,14 +289,15 @@ export const ContentTime = styled.time`
 `;
 
 export const MobileReelContainer = styled(Box)`
-  min-height: 40vh;
-  max-height: 50vh;
+  height: 100%;
+  min-height: 100vh;
+  max-height: 100vh;
   scroll-behavior: smooth;
-  scroll-snap-type: x mandatory;
-  overflow-x: scroll;
-  overflow-y: hidden;
+  scroll-snap-type: y mandatory;
+  overflow-x: hidden;
+  overflow-y: scroll;
   display: flex;
-  gap: 16px;
+  flex-direction: column;
 `;
 export const MobileCard = styled.div`
   ::before {
@@ -310,9 +311,8 @@ export const MobileCard = styled.div`
   }
   display: flex;
   scroll-snap-align: center;
-  min-height: 475px;
+  min-height: 100%;
   min-width: 300px;
-  border-radius: 10px;
   background-image: ${({ bg }) => `url(${bg})`};
   background-repeat: no-repeat;
   background-position: center;
@@ -320,14 +320,17 @@ export const MobileCard = styled.div`
 `;
 
 export const MobileCardDescription = styled.div`
-  padding: 8;
+  height: 100%;
+  width: 100%;
+  opacity: 80%;
+  background: black;
+  padding: 8px;
   z-index: 3;
   margin: 0;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: flex-start;
-  padding-bottom: 6px;
   font-family: var(--chakra-fonts-header-fontFamily);
   font-weight: var(--chakra-fonts-header-fontWeight);
   font-size: 24px; //--chakra-fontSizes-lg
@@ -349,7 +352,6 @@ export const MobileCardCta = styled.div`
   display: inline-block;
   vertical-align: middle;
   font-family: var(--chakra-fonts-header-fontFamily);
-  font-weight: 700;
   background-color: var(--chakra-colors-brand-highlight);
   color: var(--chakra-colors-brand-dark);
   -webkit-transform: perspective(1px) translateZ(0);
@@ -361,7 +363,8 @@ export const MobileCardCta = styled.div`
   margin-top: 20px;
   padding: 9px 10px;
   line-height: 1;
-  font-size: 16px;
+  font-size: 14px;
+  font-weight: bold;
   min-width: 144px;
   margin: 24px 24px 0;
 `;

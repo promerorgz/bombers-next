@@ -23,19 +23,6 @@ import React from "react";
 import { Article } from "../../types/newsTypes";
 import { Formats } from "../../types/imageTypes";
 
-type ImageFormatType = {
-  ext: string;
-  format: "small" | "medium" | "large" | "thumbnail";
-  hash: string;
-  height: number;
-  mime: string;
-  name: string;
-  path: string | null;
-  size: number;
-  url: string;
-  width: number;
-};
-
 const NewsReel = ({ articles }) => {
   const features = useFeatures(articles);
 

@@ -5,7 +5,7 @@ import { format, formatDistanceToNow } from "date-fns";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Hero from "../../../src/common/Hero";
-import Layout from "../../../src/components/Layout";
+import Layout from "../../../src/common/Layout";
 import Pic from "../../../src/common/Pic";
 import { fetchAPI } from "../../../src/lib/api";
 import { getStrapiMedia } from "../../../src/lib/media";

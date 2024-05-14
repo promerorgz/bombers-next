@@ -9,11 +9,12 @@ const TopNav = () => {
       maxH="100px"
       bg="gradient.regular"
       flexGrow="2"
-      justifyContent="flex-start"
+      justifyContent="center"
       id="topbar"
       display={["none", "none", "flex", "flex"]}
+      alignItems="center"
     >
-      <Flex w="100%" mx={8} justifyContent="space-between">
+      <Flex w="100%" mx={8} justifyContent="space-between" maxW="1180px">
         <Socials />
         <LoginButton />
       </Flex>

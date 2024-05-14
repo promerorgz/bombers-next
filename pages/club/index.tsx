@@ -1,5 +1,5 @@
 import IndexLayout from "../../src/components/IndexLayout";
-import Layout from "../../src/components/Layout";
+import Layout from "../../src/common/Layout";
 import useNav from "../../src/hooks/useNav";
 import React from "react";
 

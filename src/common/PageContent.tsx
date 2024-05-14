@@ -4,8 +4,6 @@ import React, { PropsWithChildren } from "react";
 const Container = styled.div`
   min-height: 80vh;
   height: 100%;
-  margin-top: 16px;
-  margin-bottom: 16px;
   background-color: var(
     ${(props: PageContentProps) =>
       props.darkMode
@@ -16,7 +14,7 @@ const Container = styled.div`
 
 const Wrapper = styled.div`
   width: 100%;
-  max-width: 148rem;
+  /* max-width: 148rem; */
   margin: 0 auto;
   position: relative;
   padding: 0;

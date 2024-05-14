@@ -2,7 +2,7 @@
 import { SimpleGrid } from "@chakra-ui/react";
 import ArticleCard from "src/components/Articles/ArticleCard";
 import styled from "styled-components";
-import Layout from "../../../src/components/Layout";
+import Layout from "../../../src/common/Layout";
 import { fetchAPI } from "../../../src/lib/api";
 
 const ArticleHeader = styled.div`

@@ -11,18 +11,13 @@ import {
   DrawerOverlay,
   Flex,
   Heading,
-  Text,
   useDisclosure,
 } from "@chakra-ui/react";
 import { Twirl as Hamburger } from "hamburger-react";
-import useNav from "src/hooks/useNav";
-import Link from "src/common/Link";
 import { useRouter } from "next/router";
+import Link from "src/common/Link";
+import useNav from "src/hooks/useNav";
 import NavLogo from "../../../common/NavLogo";
-import { useEffect } from "react";
-import styles from "../Navbar.module.scss";
-import Footer from "common/Footer";
-import { Copyright } from "common/styles";
 
 const MobileNav = () => {
   const { navs } = useNav();
@@ -31,10 +26,7 @@ const MobileNav = () => {
 
   return (
     <>
-      <Box
-        display={["block", "block", "none", "none", "none"]}
-        className={styles["mobile-nav"]}
-      >
+      <Box display={["block", "block", "none", "none", "none"]}>
         <Flex
           id="mobile-nav"
           minH={"100px"}
@@ -118,6 +110,7 @@ const MobileNav = () => {
                         bg: "brand.black",
                         color: "white",
                       }}
+                      sx={{ border: "none" }}
                     >
                       <Box flex="1" textAlign="left">
                         <Heading size="md" color="brand.light">
@@ -159,7 +152,6 @@ const MobileNav = () => {
                   </AccordionItem>
                 );
               })}
-              <AccordionItem minHeight={"20%"}></AccordionItem>
             </Accordion>
           </DrawerBody>
         </DrawerContent>

@@ -4,7 +4,7 @@ import ReactMarkdown from "react-markdown";
 import Form from "../src/common/Form";
 import Hero from "../src/common/Hero";
 import Pic from "../src/common/Pic";
-import Layout from "../src/components/Layout";
+import Layout from "../src/common/Layout";
 import { fetchAPI } from "../src/lib/api";
 
 const DynamicPage = ({ page }) => {

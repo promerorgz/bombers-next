@@ -3,7 +3,7 @@ import Form from "common/Form";
 import Hero from "common/Hero";
 import Mdx from "common/Mdx";
 import Pic from "common/Pic";
-import Layout from "components/Layout";
+import Layout from "common/Layout";
 
 import { fetchAPI } from "lib/api";
 import Link from "next/link";

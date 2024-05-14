@@ -10,7 +10,7 @@ import { fetchAPI } from "lib/api";
 import { sortBy } from "lodash";
 import React, { useCallback, useState } from "react";
 import ArticleCard from "../../src/components/Articles/ArticleCard";
-import Layout from "../../src/components/Layout";
+import Layout from "../../src/common/Layout";
 
 const News = ({ articles, categories }) => {
   const [selectedTab, setSelectedTab] = useState("Latest");

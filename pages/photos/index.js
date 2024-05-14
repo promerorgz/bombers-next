@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "../../src/components/Layout";
+import Layout from "../../src/common/Layout";
 
 const Photos = () => {
   return <Layout>photos</Layout>;

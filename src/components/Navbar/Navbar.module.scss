@@ -61,11 +61,24 @@ ul.menu-item-container {
   }
 }
 
-html:not([data-scroll="-1"]) .mobile-nav {
+.main-nav-bar--scrolled {
   position: fixed;
   top: 0;
   width: 100%;
-  background-color: var(--chakra-colors-brand-dark);
+  background: var(--chakra-colors-brand-black);
   box-shadow: 0 0 0.2em rgba(0, 0, 0, 0.5);
   transition: 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+  .logo-img {
+    width: 50px;
+    max-width: 100%;
+    aspect-ratio: auto 50 / 50;
+    transition: 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+  .logo-heading {
+    font-size: 22px;
+    transition: 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+  .desktop-menu-item {
+    opacity: 1;
+  }
 }

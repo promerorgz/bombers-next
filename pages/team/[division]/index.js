@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "../../../src/components/Layout";
+import Layout from "../../../src/common/Layout";
 import PlayerList from "../../../src/components/Players/PlayerList";
 import Sponsors from "../../../src/components/Sponsors";
 import { fetchAPI } from "../../../src/lib/api";

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Layout from "../../../src/components/Layout";
+import Layout from "../../../src/common/Layout";
 import Hero from "../../../src/common/Hero";
 import useBp from "../../../theme/useBp";
 import { useRouter } from "next/router";

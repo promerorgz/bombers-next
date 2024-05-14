@@ -1,12 +1,11 @@
 import { Center, Heading, Text, Stack } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import Pic from "../../../src/common/Pic";
-import Layout from "../../../src/components/Layout";
+import Layout from "../../../src/common/Layout";
 import useBp from "../../../theme/useBp";
 import { getPosition } from "../../../src/components/Players/utils";
 import PlayerInfo from "../../../src/components/Players/PlayerInfo";
 import { fetchAPI } from "src/lib/api";
-import BgImage from "src/common/BgImage";
 
 const Player = ({ player }) => {
   const [direction, setDirection] = useState("row");
