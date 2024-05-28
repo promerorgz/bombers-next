@@ -90,9 +90,10 @@ const News = ({ articles, categories }) => {
 
 export async function getStaticProps() {
   const categories = (await fetchAPI(`/categories`)) || {};
+  const articles = (await fetchAPI(`/articles`)) || {};
 
   return {
-    props: { categories },
+    props: { categories, articles },
     revalidate: 60,
   };
 }
