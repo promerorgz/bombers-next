@@ -34,9 +34,9 @@ function useNav(type?: undefined | String | Array<string>): DefaultNavs {
       slug: "articles",
     },
     {
-      name: "fixtures",
-      id: "fixtures",
-      slug: "fixtures",
+      name: "schedule",
+      id: "schedule",
+      slug: "schedule",
     },
     {
       name: "club",
