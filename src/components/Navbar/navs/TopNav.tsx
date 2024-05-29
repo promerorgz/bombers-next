@@ -39,15 +39,14 @@ const TopNav = () => {
       alignItems="center"
     >
       <Flex w="100%" mx={8} justifyContent="space-between" maxW="1180px">
-        <Box flex="1">
-          <NavLogo color="brand.light" size="md" logoOnly />
-        </Box>
+        <NavLogo color="brand.light" size="md" logoOnly />
         {navs.map((nav) => {
             return (
               <Link
                 key={nav.slug}
                 style={{
                   textDecoration: "none",
+                  alignSelf: "center"
                 }}
                 href={nav.slug}
               >
