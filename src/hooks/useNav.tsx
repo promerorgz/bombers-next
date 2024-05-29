@@ -127,7 +127,7 @@ function useNav(type?: undefined | String | Array<string>): DefaultNavs {
         slug: `${page.parent}/${page.slug}`,
         bg: page.Seo.ShareImage,
       };
-
+      
       if (nav.name === page.parent) {
         nav.subMenus.push(mapPageToNav);
         return nav;
