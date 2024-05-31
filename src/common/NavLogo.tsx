@@ -104,10 +104,10 @@ const NavLogo = ({
                 mr={size === "sm" ? 1 : 0}
                 color={color || "inherit"}
               >
-                St. Louis
+                St. Louis Bombers Rugby
               </Heading>
 
-              <Heading
+              {/* <Heading
                 className="logo-heading"
                 size={{
                   base: size || "md",
@@ -119,7 +119,7 @@ const NavLogo = ({
                 color={color || "inherit"}
               >
                 Bombers Rugby
-              </Heading>
+              </Heading> */}
             </Stack>
           </Flex>
         </ChakraLink>
