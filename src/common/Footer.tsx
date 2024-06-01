@@ -14,14 +14,13 @@ import {
 import { Heading, Text } from "@chakra-ui/react";
 
 const Footer: FC<{ sponsors: Array<Sponsors> }> = ({ sponsors = [] }) => {
-  const { navs, shortest } = useNav(["club", "team"]);
+  const { navs, shortest } = useNav(["Club", "Team"]);
 
   return (
     <>
       <FooterContainer id="footer">
         <FooterInfo>
           <NavLogo color="brand.light" />
-
           <FooterIcons>
             <FontAwesomeIcon icon={faFacebook} />
             <FontAwesomeIcon icon={faInstagram} />

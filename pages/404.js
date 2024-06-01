@@ -13,7 +13,9 @@ const Fof = () => {
         full: true,
         url: "/static/coach_pic1.jpeg",
       }}
-    />
+    >
+      404: This is obviously not the page you are looking for...
+    </Layout>
   );
 };
 

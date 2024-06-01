@@ -102,9 +102,11 @@ const NavLogo = ({
                   xl: size || "xl",
                 }}
                 mr={size === "sm" ? 1 : 0}
+                mb={0}
                 color={color || "inherit"}
+                whiteSpace={"pre-wrap"}
               >
-                St. Louis Bombers Rugby
+                {"Saint Louis\nBombers Rugby"}
               </Heading>
 
               {/* <Heading
