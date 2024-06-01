@@ -22,12 +22,12 @@ const ClubIndex = () => {
       slug: "club/board",
       bg: "",
     },
-    // {
-    //   name: "youth rugby",
-    //   id: "youth-rugby",
-    //   slug: "club/youth-rugby",
-    //   bg: "/static/jets_mark.jpg",
-    // },
+    {
+      name: "youth rugby",
+      id: "youth-rugby",
+      slug: "club/youth-rugby",
+      bg: "/static/jets_mark.jpg",
+    },
     // {
     //   name: "bombers career center",
     //   id: "youth-rugby",
