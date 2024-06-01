@@ -16,7 +16,7 @@ const IndexLayout = ({ items }) => {
             radius="8px"
             id={`${item.name}-card`}
             as={item.url}
-            link={`/${item.slug}/[slug]`}
+            link={`/${item.slug}`}
             styles={{
               minHeight: "370px",
               height: "auto",

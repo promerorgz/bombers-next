@@ -1,6 +1,6 @@
 import React from "react";
 import GameInfo from "../../../src/components/Games/GameInfo";
-
+import { fetchAPI } from "../../../src/lib/api";
 import {
   Box,
   Divider,
@@ -105,5 +105,17 @@ const Results = ({ results }) => {
     </Accordion>
   );
 };
+
+export async function getStaticProps() {
+  // Run API calls in parallel
+  const [upcoming] = await Promise.all([fetchAPI("/games")]);
+
+  return {
+    props: {
+      upcoming,
+    },
+    revalidate: 60,
+  };
+}
 
 export default Results;
