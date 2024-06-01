@@ -50,12 +50,11 @@ const Socials = ({
           return (
             <Link
               href={page?.url}
-              target="_blank"
               key={page?.url}
               passHref
               legacyBehavior
             >
-              <Button variant="link" as="a" pb="3">
+              <Button variant="link" as="a" pb="3" target="_blank">
                 {page.name === "venmo" ? (
                   <></>
                 ) : (

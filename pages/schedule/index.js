@@ -8,7 +8,6 @@ import ScheduleTabs from "./components/ScheduleTabs";
 import { fetchAPI } from "../../src/lib/api";
 
 const Schedule = ({ games }) => {
-  console.log(games)
   const { d1, d3 } = groupBy(games, "division");
   const [isDesktop] = useBp();
   const seo = {
