@@ -29,38 +29,38 @@ function useNav(type?: undefined | String | Array<string>): DefaultNavs {
 
   const baseNavs = [
     {
-      name: "latest",
+      name: "Latest",
       id: "articles",
       slug: "articles",
     },
     {
-      name: "fixtures",
-      id: "fixtures",
-      slug: "fixtures",
+      name: "Schedule",
+      id: "schedule",
+      slug: "schedule",
     },
     {
-      name: "club",
+      name: "Club",
       id: "club",
       slug: "club",
       subMenus: [
         {
-          name: "history",
+          name: "History",
           id: "history",
           slug: "club/history",
           bg: "/static/legends_3.jpeg",
         },
         {
-          name: "board",
+          name: "Board",
           id: "board",
           slug: "club/board",
           bg: "",
         },
-        // {
-        //   name: "youth rugby",
-        //   id: "youth-rugby",
-        //   slug: "club/youth-rugby",
-        //   bg: "/static/jets_mark.jpg",
-        // },
+        {
+          name: "Youth Rugby",
+          id: "youth-rugby",
+          slug: "club/youth-rugby",
+          bg: "/static/jets_mark.jpg",
+        },
         // {
         //   name: "bombers career center",
         //   id: "youth-rugby",
@@ -71,7 +71,7 @@ function useNav(type?: undefined | String | Array<string>): DefaultNavs {
     },
 
     {
-      name: "team",
+      name: "Team",
       id: "team",
       slug: "team",
       subMenus: [
@@ -91,29 +91,19 @@ function useNav(type?: undefined | String | Array<string>): DefaultNavs {
           slug: "team/coaches-and-staff",
         },
         {
-          name: "practice",
-          id: "practice",
-          slug: "practice",
-        },
-        {
-          name: "schedule",
-          id: "practice",
-          slug: "practice",
-        },
-        {
-          name: "results",
+          name: "Practice",
           id: "practice",
           slug: "practice",
         },
       ],
     },
     {
-      name: "contact",
+      name: "Contact",
       id: "contact",
       slug: "contact",
     },
     {
-      name: "donate",
+      name: "Donate",
       id: "donate",
       slug: "pay",
     },
@@ -127,7 +117,7 @@ function useNav(type?: undefined | String | Array<string>): DefaultNavs {
         slug: `${page.parent}/${page.slug}`,
         bg: page.Seo.ShareImage,
       };
-
+      
       if (nav.name === page.parent) {
         nav.subMenus.push(mapPageToNav);
         return nav;

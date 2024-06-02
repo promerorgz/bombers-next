@@ -1,6 +1,7 @@
 import { faFacebook, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FC } from "react";
+import Link from "next/link";
 import useNav from "../hooks/useNav";
 import { Sponsors } from "../types/sponsors";
 import NavLogo from "./NavLogo";
@@ -12,19 +13,19 @@ import {
   FooterLinks,
 } from "./styles";
 import { Heading, Text } from "@chakra-ui/react";
+import Socials from "./Socials";
 
 const Footer: FC<{ sponsors: Array<Sponsors> }> = ({ sponsors = [] }) => {
-  const { navs, shortest } = useNav(["club", "team"]);
+  const { navs, shortest } = useNav(["Club", "Team"]);
 
   return (
     <>
       <FooterContainer id="footer">
         <FooterInfo>
           <NavLogo color="brand.light" />
-
+          
           <FooterIcons>
-            <FontAwesomeIcon icon={faFacebook} />
-            <FontAwesomeIcon icon={faInstagram} />
+            <Socials size=""/>
           </FooterIcons>
         </FooterInfo>
         <FooterLinks>
@@ -37,7 +38,17 @@ const Footer: FC<{ sponsors: Array<Sponsors> }> = ({ sponsors = [] }) => {
                     ?.slice(0, shortest)
                     .map((link, index) =>
                       link.name !== "more" ? (
-                        <li key={`link-${item.id}-${index}`}>{link.name}</li>
+                          <Link
+                          key={`link-${item.id}-${index}`}
+                            style={{
+                              textDecoration: "none",
+                              alignSelf: "center",
+                              
+                            }}
+                            href={link.slug}
+                          >
+                            {link.name}
+                          </Link>
                       ) : null
                     )}
                 </>
@@ -47,7 +58,7 @@ const Footer: FC<{ sponsors: Array<Sponsors> }> = ({ sponsors = [] }) => {
         </FooterLinks>
       </FooterContainer>{" "}
       <Copyright backgroundColor="brand.dark" p="4">
-        <Text size="xs" textAlign="start">
+        <Text size="xs" textAlign="center">
           <span> © {new Date().getFullYear()} St. Louis Bombers.</span>
         </Text>
       </Copyright>

@@ -1,6 +1,5 @@
 import React from "react";
 import GameInfo from "../../../src/components/Games/GameInfo";
-
 import {
   Box,
   Divider,

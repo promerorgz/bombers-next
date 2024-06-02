@@ -26,7 +26,8 @@ const MobileNav = () => {
 
   return (
     <>
-      <Box display={["block", "block", "none", "none", "none"]}>
+      <Box display={["block", "block", "none", "none", "none"]}
+      bg="gradient.regular">
         <Flex
           id="mobile-nav"
           minH={"100px"}

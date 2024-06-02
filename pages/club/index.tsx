@@ -5,7 +5,36 @@ import React from "react";
 
 const ClubIndex = () => {
   const { navs } = useNav("club");
-  const subMenus = navs[0].subMenus;
+  // TODO: reestablish useNav
+  // const subMenus = navs[0].subMenus;
+
+  //temporary
+  const subMenus = [
+    {
+      name: "history",
+      id: "history",
+      slug: "club/history",
+      bg: "/static/legends_3.jpeg",
+    },
+    {
+      name: "board",
+      id: "board",
+      slug: "club/board",
+      bg: "",
+    },
+    {
+      name: "youth rugby",
+      id: "youth-rugby",
+      slug: "club/youth-rugby",
+      bg: "/static/jets_mark.jpg",
+    },
+    // {
+    //   name: "bombers career center",
+    //   id: "youth-rugby",
+    //   slug: "club/career-center",
+    //   bg: "",
+    // },
+  ]
 
   return (
     <Layout

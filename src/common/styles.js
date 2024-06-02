@@ -136,7 +136,7 @@ export const FooterIcons = styled.div`
   display: flex;
   align-items: center;
   column-gap: 0.75rem;
-  justify-content: center;
+  justify-content: start;
 
   & svg {
     padding: 0.75rem;

@@ -44,7 +44,6 @@ const TeamMatchVs = styled.h2`
 `;
 
 const MatchTeams = ({ match }: { match: MatchType }) => {
-  console.log({ match });
   const { home, away } = match;
 
   return (

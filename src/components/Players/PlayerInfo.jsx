@@ -1,5 +1,5 @@
 import { Center, Heading, SimpleGrid, Stack } from "@chakra-ui/react";
-import { formatDate } from "../../../utils";
+import { formatDate } from "../../../utils/formatDate.js";
 import { getFlag, getPosition, getNationality } from "./utils";
 
 const PlayerInfo = ({ player }) => {

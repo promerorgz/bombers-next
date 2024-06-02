@@ -16,7 +16,7 @@ const Nav = ({ ...props }) => {
     <Box className={`${styles["nav-container"]} main-nav-bar`} {...props}>
       <TopNav />
       <MobileNav />
-      <DesktopNav />
+      {/* <DesktopNav /> */}
     </Box>
   );
 };

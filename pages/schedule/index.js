@@ -5,6 +5,7 @@ import Hero from "../../src/common/Hero";
 import Layout from "../../src/common/Layout";
 import useBp from "../../theme/useBp";
 import ScheduleTabs from "./components/ScheduleTabs";
+import { fetchAPI } from "../../src/lib/api";
 
 const Schedule = ({ games }) => {
   const { d1, d3 } = groupBy(games, "division");
@@ -14,12 +15,12 @@ const Schedule = ({ games }) => {
   };
   return (
     <Layout seo={seo}>
-      <Hero
+      {/* <Hero
         text="Schedule"
         image="/images/nationals17.jpg"
         size={isDesktop ? "md" : "xl"}
         contentLink="#schedule"
-      />
+      /> */}
       <Box h="100vh">
         <Tabs
           id="schedule"
@@ -33,7 +34,7 @@ const Schedule = ({ games }) => {
         >
           <TabList>
             <Tab>Bombers DI</Tab>
-            <Tab>Bombers DIII</Tab>
+            <Tab>Bombers DII</Tab>
           </TabList>
           <TabPanels>
             <TabPanel>
@@ -48,5 +49,17 @@ const Schedule = ({ games }) => {
     </Layout>
   );
 };
+
+export async function getStaticProps() {
+  // Run API calls in parallel
+  const [games] = await Promise.all([fetchAPI("/games")]);
+
+  return {
+    props: {
+      games,
+    },
+    revalidate: 60,
+  };
+}
 
 export default Schedule;

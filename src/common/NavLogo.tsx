@@ -49,7 +49,7 @@ const NavLogo = ({
       display="flex"
       flexDirection="column"
       position="relative"
-      minWidth="16rem"
+      minWidth="6rem"
       textDecoration="none"
       transition="width .2s,opacity .2s ease-in-out .2s"
       zIndex={30}
@@ -102,12 +102,14 @@ const NavLogo = ({
                   xl: size || "xl",
                 }}
                 mr={size === "sm" ? 1 : 0}
+                mb={0}
                 color={color || "inherit"}
+                whiteSpace={"pre-wrap"}
               >
-                St. Louis
+                {"Saint Louis\nBombers Rugby"}
               </Heading>
 
-              <Heading
+              {/* <Heading
                 className="logo-heading"
                 size={{
                   base: size || "md",
@@ -119,7 +121,7 @@ const NavLogo = ({
                 color={color || "inherit"}
               >
                 Bombers Rugby
-              </Heading>
+              </Heading> */}
             </Stack>
           </Flex>
         </ChakraLink>
