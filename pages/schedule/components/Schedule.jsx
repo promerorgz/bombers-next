@@ -38,17 +38,17 @@ const Schedule = ({ upcoming }) => {
       {upcoming.map((game) => {
         const gameInfoProps = {
           homeTeam: {
-            name: game.home.name,
-            logo: game.home.logo,
-            score: game.home_score,
+            name: game?.home?.name,
+            logo: game?.home?.logo,
+            score: game?.home_score,
           },
           awayTeam: {
-            name: game.away.name,
-            logo: game.away.logo,
-            score: game.away_score,
+            name: game?.away?.name,
+            logo: game?.away?.logo,
+            score: game?.away_score,
           },
-          date: game.date,
-          location: game.location,
+          date: game?.date,
+          location: game?.location,
           preview: false,
         };
 

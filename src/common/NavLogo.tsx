@@ -49,7 +49,6 @@ const NavLogo = ({
       display="flex"
       flexDirection="column"
       position="relative"
-      minWidth="6rem"
       textDecoration="none"
       transition="width .2s,opacity .2s ease-in-out .2s"
       zIndex={30}

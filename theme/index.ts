@@ -6,6 +6,11 @@ export default extendTheme({
   components: {
     Button,
     Heading,
+    Link: {
+      baseStyle: {
+        "&:hover": { color: " var(--chakra-colors-brand-highlight)" },
+      },
+    },
   },
   styles: {
     html: {
