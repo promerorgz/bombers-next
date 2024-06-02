@@ -1,7 +1,6 @@
 import { faFacebook, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FC } from "react";
-import Link from "next/link";
 import useNav from "../hooks/useNav";
 import { Sponsors } from "../types/sponsors";
 import NavLogo from "./NavLogo";
@@ -12,7 +11,7 @@ import {
   FooterInfo,
   FooterLinks,
 } from "./styles";
-import { Heading, Text } from "@chakra-ui/react";
+import { Heading, Text, textDecoration, Link } from "@chakra-ui/react";
 import Socials from "./Socials";
 
 const Footer: FC<{ sponsors: Array<Sponsors> }> = ({ sponsors = [] }) => {
@@ -23,9 +22,9 @@ const Footer: FC<{ sponsors: Array<Sponsors> }> = ({ sponsors = [] }) => {
       <FooterContainer id="footer">
         <FooterInfo>
           <NavLogo color="brand.light" />
-          
+
           <FooterIcons>
-            <Socials size=""/>
+            <Socials size="" />
           </FooterIcons>
         </FooterInfo>
         <FooterLinks>
@@ -34,23 +33,20 @@ const Footer: FC<{ sponsors: Array<Sponsors> }> = ({ sponsors = [] }) => {
               <ul className={`col col-${i + 1}`} key={item.id}>
                 <>
                   {<li className="header">{item.name}</li>}
-                  {item.subMenus
-                    ?.slice(0, shortest)
-                    .map((link, index) =>
-                      link.name !== "more" ? (
-                          <Link
-                          key={`link-${item.id}-${index}`}
-                            style={{
-                              textDecoration: "none",
-                              alignSelf: "center",
-                              
-                            }}
-                            href={link.slug}
-                          >
-                            {link.name}
-                          </Link>
-                      ) : null
-                    )}
+                  {item.subMenus?.slice(0, shortest).map((link, index) =>
+                    link.name !== "more" ? (
+                      <Link
+                        key={`link-${item.id}-${index}`}
+                        style={{
+                          textDecoration: "none",
+                          alignSelf: "center",
+                        }}
+                        href={link.slug}
+                      >
+                        {link.name}
+                      </Link>
+                    ) : null
+                  )}
                 </>
               </ul>
             ) : null;

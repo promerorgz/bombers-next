@@ -1,8 +1,9 @@
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Flex, Link } from "@chakra-ui/react";
 import styled, { StyledComponent } from "@emotion/styled";
-import Link from "next/link";
 import NavLogo from "../../../common/NavLogo";
 import useNav from "../../../hooks/useNav";
+import LoginButton from "src/common/LoginButton";
+import Socials from "../../../common/Socials";
 
 type MenuItemProps = {
   theme: any;
@@ -18,6 +19,7 @@ const MenuItem = styled(Box)`
   opacity: 0.75;
   :hover {
     opacity: 1;
+    color: var(--chakra-colors-brand-highlight)
   }
 `;
 
@@ -81,6 +83,8 @@ const DesktopNav = () => {
             }}
             href="/pay"
           ></Link>
+          <Socials />
+          <LoginButton />
         </Flex>
       </Flex>
     </Flex>

@@ -1,28 +1,27 @@
-import { Flex, HStack, Box } from "@chakra-ui/react";
+import { Flex, HStack, Box, Link } from "@chakra-ui/react";
 import styled, { StyledComponent } from "@emotion/styled";
-import Link from "next/link";
 import LoginButton from "src/common/LoginButton";
 import Socials from "../../../common/Socials";
 import NavLogo from "../../../common/NavLogo";
 import useNav from "../../../hooks/useNav";
 
 
-type MenuItemProps = {
-  theme: any;
-  outlined?: boolean;
-};
+// type MenuItemProps = {
+//   theme: any;
+//   outlined?: boolean;
+// };
 
-const MenuItem = styled(Box)`
-  ${(props: MenuItemProps) => ({
-    padding: props.outlined ? "4px" : "inherit",
-    border: props.outlined ? "3px solid white" : "none",
-    ...props.theme?.fonts?.menuItem,
-  })}
-  opacity: 0.75;
-  :hover {
-    opacity: 1;
-  }
-`;
+// const MenuItem = styled(Box)`
+//   ${(props: MenuItemProps) => ({
+//     padding: props.outlined ? "4px" : "inherit",
+//     border: props.outlined ? "3px solid white" : "none",
+//     ...props.theme?.fonts?.menuItem,
+//   })}
+//   opacity: 0.75;
+//   :hover {
+//     opacity: 1;
+//   }
+// `;
 
 const TopNav = () => {
   const { navs } = useNav();
@@ -38,7 +37,7 @@ const TopNav = () => {
       display={["none", "none", "flex", "flex"]}
       alignItems="center"
     >
-      <Flex w="100%" mx={8} justifyContent="space-between" maxW="1180px">
+      <Flex w="100%" mx={8} justifyContent="flex-end" maxW="1180px">
         <NavLogo color="brand.light" size="md" logoOnly />
         {navs.map((nav) => {
             return (
@@ -50,7 +49,8 @@ const TopNav = () => {
                 }}
                 href={nav.slug}
               >
-                <MenuItem className="desktop-menu-item">{nav.name}</MenuItem>
+                {nav.name}
+                {/* <MenuItem className="desktop-menu-item">{nav.name}</MenuItem> */}
               </Link>
             );
           })}
